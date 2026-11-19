@@ -1033,7 +1033,7 @@ function renderDebut(){
   const fig=(src,alt,kick,head,lines,cls)=>el("figure",{class:"dfig "+(cls||"")},el("img",{src,alt,loading:"lazy"}),el("figcaption",{},el("small",{text:kick}),el("b",{text:head}),...lines.map(t=>el("span",{text:t}))));
   const mid=el("div",{class:"dmid","aria-hidden":"true"});
   mid.innerHTML='<svg viewBox="0 0 200 60" style="width:100%;height:70px" preserveAspectRatio="xMidYMid meet"><path d="M6 40 C 60 40, 70 14, 100 14 S 150 14, 190 28" fill="none" stroke="#F4B63F" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/><circle cx="6" cy="40" r="6" fill="#F4B63F"/><circle cx="192" cy="28" r="6" fill="#F4B63F"/></svg><span>2022 to 2026</span>';
-  d.replaceChildren(fig("p/p064.jpg","Receiving my first Germany cap from my captain","DEBUT FOR GERMANY","10 June 2022",["Germany v Nigeria","Kigali, Rwanda","Receiving my first cap from my captain."]),mid,fig("p/nordic26.jpg","Receiving my medal at the Nordic Women's T20 Cup, 2026","LATEST, 2026","Nordic Women's T20 Cup",["Receiving my medal."],"r"));
+  d.replaceChildren(fig("p/p064.jpg","Receiving my first Germany cap","DEBUT FOR GERMANY","10 June 2022",["Germany v Nigeria","Kigali, Rwanda","Receiving my first Germany cap."]),mid,fig("p/nordic26.jpg","Receiving my medal at the Nordic Women's T20 Cup, 2026","LATEST, 2026","Nordic Women's T20 Cup",["Receiving my medal."],"r"));
 }
 function renderM(){
   const items=allItems();
