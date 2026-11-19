@@ -482,7 +482,7 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 <header class="nav">
   <button class="logo" data-go="home" aria-label="Home">SK<b>45</b></button>
   <nav class="tabs" role="tablist" aria-label="Sections" id="tabs"></nav>
-  <a class="navlink" href="https://www.instagram.com/shravyakolcharam" target="_blank" rel="noopener noreferrer">Instagram</a>
+  <a class="navlink" href="https://www.instagram.com/shravyakolcharamcricket/" target="_blank" rel="noopener noreferrer">Instagram</a>
 </header>
 
 <main>
@@ -1283,7 +1283,7 @@ function renderS_old(){
   $("sfilter").hidden=accs.length<2;
   const sa=$("socialAdd");sa.textContent=sf==="All"?"+ Add a post":"+ Add to "+sf;sa.onclick=()=>openAdd("post",sf==="All"?null:{account:sf});
   const list=POSTS_.filter(p=>sf==="All"||p.account===sf).sort((a,b)=>(b.created||0)-(a.created||0));
-  const base=[el("a",{class:"scard",href:"https://www.instagram.com/shravyakolcharam",target:"_blank",rel:"noopener noreferrer"},el("small",{text:"Instagram"}),el("b",{text:"@shravyakolcharam"})),el("a",{class:"scard",href:"https://www.instagram.com/p/DfdCc2RjRxe/",target:"_blank",rel:"noopener noreferrer"},el("small",{text:"Instagram post"}),el("b",{text:"Rome Queen's Trophy 2026"}))];
+  const base=[el("a",{class:"scard",href:"https://www.instagram.com/shravyakolcharamcricket/",target:"_blank",rel:"noopener noreferrer"},el("small",{text:"Instagram"}),el("b",{text:"@shravyakolcharam"})),el("a",{class:"scard",href:"https://www.instagram.com/p/DfdCc2RjRxe/",target:"_blank",rel:"noopener noreferrer"},el("small",{text:"Instagram post"}),el("b",{text:"Rome Queen's Trophy 2026"}))];
   const cards=list.map(p=>{const u=safe(p.url);if(!u)return null;const h=hostName(u);
     const open=(t,c)=>el("a",{href:u,target:"_blank",rel:"noopener noreferrer",class:c},t);
     let media;

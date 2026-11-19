@@ -97,10 +97,8 @@ window.SOCIAL_SEED=[
  {"id": "a182", "cat": "private", "sub": "pink", "url": "https://www.ecn.cricket/post/european-cricket-network-x-pink-lady-cricket-official-streaming-partner-2026", "title": "ECS-W Pink Lady 2026 — ECN streaming announcement"},
  {"id": "a183", "cat": "highlights", "sub": "", "url": "https://www.instagram.com/p/DebOSB1jFXQ/"},
  {"id": "a184", "cat": "highlights", "sub": "", "url": "https://www.instagram.com/p/Dckx3FIo8Jm/"},
- {"id": "a185", "cat": "highlights", "sub": "", "url": "https://www.instagram.com/reel/DaiXJP9tUR3/"},
- {"id": "a186", "cat": "highlights", "sub": "", "url": "https://www.instagram.com/reel/DOk9GYwjWME/"},
  {"id": "a187", "cat": "highlights", "sub": "", "url": "https://www.instagram.com/p/DOJ4_Q2iLQq/"},
  {"id": "a188", "cat": "private", "sub": "", "url": "https://www.instagram.com/p/DOX3qZ1iPyc/"},
  {"id": "a189", "cat": "private", "sub": "pink", "url": "https://www.instagram.com/p/Ddio3vsDOox/"},
- {"id": "a191", "cat": "highlights", "sub": "", "url": "https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDU5MDU2MDY0MTc1MTY2?story_media_id=3643371050259075454", "title": "Instagram story highlight"}
+ {"id":"a900","cat":"highlights","sub":"","url":"https://www.instagram.com/shravyakolcharamcricket/","title":"Shravya Kolcharam on Instagram","desc":"My public cricket account: match days, training and tournaments."}
 ];
