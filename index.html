@@ -456,6 +456,26 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .sfoot{margin:40px 0 10px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:var(--mute);font-size:13px}
 .sfoot button{background:none;border:1px solid var(--line);color:var(--mute);border-radius:999px;padding:4px 12px;cursor:pointer}
 
+.sspace{flex:1}
+.sv{--ac:#fff}
+.sgrid{align-items:stretch}
+.sgrid-ig{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+.sgrid-yt{grid-template-columns:repeat(auto-fill,minmax(380px,1fr))}
+.sgrid-blog{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.sgrid-stat{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.sc{height:100%}
+.scf{margin-top:auto}
+.scb{flex:1}
+.scb h4{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.scb p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.scgo{margin-top:auto;padding-top:6px}
+.sc-stat{display:flex;flex-direction:column;gap:6px;padding:14px 16px;text-decoration:none;color:var(--chalk);min-height:112px;border-top-width:3px}
+.sc-stat small{color:var(--ac);font:800 11px var(--body);letter-spacing:.07em;text-transform:uppercase}
+.sc-stat b{font:700 15px/1.35 var(--body);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sc-stat span{margin-top:auto;color:var(--ac);font:700 13px var(--body)}
+.sc-stat:hover{background:#1a1f21}
+@media(max-width:560px){.sgrid-ig,.sgrid-yt,.sgrid-blog{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -1110,8 +1130,14 @@ async function fetchOg(u,card){
   }catch{}
 }
 function fmtDate(d){if(!d)return"";const t=new Date(d);if(isNaN(t))return d;return t.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}
-function glyph(host){return({"cricclubs.com":"CC","ecn.cricket":"ECN","femalecricket.com":"FC"})[host]||(host||"").slice(0,2).toUpperCase()||"WWW"}
+function glyph(host){return({"cricclubs.com":"CC","ecn.cricket":"ECN","femalecricket.com":"FC","instagram.com":"IG","cricbuzz.com":"CB","cricheroes.com":"CH","ipl.com":"IPL"})[host]||(host||"").slice(0,2).toUpperCase()||"WWW"}
+const STAT_H=["cricbuzz.com","ipl.com","cricheroes.com","rkjat.in","crickrida.com","cricketdatabase.com","sportzwiki.com","hindustantimes.com","thesportstak.com","cricketworld.com","icc-cricket.com","cricclubs.com","acscricket.com","timesofindia.indiatimes.com","cricketeuropearchive.com","kriket.cz"];
+function kindOf(it){const P=parseLink(it.url||"");if(it.mediaId)return/^video\//.test(it.mediaType||"")?"yt":"ig";if(P.type==="instagram"||(P.host==="instagram.com"))return"ig";if(P.type==="youtube")return"yt";if(P.type==="facebook")return"ig";if(STAT_H.some(h=>P.host===h||P.host.endsWith("."+h)))return"stat";return"blog"}
 function socCard(it,cat,color){
+  if(kindOf(it)==="stat"&&!it.mediaId){const P0=parseLink(it.url);const w=el("a",{class:"sc sc-stat",href:safe(it.url)||"#",target:"_blank",rel:"noopener noreferrer"});w.style.setProperty("--ac",color);w.append(el("small",{text:P0.host}),el("b",{text:it.title||P0.host}),el("span",{text:"Open →"}));if(canWrite)w.append(socOwner(it,cat));return w}
+  return socCard0(it,cat,color)
+}
+function socCard0(it,cat,color){
   const P=parseLink(it.url||"");const og=ogOf(it.url)||{};
   const wrap=el("article",{class:"sc sc-"+P.type});wrap.style.setProperty("--ac",color);
   const open=(t,c)=>el("a",{class:c||"",href:safe(it.url)||"#",target:"_blank",rel:"noopener noreferrer"},t);
@@ -1144,13 +1170,15 @@ function socOwner(it,cat){
   const del=el("button",{class:"del",type:"button",text:"Remove",onclick:()=>{if(it.seed){const ov=sget(SK_OV,{});ov[it.id]={...(ov[it.id]||{}),hide:true};sset(SK_OV,ov)}else sset(SK_LOC,sget(SK_LOC,[]).filter(x=>x.id!==it.id));renderSocial()}});
   row.append(el("span",{text:"Show under"}),sel,del);return row;
 }
-function renderSocial(){
+function renderSocial(){return svw==='type'?renderByType():renderByPlace()}
+let svw='type';
+function renderByPlace(){
   const root=$("socroot");if(!root)return;
   const items=socItems();
   const count=c=>items.filter(x=>x.cat===c).length;
   const nav=el("div",{class:"snav",role:"group","aria-label":"Show"},
     el("button",{class:"sn","aria-pressed":String(scat==="all"),type:"button",onclick:()=>{scat="all";renderSocial()}},"Everything",el("i",{text:String(items.length)})),
-    ...SOC_CATS.map(([c,l,col])=>{const b=el("button",{class:"sn","aria-pressed":String(scat===c),type:"button",onclick:()=>{scat=c;renderSocial()}},l,el("i",{text:String(count(c))}));b.style.setProperty("--ac",col);return b}));
+    ...SOC_CATS.map(([c,l,col])=>{const b=el("button",{class:"sn","aria-pressed":String(scat===c),type:"button",onclick:()=>{scat=c;renderSocial()}},l,el("i",{text:String(count(c))}));b.style.setProperty("--ac",col);return b}),el("span",{class:"sspace"}),el("button",{class:"sn sv","aria-pressed":"false",type:"button",onclick:()=>{svw="type";renderSocial()}},"By type"),el("button",{class:"sn sv","aria-pressed":"true",type:"button"},"By tournament"));
   const secs=SOC_CATS.filter(([c])=>scat==="all"||scat===c).map(([c,l,col,blurb])=>{
     const its=items.filter(x=>x.cat===c);
     const gs=groupsFor(c);
@@ -1175,6 +1203,34 @@ function renderSocial(){
   });
   root.replaceChildren(nav,...secs);
 }
+
+const KINDS=[["ig","Instagram","Posts, reels and stories.","#F0545B"],["yt","YouTube","Videos and replays.","#FF9D5C"],["blog","Blogs and articles","Match reports, previews and official pages.","#F4B63F"],["stat","Scorecards and profiles","The official records: Cricbuzz, ICC, CricHeroes and more.","#55A8FF"]];
+function renderByType(){
+  const root=$("socroot");if(!root)return;
+  const all=socItems();const items=all.filter(x=>scat==="all"||x.cat===scat);
+  const count=c=>all.filter(x=>x.cat===c).length;
+  const gt={};SOC_CATS.forEach(([c])=>groupsFor(c).forEach(g=>{if(g.id)gt[g.id]=(g.flag&&g.year?g.year+" ":"")+g.title}));
+  const nav=el("div",{class:"snav",role:"group","aria-label":"Show"},
+    el("button",{class:"sn","aria-pressed":String(scat==="all"),type:"button",onclick:()=>{scat="all";renderSocial()}},"Everything",el("i",{text:String(all.length)})),
+    ...SOC_CATS.map(([c,l,col])=>{const b=el("button",{class:"sn","aria-pressed":String(scat===c),type:"button",onclick:()=>{scat=c;renderSocial()}},l,el("i",{text:String(count(c))}));b.style.setProperty("--ac",col);return b}),
+    el("span",{class:"sspace"}),
+    el("button",{class:"sn sv","aria-pressed":"true",type:"button"},"By type"),
+    el("button",{class:"sn sv","aria-pressed":"false",type:"button",onclick:()=>{svw="place";renderSocial()}},"By tournament"));
+  const secs=KINDS.map(([k,l,blurb,col],i)=>{
+    const its=items.filter(x=>kindOf(x)===k);if(!its.length)return null;
+    const sec=el("section",{class:"ss",id:"soc-"+k});sec.style.setProperty("--ac",col);
+    sec.append(el("header",{class:"ssh"},el("span",{class:"ssn",text:String(its.length).padStart(2,"0")}),el("div",{},el("h3",{text:l}),el("p",{text:blurb}))));
+    const ccol=x=>(SOC_CATS.find(c=>c[0]===x.cat)||[])[2]||col;
+    if(k==="stat"){
+      const gs={};its.forEach(x=>{const g=x.sub||"";(gs[g]=gs[g]||[]).push(x)});
+      Object.keys(gs).sort((a,b)=>(a?0:1)-(b?0:1)).forEach(g=>{sec.append(el("div",{class:"sg"},el("div",{class:"sgh"},el("b",{text:g?(gt[g]||g):"Profiles and general"})),el("div",{class:"sgrid sgrid-stat"},...gs[g].map(x=>socCard(x,x.cat,ccol(x))))))});
+    }else sec.append(el("div",{class:"sgrid sgrid-"+k},...its.map(x=>socCard(x,x.cat,ccol(x)))));
+    return sec;
+  }).filter(Boolean);
+  if(!secs.length)secs.push(el("p",{class:"sempty",text:canWrite?"Nothing here yet. Use + Add a post.":"More coming soon."}));
+  root.replaceChildren(nav,...secs);
+}
+
 function renderS(){
   const sa=$("socialAdd");if(sa){sa.hidden=!canWrite;sa.onclick=()=>openSocialAdd()}
   const ex=$("socialExp");if(ex){ex.hidden=!canWrite;ex.onclick=socExport}
