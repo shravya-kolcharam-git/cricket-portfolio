@@ -506,6 +506,8 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .cph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,color-mix(in srgb,var(--c) 45%,#16382A),#16382A)}.cph span{font:900 72px var(--disp);color:var(--c)}
 .cn{margin-top:6px;color:var(--mute)}
 
+.cmore{display:flex;gap:6px;margin:-2px 0 10px;align-items:center;flex-wrap:wrap}.cmore button{padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;width:56px;height:56px;background:none}.cmore img{width:100%;height:100%;object-fit:cover;display:block}.cmore em{font-style:normal;font-size:12px;color:var(--mute)}
+
 </style>
 </head>
 <body>
@@ -1665,8 +1667,8 @@ function renderStx(){
   box.replaceChildren(el("h3",{class:"sth",text:"Career record, WT20I for Germany"}),rec,el("p",{class:"note",text:"As listed by ESPNcricinfo when the total stood at 40 matches. The Nordic Cup in August 2026 brings it to 44."}));
 }
 const COACHES=[
- {n:"Michael Thewlis",r:"Germany Women's head coach",y:"2020 to 2023",img:"p/p066.jpg",col:"#F4B63F"},
- {n:"Alistair Waldron",r:"Germany Women's national coach, ECB Level 4",y:"2023 to now",img:"",col:"#6FD3A0"},
+ {n:"Michael Thewlis",r:"Head coach of the German women's team (Golden Eagles), ECB Level 3",y:"2018 to Aug 2023",imgs:["p/p905.jpg","p/p066.jpg","p/p035.jpg"],col:"#F4B63F"},
+ {n:"Alistair Waldron",r:"Germany Women's national coach, ECB Level 4",y:"2023 to now",imgs:["p/p901.jpg","p/p902.jpg","p/p903.jpg","p/p904.jpg"],col:"#6FD3A0"},
  {n:"Jason Wood",r:"Assistant coach, Germany Women, ECB Level 3",y:"2023 to now",img:"",col:"#5CC8FF"},
  {n:"Siva",r:"Regional coach, Saxony",y:"Saxony",img:"",col:"#FF5CAA"}
 ];
@@ -1678,8 +1680,11 @@ function renderC(){
   box.replaceChildren(...all.map(c=>{
     const ini=c.n.split(" ").map(w=>w[0]).join("").slice(0,2);
     const ph=el("div",{class:"cph"},el("span",{text:ini}));
-    const pic=c.img?(()=>{const i=el("img",{src:c.img,alt:c.n,loading:"lazy"});i.onerror=()=>i.replaceWith(ph);return i})():ph;
-    const li=el("div",{class:"tli cli"},el("div",{class:"ty",text:c.y||" "}),el("div",{class:"tlc"},el("div",{class:"cpic"},pic),el("h3",{text:c.n}),el("p",{text:c.r}),c.note?el("p",{class:"cn",text:c.note}):null));
+    const imgs=c.imgs||(c.img?[c.img]:[]);
+    const open=i=>openLB(imgs.map(u=>({t:"img",src:u,cap:c.n})),i);
+    const pic=imgs.length?(()=>{const i=el("img",{src:imgs[0],alt:c.n,loading:"lazy"});i.onerror=()=>i.replaceWith(ph);i.onclick=()=>open(0);i.style.cursor="zoom-in";return i})():ph;
+    const more=imgs.length>1?el("div",{class:"cmore"},...imgs.slice(1).map((u,k)=>{const b=el("button",{type:"button","aria-label":"Open photo "+(k+2)+" of "+c.n,onclick:()=>open(k+1)},el("img",{src:u,alt:"",loading:"lazy"}));return b}),el("em",{text:"Tap to see all "+imgs.length}) ):null;
+    const li=el("div",{class:"tli cli"},el("div",{class:"ty",text:c.y||" "}),el("div",{class:"tlc"},el("div",{class:"cpic"},pic),more,el("h3",{text:c.n}),el("p",{text:c.r}),c.note?el("p",{class:"cn",text:c.note}):null));
     if(canWrite&&c.id)li.querySelector(".tlc").append(el("button",{class:"del",type:"button",text:"Remove",onclick:async()=>{try{await db.collection("coaches").doc(c.id).delete()}catch{}}}));
     li.style.setProperty("--c",c.col);return li}));
   let s=$("cstrip");if(!s){s=el("div",{id:"cstrip"});box.parentNode.insertBefore(s,box.nextSibling)}
