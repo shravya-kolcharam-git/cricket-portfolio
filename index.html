@@ -529,6 +529,27 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .lb .st img,.lb .st video{position:absolute;top:56px;left:56px;right:56px;bottom:0;width:calc(100% - 112px);height:calc(100% - 56px);max-width:none;max-height:none;object-fit:contain;margin:0}
 @media(max-width:600px){.lb .st img,.lb .st video{left:6px;right:6px;width:calc(100% - 12px)}}
 
+/* Stats sections */
+.stseg{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 18px}
+.stseg button{flex:1 1 200px;text-align:left;background:var(--pitch);color:var(--chalk);border:1px solid var(--line);border-radius:14px;padding:12px 16px;cursor:pointer;font:inherit}
+.stseg button b{display:block;font:800 18px var(--body)}.stseg button small{color:var(--mute);font-size:13px}
+.stseg button.on{background:#F4B63F;color:#10261C;border-color:#F4B63F}.stseg button.on small{color:#2b3d2f}
+.stlinks{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.stl{padding:9px 14px;border:1px solid var(--line);border-radius:999px;color:#6FD3A0;text-decoration:none;font-weight:700;font-size:14px}.stl:hover{background:rgba(111,211,160,.12)}
+.stcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:10px 0}
+.stcards div{background:var(--pitch);border:1px solid var(--line);border-radius:14px;padding:14px}
+.stcards b{display:block;font-size:16px}.stcards span{color:var(--mute);font-size:14px}
+
+/* Home: use the full width */
+#ext-home{max-width:none;margin-top:28px;padding:0 clamp(18px,4vw,56px) 40px;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:start;gap:22px 34px}
+#ext-home .nb{grid-column:1;grid-row:1}
+#ext-home .nb p{max-width:none;font-size:17px}
+#ext-home .facts{grid-column:1;grid-row:2}
+#ext-home .strip{grid-column:2;grid-row:1 / span 2}
+#ext-home .stories{grid-column:1 / -1}
+#ext-home .strip .srow{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+@media(max-width:900px){#ext-home{grid-template-columns:1fr}#ext-home .nb,#ext-home .facts,#ext-home .strip{grid-column:1;grid-row:auto}}
+
 </style>
 </head>
 <body>
@@ -544,7 +565,7 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
       <div class="l">
         <div class="role">Germany Women · No. 45 · All-rounder</div>
         <h1 class="name"><span>Shravya</span><span>Kolcharam</span></h1>
-        <p class="sub">Right-hand batter and right-arm medium bowler for Germany and Sachsen Royals. Tap a number to see what is behind it.</p>
+        <p class="sub">Right-hand batter and right-arm medium bowler for Germany and Sachsen Royals, and a captain at club and tournament level. Tap a number to see what is behind it.</p>
         <div class="tiles" id="tiles"></div>
         <div><button class="btn" id="toWatch" type="button">&#9654; Watch clips</button></div>
       </div>
@@ -710,8 +731,8 @@ const EV=[
 {id:"nordic26",cat:"International",year:2026,when:"30 Aug 2026",title:"Nordic Women's T20 Cup",country:"Germany",place:"Gelsenkirchen",hi:"41 off 36 v Denmark",text:"Germany beat Denmark by 37 runs. Shravya anchored the innings with 41 off 36 balls and shared a 27-run fifth-wicket stand with Ameya Kanukuntla.",links:[["Match report","https://femalecricket.com/womens-nordic-cup-2026/96246-shravya-kolcharam-and-ameya-kanukuntla-lead-as-germany-women-defeat-denmark.html"],["Series page","https://www.cricinfo.com/series/nordic-women-t20-cup-2026-1549504/match-schedule-fixtures-and-results"]]},
 {id:"dcb25",cat:"DCB",year:2025,when:"2025 season",title:"DCB women's league",country:"Germany",place:"Sachsen Royals",hi:"8 wickets, best 3/19",text:"For Sachsen Royals Shravya took 8 wickets in the 2025 DCB season, with best figures of 3/19 and an economy rate of 7.09.",links:[["2025 match list","https://www.cricclubs.com/Germany/listMatches.do?league=111&teamId=null&internalClubId=36&year=2025&clubId=38349"],["Bowling records","https://cricclubs.com/Germany/bowlingRecords.do?league=111&teamId=1670&clubId=38349"]]},
 {id:"dcb26",cat:"DCB",year:2026,when:"2026 season",title:"DCB T20 Regionalliga",country:"Germany",place:"Sachsen Royals",tag:"Top batter",hi:"271 runs, 101*",text:"Top batter of the 2026 Regionalliga: 271 runs in 8 matches at an average of 38.71 and a strike rate of 120.98, including a century of 101 not out.",links:[["DCB on CricClubs","https://www.cricclubs.com/Germany"]]},
-{id:"prague25",cat:"Private",year:2025,when:"2025",title:"Prague Challenger Cup",country:"Czechia",place:"Prague",text:"Played with Molfettas. Listed from Shravya's own performance record. In Shravya's words, she captained and the team won the trophy there as well.",links:[]},
-{id:"prague26",cat:"Private",year:2026,when:"2026",title:"Prague Challenger Cup",country:"Czechia",place:"Prague",tag:"Best Batter and Player of the Series",text:"Played with Unified Thunders. Best Batter and Player of the Series, as reported by the player.",links:[]},
+{id:"prague25",cat:"Private",year:2025,when:"2025",title:"Prague Challenger Cup",country:"Czechia",place:"Prague",text:"Captain. Played with Molfettas. Listed from Shravya's own performance record.",links:[]},
+{id:"prague26",cat:"Private",year:2026,when:"2026",title:"Prague Challenger Cup",country:"Czechia",place:"Prague",tag:"Best Batter and Player of the Series",text:"Captain. Played with Unified Thunders. Best Batter and Player of the Series, as reported by the player.",links:[]},
 {id:"pink",cat:"Private",year:0,when:"Date to add",title:"Pink Lady tournament",country:"Germany",place:"",tag:"Two titles",text:"Two Pink Lady titles, as reported by the player. The tournament was streamed by ECN.",links:[["ECN","https://www.ecn.cricket"]]}
 ];
 const PROF=[["ESPNcricinfo","https://www.espncricinfo.com/cricketers/shravya-kolcharam-1318951"],["CREX","https://crex.com/player/shravya-kolcharam-8XA"],["Sofascore","https://www.sofascore.com/player/shravya-kolcharam/1218686"],["ECN","https://www.ecn.cricket/players/shravya-kolcharam-95089"],["CricketArchive","https://cricketarchive.co.uk/Archive/Players/2549/2549970/2549970.html"],["FanCode","https://www.fancode.com/cricket/players/shravya-kolcharam/102113"],["CricDives","http://www.cricdives.com/player.php?pid=6534&dives=shravya-kolcharam"]];
@@ -733,7 +754,7 @@ const PHOTOS={
  "On the road":"044 053 055 056 061 064 073 100".split(" ")
 };
 const GAL=[];for(const [c,l] of Object.entries(PHOTOS))for(const n of l)GAL.push({f:"p"+n,c});
-GAL.sort((a,b)=>a.f<b.f?-1:1);
+const RM_=new Set(["p035", "p036", "p053", "p054", "p072", "p074", "p075", "p076", "p077", "p078", "p079", "p080", "p091", "p092", "p093", "p094", "p095", "p096", "p099", "pn06", "pn21", "pn23", "pn25", "pn26"]);GAL.splice(0,GAL.length,...GAL.filter(x=>!RM_.has(x.f)));GAL.sort((a,b)=>a.f<b.f?-1:1);
 const VID=[{f:"potm-nordic-2026",t:"Player of the Match, Nordic Women's T20 Cup 2026, Germany v Denmark",d:"0:23",ev:"nordic26"},{f:"potm-div2-2025",t:"Player of the Match, Division 2, Rome 2025, Germany v Isle of Man",d:"1:13",ev:"rome25"}];
 
 const MT={
@@ -752,7 +773,7 @@ const EXTRA=[
  {id:"usg50",cat:"Private",year:0,when:"",title:"USG Chemnitz 50-over tournament, organised by me",country:"Germany",place:"Chemnitz",tag:"Organiser",text:"One of three tournaments I organised with USG Chemnitz, played over 50 overs. Scores and tables are on CricClubs. Use the + button to add the date and the CricClubs link.",links:[]},
  {id:"usg20",cat:"Private",year:0,when:"",title:"USG Chemnitz 20-over tournament, organised by me",country:"Germany",place:"Chemnitz",tag:"Organiser",text:"One of three tournaments I organised with USG Chemnitz, played over 20 overs. Scores and tables are on CricClubs. Use the + button to add the date and the CricClubs link.",links:[]},
  {id:"usg10",cat:"Private",year:0,when:"",title:"USG Chemnitz 10-over tournament, organised by me",country:"Germany",place:"Chemnitz",tag:"Organiser",text:"One of three tournaments I organised with USG Chemnitz, played over 10 overs. Scores and tables are on CricClubs. Use the + button to add the date and the CricClubs link.",links:[]},
- {id:"prague24",cat:"Private",year:2024,when:"2024",title:"Prague tournament, European Central Cup",country:"Czechia",place:"Prague",tag:"2024",text:"I took part in the Prague tournament in 2024. Use the + button to add the exact dates, my team and the scorecard link.",links:[]},
+ {id:"prague24",cat:"Private",year:2024,when:"2024",title:"European Series, Prague",country:"Czechia",place:"Prague",tag:"Captain",text:"Captained my team at the European Series in Prague in 2024.",links:[]},
  {id:"o35",cat:"Private",year:0,when:"",title:"35-over match",country:"",place:"",text:"A 35-over match. Use the + button to add the date, opponent, score and scorecard link.",links:[]}
 ];
 const ACCS=["Golden Eagles","DCB","ECN","Pink Lady","SC","USG Chemnitz","Shravya","YouTube"];
@@ -873,7 +894,7 @@ $("hl").replaceChildren(...HL.map(([n,t,id])=>el("button",{onclick:()=>openEvent
 
 
 /* ---------- gallery ---------- */
-const GT0=[["team","❤️ Golden Eagles team photos","Squad, team and group photos."],["trophy","🏆 Trophies","Medals, trophies and awards."],["coach","🧑‍🏫 With my coaches","Photos with the coaches I have worked with."],["video","🎬 Videos","The work behind the match days. Tap a clip to play it."],["other","✨ Others","Match days, training, Pink Lady and life on the road."]];
+const GT0=[["team","⭐ Golden Eagles, German national team","Squad, team and group photos."],["trophy","🏆 Trophies","Medals, trophies and awards."],["coach","🧑‍🏫 With my coaches","Photos with the coaches I have worked with."],["video","🎬 Videos","The work behind the match days. Tap a clip to play it."],["other","✨ Others","Match days, training, Pink Lady and life on the road."]];
 const BASE={"Teams and friends":"team","Medals and trophies":"trophy","Rome Queen's Trophy 2026":"trophy","Added teams":"team","Added trophies":"trophy","With coaches":"coach","Player of the Match":"trophy"};
 const DEFCAP={pn37:{y:"",t:"Pink Lady Hope XI, handshake"},pn31:{y:"",t:"Team with the trophy"},pn27:{y:"",t:"With my medal and plaque"},pn28:{y:"",t:"With my medal and plaque"},pn29:{y:"",t:"With my medal and plaque"},pn24:{y:"",t:"Trophies and awards"},pn05:{y:"2022",t:"Kigali, Rwanda"},pn10:{y:"2022",t:"Kigali, Rwanda"},pn09:{y:"2022",t:"Kigali, Rwanda"},pn13:{y:"2024",t:"European Cricket Championship Challenger"},pn14:{y:"2024",t:"European Cricket Championship Challenger, medals"},pn11:{y:"2024",t:"European Cricket Championship Challenger"},pn12:{y:"2024",t:"European Cricket Championship Challenger"},pn15:{y:"2025",t:"Rome, with the medals"},pn04:{y:"",t:"Bowling v Türkiye"},pn16:{y:"",t:"Germany v Switzerland"},pn17:{y:"",t:"Team photo, Federazione Cricket Italiana"},pn07:{y:"",t:"With the flag"},pn08:{y:"",t:"On the way in my Deutscher Cricket Bund jacket"},pn06:{y:"",t:"On the sidelines"},prq1:{y:"2026",t:"Rome Queen's Trophy, Season 1"},prq2:{y:"2026",t:"Rome Queen's Trophy, Season 1"}};
 const DEFEV={};
@@ -1376,7 +1397,7 @@ function renderC(){
 async function prep(f){if(!f.type.startsWith("image/"))return f;try{const bm=await createImageBitmap(f);const k=Math.min(1,1400/Math.max(bm.width,bm.height));const c=document.createElement("canvas");c.width=Math.round(bm.width*k);c.height=Math.round(bm.height*k);c.getContext("2d").drawImage(bm,0,0,c.width,c.height);return await new Promise(r=>c.toBlob(x=>r(x||f),"image/jpeg",.86))}catch{return f}}
 /* ---------- extensions: notes, stories, sliders, gallery tools ---------- */
 const SECS=[["home","Home"],["journey","Journey"],["matches","Matches"],["stats","Stats"],["gallery","Gallery"],["coaches","Coaches"],["social","Social"],["people","My people"]];
-const DEFNOTE={home:"I was born in India in 1995. As a child I was a gully cricketer, and I spent almost all of my summers playing with my brother and cousins.\n\nIn 2018 I moved to Germany for my studies and took up cricket seriously here, starting almost everything from scratch. I made my debut for Germany in 2022, and I have played for the national team and for Sachsen Royals ever since.\n\nI work as an automation engineer and I am learning machine learning and AI at the moment, but cricket is where my heart is.\n\nI love my team, the Golden Eagles, and I want to keep improving and to contribute more for them. I thank every coach, teammate and friend who has been part of this journey."};
+const DEFNOTE={home:"I was born in India in 1995. As a child I was a gully cricketer, and I spent almost all of my summers playing with my brother and cousins.\n\nIn 2018 I moved to Germany for my studies and took up cricket seriously here, starting almost everything from scratch. I made my debut for Germany in 2022, and I have played for the national team and for Sachsen Royals ever since.\n\nI have captained the Sachsen Royals women's team, my Chemnitz club, and my team at the Prague Challenger Cup in 2025 and 2026 and at the European Series in Prague in 2024. I am also a Level 2 coach and the women's officer at USG Chemnitz and at the Sächsischer Cricket Verband.\n\nI work as an automation engineer and I am learning machine learning and AI at the moment, but cricket is where my heart is.\n\nI love my team, the Golden Eagles, and I want to keep improving and to contribute more for them. I thank every coach, teammate and friend who has been part of this journey."};
 const TEAMLINKS=[["DCB website (cricket.de)","https://cricket.de"],["DCB on Instagram","https://www.instagram.com/cricket_germany"],["DCB on Facebook","https://www.facebook.com/GermanyCricket"],["Germany Women on ESPNcricinfo","https://www.espncricinfo.com/team/germany-women-1496"],["Germany Women on Wikipedia","https://en.wikipedia.org/wiki/Germany_women%27s_national_cricket_team"]];
 let editSec=null,openSec={};
 const isV=m=>/^video\//.test((m&&(m.type||m.mediaType))||"");
@@ -1579,7 +1600,7 @@ const CT=[["Matches","40"],["Innings","31"],["Not outs","6"],["Runs","404"],["Hi
 const CB=[["Innings bowled","12"],["Balls","185"],["Runs conceded","242"],["Wickets","8"],["Best figures","2/29"],["Economy","7.84"],["Average","30.25"]];
 function strip(title,list,btn){
   if(!list.length)return null;
-  return el("section",{class:"strip"},el("h3",{text:title}),el("div",{class:"srow"},...list.slice(0,8).map((x,i)=>el("button",{type:"button","aria-label":"Open photo "+(i+1),onclick:()=>openLB(list.map(y=>({t:y.vid?"vid":"img",f:y.f,src:y.src,cap:y.c,tab:tabOf(y),up:y.up,docId:y.docId})),i)},x.vid?el("video",{src:x.src,preload:"metadata",muted:true}):el("img",{src:x.th,alt:gline(x.f)||x.c,loading:"lazy"})))),btn);
+  return el("section",{class:"strip"},el("h3",{text:title}),el("div",{class:"srow"},...list.slice(0,12).map((x,i)=>el("button",{type:"button","aria-label":"Open photo "+(i+1),onclick:()=>openLB(list.map(y=>({t:y.vid?"vid":"img",f:y.f,src:y.src,cap:y.c,tab:tabOf(y),up:y.up,docId:y.docId})),i)},x.vid?el("video",{src:x.src,preload:"metadata",muted:true}):el("img",{src:x.th,alt:gline(x.f)||x.c,loading:"lazy"})))),btn);
 }
 
 const TLI=[
@@ -1589,7 +1610,7 @@ const TLI=[
  ["2018","Moved to Germany","I came for my studies, a Master's in Automotive Software Engineering at TU Chemnitz, and I took up cricket seriously here. I started almost everything from scratch."],
  ["2021","First tournaments","My first tournaments are recorded on CricClubs."],
  ["2022","Debut for Germany","10 June 2022 against Nigeria in Kigali, Rwanda. I have played in the DCB Bundesliga since then.","kwibuka22"],
- ["2024","Captain and trophy","I captained the side in the European series and we won the trophy."],
+ ["2024","Captain, European Series","I captained my team at the European Series in Prague."],
  ["2025","Rome, Prague and the Royals","50 not out against Isle of Man in Rome. Eight wickets for Sachsen Royals in the DCB season, and the Prague Challenger Cup.","rome25"],
  ["2026","Nordic Cup, Regionalliga, Prague","A medal at the Nordic Women's T20 Cup, 101 not out in the Regionalliga, and Best Batter and Player of the Series in Prague.","nordic26"],
  ["Off the field","Women's officer","Women's officer at USG Chemnitz Cricket Club and at the Sächsischer Cricket Verband (SCV). I also organised three tournaments with USG Chemnitz, over 50, 20 and 10 overs."],
@@ -1607,8 +1628,8 @@ const INDIA_SVG='<svg viewBox="0 0 250 270" class="indiamap" role="img" aria-lab
 function extras(id){
   const all=gItems();
   if(id==="home"){
-    const pool=[...ordered(all.filter(x=>tabOf(x)==="team"),"team").slice(0,4),...ordered(all.filter(x=>tabOf(x)==="trophy"),"trophy").slice(0,4)];
-    return[el("div",{class:"facts"},...["All-rounder","Right-hand bat","Right-arm medium","DCB Bundesliga since 2022","CricClubs and CricHQ","Prague Challenger Cup 2025 and 2026"].map(t=>el("span",{text:t}))),strip("From my gallery",pool,el("button",{class:"btn",type:"button",text:"Open the gallery",onclick:()=>go("gallery")}))];
+    const pool=["pn14","pn15","p065","pn13","pn39","p089","pn38","pn22","pn19","pn27","p114","p908"].map(f=>all.find(x=>x.f===f)).filter(Boolean);
+    return[el("div",{class:"facts"},...["All-rounder","Right-hand bat","Right-arm medium","DCB Bundesliga since 2022","Captain, Sachsen Royals women","Captain, Prague Challenger Cup 2025 and 2026","Captain, European Series 2024","Level 2 coach","Women's officer"].map(t=>el("span",{text:t}))),strip("From my gallery",pool,el("button",{class:"btn",type:"button",text:"Open the gallery",onclick:()=>go("gallery")}))];
   }
   if(id==="social"){return[];
     const pills=[...TEAMLINKS.map(([l,u])=>({l,u})),...tlinks];
@@ -1641,9 +1662,9 @@ const TLH=[
  ["2018","Moved to Germany","Master's at TU Chemnitz, and cricket for real."],
  ["2021","First tournaments","Recorded on CricClubs."],
  ["2022","Debut for Germany","10 June, v Nigeria, Kigali.","kwibuka22"],
- ["2024","Captain and trophy","Led the side in the European series."],
- ["2025","Rome and Prague","50* v Isle of Man, Player of the Match.","rome25"],
- ["2026","Nordic Cup and Regionalliga","Player of the Match v Denmark, 101* for the Royals.","nordic26"],
+ ["2024","Captain, European Series","Captained my team at the European Series in Prague.","prague24"],
+ ["2025","Rome and Prague","50* v Isle of Man, Player of the Match. Captain at the Prague Challenger Cup.","rome25"],
+ ["2026","Nordic Cup and Regionalliga","Player of the Match v Denmark, 101* for the Royals. Captain again at the Prague Challenger Cup.","nordic26"],
  ["Today","Cricket at heart","Automation engineer, learning ML and AI."]
 ];
 const TLCOL=["#F4B63F","#6FD3A0","#5CC8FF","#FF7A59","#FF5CAA","#F4B63F","#6FD3A0","#5CC8FF","#FF7A59","#FF5CAA"];
@@ -1653,6 +1674,7 @@ function hscroller(t){
   t.parentNode.insertBefore(nav,t);
 }
 const BEYOND=[
+ ["🧢","Captain, Sachsen Royals women","I have captained the Sachsen Royals women's team, my club side in Chemnitz, and the team at the Prague Challenger Cup in 2025 and 2026 and at the European Series in Prague in 2024.",[]],
  ["🏏","Level 2 cricket coach","I coach as well as play: qualified at Level 2.",[]],
  ["👩","Women's officer, USG Chemnitz Cricket Club","Growing women's cricket at my club in Chemnitz.",[["USG Chemnitz cricket page","https://usg-chemnitz.org/de/cricket.html"],["Contact the club","https://usg-chemnitz.org/de/kontakt-cricket.html"]]],
  ["🛡️","Women's officer, Sächsischer Cricket Verband","Women's cricket across Saxony, with the DCB regional associations.",[["Regional associations (DCB)","https://www.cricket.de/der-dcb/landesverbaende/"],["DCB women's cricket","https://www.cricket.de/der-dcb/frauencricket/"]]]
@@ -1689,12 +1711,19 @@ const BADGE={kwibuka22:["🧢 Debut for Germany, 10 June 2022"],rome25:["🏆 Pl
 function renderStx(){
   const box=$("stx");if(!box)return;
   const tb=t=>el("table",{class:"stt"},...t.map(([a,b])=>el("tr",{},el("td",{class:"vs",text:a}),el("td",{class:"n",text:b}))));
-  const rec=el("div",{class:"strec"},el("div",{},el("h4",{text:"Batting and fielding"}),tb(CT)),el("div",{},el("h4",{text:"Bowling"}),tb(CB)));
-  const top=el("div",{class:"stbig"},...[["44","WT20Is for Germany"],["450","WT20I runs"],["50*","Highest score"],["8","WT20I wickets"]].map(([n,l])=>el("div",{},el("b",{text:n}),el("span",{text:l}))));
-  box.replaceChildren(el("h3",{class:"sth",text:"Career record, WT20I for Germany"}),top,el("h3",{class:"sth sth2",text:"Detailed record"}),rec,el("p",{class:"note",text:"The detailed tables are as listed by ESPNcricinfo when I had played 40 matches. My totals now are 44 WT20Is and 450 runs, and I will update the tables as the official pages catch up. Domestic and private matches are on the Matches page."}));
+  const big=a=>el("div",{class:"stbig"},...a.map(([n,l])=>el("div",{},el("b",{text:n}),el("span",{text:l}))));
+  const lk=(t,u)=>el("a",{class:"stl",href:u,target:"_blank",rel:"noopener noreferrer",text:t+" →"});
+  const SEC={
+   intl:["🇩🇪 International","Germany women, WT20Is",()=>[el("h3",{class:"sth",text:"Career record, WT20I for Germany"}),big([["44","WT20Is for Germany"],["450","WT20I runs"],["50*","Highest score"],["8","WT20I wickets"]]),el("h3",{class:"sth sth2",text:"Detailed record"}),el("div",{class:"strec"},el("div",{},el("h4",{text:"Batting and fielding"}),tb(CT)),el("div",{},el("h4",{text:"Bowling"}),tb(CB))),el("p",{class:"note",text:"The detailed tables are as listed by ESPNcricinfo when I had played 40 matches. My totals now are 44 WT20Is and 450 runs, and I will update the tables as they refresh."})]],
+   dcb:["🏏 DCB domestic","Bundesliga and Regionalliga, Sachsen Royals",()=>[el("h3",{class:"sth",text:"2026 DCB T20 Regionalliga, Sachsen Royals"}),big([["271","Runs in 8 matches"],["101*","Highest score"],["38.71","Batting average"],["120.98","Strike rate"]]),el("p",{class:"note",text:"Top batter of the 2026 Regionalliga."}),el("h3",{class:"sth sth2",text:"2025 DCB women's league, Sachsen Royals"}),big([["8","Wickets"],["3/19","Best figures"],["7.09","Economy rate"]]),el("div",{class:"stlinks"},lk("My CricClubs profile","https://www.cricclubs.com/Germany/viewPlayer.do?playerId=3327499&clubId=38349"),lk("2025 match list","https://www.cricclubs.com/Germany/listMatches.do?league=111&teamId=null&internalClubId=36&year=2025&clubId=38349"),lk("Bowling records","https://cricclubs.com/Germany/bowlingRecords.do?league=111&teamId=1670&clubId=38349")),el("p",{class:"note",text:"I have played in the DCB Bundesliga since 2022. Every league, scorecard and season table is on CricClubs."})]],
+   prv:["🏆 Private tournaments","Prague, Pink Lady, Rome",()=>[el("h3",{class:"sth",text:"Tournaments and awards"}),el("div",{class:"stcards"},...[["Prague Challenger Cup 2026","Captain. Best Batter and Player of the Series."],["Prague Challenger Cup 2025","Captain."],["European Series, Prague 2024","Captain."],["Pink Lady","Two titles."],["Rome Queen's Trophy 2026","Season 1."]].map(([a,b])=>el("div",{},el("b",{text:a}),el("span",{text:b})))),el("div",{class:"stlinks"},lk("Rome Queen's Trophy on CrikIQ","https://crikiq.com/seasons/921000120001")),el("p",{class:"note",text:"Private tournaments do not have an official stats page. I will add the numbers for each one as I collect them."})]]
+  };
+  let cur=window.__stsec||"intl";
+  const draw=()=>{window.__stsec=cur;box.replaceChildren(el("div",{class:"stseg",role:"tablist"},...Object.entries(SEC).map(([k,[l,sub]])=>el("button",{type:"button",role:"tab","aria-selected":String(k===cur),class:k===cur?"on":"",onclick:()=>{cur=k;draw()}},el("b",{text:l}),el("small",{text:sub})))),...SEC[cur][2]())};
+  draw();
 }
 const COACHES=[
- {n:"Michael Thewlis",r:"Head coach of the German women's team (Golden Eagles), ECB Level 3",y:"2018–2023",imgs:["p/p905.jpg","p/p066.jpg","p/p035.jpg"],col:"#F4B63F"},
+ {n:"Michael Thewlis",r:"Head coach of the German women's team (Golden Eagles), ECB Level 3",y:"2018–2023",imgs:["p/p905.jpg","p/p066.jpg"],col:"#F4B63F"},
  {n:"Alistair Waldron",ig:"https://www.instagram.com/awcoachinguk/",r:"Germany Women's national coach, ECB Level 4",y:"2023–now",imgs:["p/p901.jpg","p/p902.jpg","p/p903.jpg","p/p904.jpg"],col:"#6FD3A0"},
  {n:"Jason Wood",ig:"https://www.instagram.com/jasonwoodmoo/",r:"Assistant coach, Germany Women, ECB Level 3",y:"2023–now",imgs:["p/p908.jpg","p/p906.jpg"],col:"#5CC8FF"},
  {ig:"https://www.instagram.com/sivaram_s_79/",n:"Sivaraman Subramaniam (Siva Raman)",r:"Regional coach, Saxony",y:"Saxony",img:"p/p907.jpg",col:"#FF5CAA"}
