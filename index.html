@@ -579,6 +579,10 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .stphotos img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;cursor:zoom-in}
 .stphotos figcaption{padding:8px 12px;font-size:13px;color:#cfe3d6}
 
+.trchips{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.6rem 0 .2rem}
+.trlab{font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#d4202a;margin-right:.3rem}
+.trnote{margin:.4rem 0;color:#555;font-size:.95rem}
+
 </style>
 </head>
 <body>
@@ -935,9 +939,9 @@ VID.forEach(v=>{DEFEV[v.f]=v.ev||"training"});
 ["n05","n09","n10","064"].forEach(n=>{DEFEV["p"+n]="kwibuka22"});
 DEFEV.pn15="rome25";
 const evOf=f=>gevt[f]?(gevt[f].e||""):(DEFEV[f]||"");
-const evName=id=>{if(id==="training")return"Training";let e;try{e=allItems().find(x=>x.id===id)}catch{}return e?e.title+(e.year?" "+e.year:""):""};
-function evGroups(){let it;try{it=allItems()}catch{return[]}const g=[["International","International"],["DCB","DCB domestic"],["Private","Private tournaments"]];
-  return g.map(([c,l])=>[l,it.filter(x=>x.cat===c).sort((a,b)=>(b.year||0)-(a.year||0)).map(x=>[x.id,x.title+(x.year?" "+x.year:"")])]).filter(x=>x[1].length)}
+const TRS=[["train-chemnitz","Home ground: Chemnitz and Saxony","chemnitz","Backyard, nets and sessions at home in Chemnitz and across Saxony."],["train-hall","Indoor halls and nets","hall","Winter hall sessions, nets and bowling-machine work indoors."],["train-ground","Outdoor grounds and pitches","ground","Turf and grass sessions on grounds around Germany."],["train-camp","Squad camps and national sessions","camp","DCB camps, squad sessions and coach-led training days."],["train-visit","Away: training visits in Germany","visit","Training facilities I visit in other cities and regions of Germany."]];const evM=(f,g)=>g==="training"?/^train/.test(evOf(f)):evOf(f)===g;const evName=id=>{if(id==="training")return"Training";{const q=TRS.find(t=>t[0]===id);if(q)return"Training · "+q[1]}let e;try{e=allItems().find(x=>x.id===id)}catch{}return e?e.title+(e.year?" "+e.year:""):""};
+function evGroups(){let it;try{it=allItems()}catch{return[]}const g=[["International","International"],["DCB","DCB domestic"],["Private","Private and friendly"]];
+  return [["Training sections",TRS.map(t=>[t[0],t[1]])],...g.map(([c,l])=>[l,it.filter(x=>x.cat===c).sort((a,b)=>(b.year||0)-(a.year||0)).map(x=>[x.id,x.title+(x.year?" "+x.year:"")])]).filter(x=>x[1].length)]}
 function evSelect(cur,onpick,first){
   const sel=el("select",{class:"gsel","aria-label":"Tournament or training"},el("option",{value:"",text:first||"Not sorted yet"}),el("option",{value:"training",text:"Training"}),...evGroups().map(([l,o])=>el("optgroup",{label:l},...o.map(([v,t])=>el("option",{value:v,text:t})))));
   sel.value=cur||"";sel.onchange=()=>onpick(sel.value);return sel}
@@ -948,7 +952,7 @@ const tabOf=x=>{const t=tags[x.f]||OTHERS_.get(x.f)||x.tab||(x.up?x.tab:BASE[x.c
 const PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z" fill="#fff"/></svg>';
 const vVis=()=>VID.filter(v=>!ghid[v.f]);
 function renderV(){
-  const L=vVis().filter(v=>!gev||(gev==="__none"?!evOf(v.f):evOf(v.f)===gev));
+  const L=vVis().filter(v=>!gev||(gev==="__none"?!evOf(v.f):evM(v.f,gev)));
   $("gempty").hidden=L.length>0;if(!L.length)$("gempty").textContent="No videos under this choice yet.";
   $("vgrid").replaceChildren(...L.map((v,i)=>{const b=el("button",{class:"vcard",type:"button","aria-label":"Play "+v.t,onclick:()=>openLB(L.map(y=>({t:"vid",src:y.src||"v/"+y.f+".mp4",cap:y.t})),i)},el("img",{src:v.poster||"v/"+v.f+".jpg",alt:"",loading:"lazy"}));const o=el("span",{class:"pl"});o.innerHTML="<i>"+PLAY+"</i>";b.append(o,el("span",{class:"t"},v.t,el("small",{text:v.d})));
     const w=el("div",{class:"vwrap"},b);
@@ -994,7 +998,7 @@ function mline(e){
   if(ms.length)art.append(el("div",{class:"mchips2"},ms.map(m=>{const uu=safe(m.u)||fb;const fl=flagOf(m.o);return el(uu?"a":"span",{class:"mchip2"+(m.star?" star":""),href:uu||null,target:uu?"_blank":null,rel:uu?"noopener noreferrer":null,title:m.u?"Open the scorecard":"Open the series page with all scorecards"},fl?el("span",{class:"fl",text:fl}):null,el("span",{class:"on",text:m.o}),m.d?el("small",{text:m.d}):null,m.r?el("b",{text:m.r}):null)})));
   return art;
 }
-const trainCount=()=>{try{return gItems().filter(x=>evOf(x.f)==="training").length+VID.filter(v=>!ghid[v.f]&&evOf(v.f)==="training").length}catch{return 0}};
+const trainCount=()=>{try{return gItems().filter(x=>evM(x.f,"training")).length+VID.filter(v=>!ghid[v.f]&&evM(v.f,"training")).length}catch{return 0}};
 function renderOrg(){
   const b=$("orgbox");if(!b)return;const it=allItems();
   const org=it.filter(x=>/organised by me/i.test(x.title));
@@ -1533,8 +1537,12 @@ function renderG(){
   $("gfilter").replaceChildren(...["All",...subs].map(k=>el("button",{class:"chip","aria-pressed":String(k===gsub),text:k,onclick:()=>{gsub=k;renderG()}})));
   if(gsub!=="All")list=list.filter(x=>x.c===gsub);
   {const fs=el("select",{class:"gsel big","aria-label":"Show photos from"},el("option",{value:"",text:"All tournaments and training"}),el("option",{value:"training",text:"Training"}),...evGroups().map(([l,o])=>el("optgroup",{label:l},...o.map(([v,t])=>el("option",{value:v,text:t})))),el("option",{value:"__none",text:"Not sorted yet"}));fs.value=gev;fs.onchange=()=>{gev=fs.value;renderG()};
-   $("gevf").replaceChildren(el("label",{},"Show photos from ",fs));}
-  if(gev)list=list.filter(x=>gev==="__none"?!evOf(x.f):evOf(x.f)===gev);
+   const trN=id=>all.filter(x=>evM(x.f,id)).length+VID.filter(v=>!ghid[v.f]&&evM(v.f,id)).length;
+   const row=el("div",{class:"chips trchips","aria-label":"Training places"},el("span",{class:"trlab",text:"Training"}),...[["training","All training"],...TRS.map(t=>[t[0],t[1]])].map(([id,l])=>el("button",{class:"chip","aria-pressed":String(gev===id),type:"button",text:l+" ("+trN(id)+")",onclick:()=>{gev=id;renderG()}})));
+   const q=TRS.find(t=>t[0]===gev);const kids=[el("label",{},"Show photos from ",fs),row];
+   if(q){const u=location.origin+location.pathname+"?train="+q[2]+"#gallery";kids.push(el("p",{class:"trnote"},q[3]+" ",el("button",{class:"mbtn",type:"button",text:"Copy link to this section",onclick:()=>{try{navigator.clipboard.writeText(u);toast("Link copied")}catch{prompt("Copy this link",u)}}})))}
+   $("gevf").replaceChildren(...kids);}
+  if(gev)list=list.filter(x=>gev==="__none"?!evOf(x.f):evM(x.f,gev));
   $("vgrid").hidden=!isVid;if(isVid)renderV();$("mgrid").hidden=!list.length;
   const em=$("gempty");em.hidden=isVid||list.length>0;if(!isVid&&gev&&!list.length){em.hidden=false}
   em.textContent=gev?"Nothing under this choice yet. Use the small dropdown under any photo to sort it here.":canWrite?"Nothing here yet. Use “Add photos or videos” above, or open any photo in another collection and move it here.":"Photos coming soon.";
@@ -1846,7 +1854,7 @@ renderS();renderM();renderW();renderExt();renderProf();renderC();
 })();
 
 /* ---------- start ---------- */
-const start=(location.hash||"#home").slice(1);
+const start=(location.hash||"#home").slice(1);try{const tq=new URLSearchParams(location.search).get("train");if(tq){const q=TRS.find(t=>t[2]===tq);gev=q?q[0]:"training"}}catch{}
 go(TABS.some(t=>t[0]===start)&&start!=="people"&&start!=="coaches"?start:"home",false);
 window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(h&&h!==current&&document.getElementById(h))go(h,false)});
 })();
