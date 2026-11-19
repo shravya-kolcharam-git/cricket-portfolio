@@ -498,7 +498,7 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .debut3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin:0 0 24px}
 .debut3 .dfig{position:relative;background:linear-gradient(170deg,color-mix(in srgb,var(--c) 28%,#16382A),#16382A 60%);border:1px solid color-mix(in srgb,var(--c) 55%,transparent);border-radius:18px}
 .debut3 .dfig img{aspect-ratio:4/5}
-.dbadge{position:absolute;top:12px;left:12px;z-index:2;font:800 13px var(--body);font-style:normal;background:var(--c);color:#0b1a12;padding:5px 12px;border-radius:999px}
+.dbadge{display:none;font:800 13px var(--body);font-style:normal;background:var(--c);color:#0b1a12;padding:5px 12px;border-radius:999px}
 .dph{aspect-ratio:4/5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 12px,transparent 12px 24px)}.dph span{font-size:64px}.dph small{color:var(--mute);letter-spacing:.06em}
 .debut3 .dfig b{font:900 30px/1.05 var(--disp)}.debut3 .dfig small{color:var(--c)}
 .bdg{display:inline-block;margin:6px 6px 0 0;background:color-mix(in srgb,#6FD3A0 22%,transparent);border:1px solid #6FD3A0;color:#d9fbe9;font:700 12.5px var(--body);padding:3px 10px;border-radius:999px}
@@ -551,6 +551,8 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 @media(max-width:900px){#ext-home{grid-template-columns:1fr}#ext-home .nb,#ext-home .facts,#ext-home .strip{grid-column:1;grid-row:auto}}
 
 .topbat{display:inline-block;margin:0 0 10px;padding:8px 14px;border-radius:999px;background:#F4B63F;color:#10261C;font-weight:800;font-size:15px}
+
+.debut3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-width:1000px;margin:0 auto 24px;justify-content:center;gap:16px}@media(max-width:760px){.debut3{grid-template-columns:1fr;max-width:360px}}
 
 </style>
 </head>
@@ -1700,12 +1702,11 @@ function renderDebut(){
   const fig=(src,alt,kick,head,lines,col,badge)=>{
     const im=el("img",{src,alt,loading:"lazy"});
     const f=el("figure",{class:"dfig"},im,el("figcaption",{},el("small",{text:kick}),el("b",{text:head}),...lines.map(t=>el("span",{text:t}))));
-    if(badge)f.insertBefore(el("em",{class:"dbadge",text:badge}),im);
     im.onerror=()=>{const ph=el("div",{class:"dph"},el("span",{text:"🏆"}),el("small",{text:"Photo coming soon"}));im.replaceWith(ph)};
     f.style.setProperty("--c",col);return f};
   d.className="debut3";
   d.replaceChildren(
-    fig("p/p064.jpg","Receiving my first Germany cap","DEBUT FOR GERMANY","10 June 2022",["Germany v Nigeria, Kigali, Rwanda","Receiving my first cap from my captain."],"#F4B63F","🧢 Debut"),
+    fig("p/p064.jpg","Receiving my first Germany cap","DEBUT FOR GERMANY","10 June 2022",["Germany v Nigeria, Kigali, Rwanda","Receiving my first Germany cap."],"#F4B63F","🧢 Debut"),
     fig("p/potm-rome25.jpg","Player of the Match, Isle of Man, Rome 2025","PLAYER OF THE MATCH","2025, Division 2",["Germany v Isle of Man, Rome, 29 May 2025","50 not out off 31 balls."],"#6FD3A0","🏆 Player of the Match"),
     fig("p/potm-nordic26.jpg","Receiving my medal at the Nordic Women's T20 Cup, 2026","PLAYER OF THE MATCH","Nordic Women's T20 Cup 2026",["Germany v Denmark, 30 August 2026","41 off 36 balls, with four fours. Germany won by 37 runs."],"#FF7A59","🏆 Player of the Match"));
 }
