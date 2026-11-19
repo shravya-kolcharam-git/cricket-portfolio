@@ -754,11 +754,12 @@ const PHOTOS={
  "Teams and friends":"035 036 037 038 039 054 059 060 065 066 072 074 075 076 077 078 079 083 084 085 088 089 090 093 094 096 099 101".split(" "),
  "With coaches":["901","902","903","904","905","906","907","908"],
  "Player of the Match":["otm-rome25","otm-nordic26"],
+ "Friends and teams (new)":["f01", "f02", "f03", "f04", "f05", "f06", "f07", "f08", "f09", "f10"],
  "More photos":["u01","u02","u03","u04","u05","u06"],
  "Training":"042 043 047 048 067 068 069 070 071 080".split(" "),
  "On the road":"044 053 055 056 061 064 073 100".split(" ")
 };
-const OTHERS_=new Map([["p035", "other"], ["p036", "other"], ["p053", "other"], ["p054", "other"], ["p072", "other"], ["p074", "other"], ["p075", "other"], ["p076", "other"], ["p077", "other"], ["p078", "other"], ["p079", "other"], ["p080", "other"], ["p091", "other"], ["p092", "other"], ["p093", "other"], ["p094", "other"], ["p095", "other"], ["p096", "other"], ["p099", "other"], ["pn06", "other"], ["pn21", "other"], ["pn23", "other"], ["pn25", "other"], ["pn26", "other"], ["pn31", "other"], ["pn03", "other"], ["pn01", "other"]]);OTHERS_.set("pn30","coach");const GAL=[];for(const [c,l] of Object.entries(PHOTOS))for(const n of l)GAL.push({f:"p"+n,c});
+const OTHERS_=new Map([["p035", "other"], ["p036", "other"], ["p053", "other"], ["p054", "other"], ["p072", "other"], ["p074", "other"], ["p075", "other"], ["p076", "other"], ["p077", "other"], ["p078", "other"], ["p079", "other"], ["p080", "other"], ["p091", "other"], ["p092", "other"], ["p093", "other"], ["p094", "other"], ["p095", "other"], ["p096", "other"], ["p099", "other"], ["pn06", "other"], ["pn21", "other"], ["pn23", "other"], ["pn25", "other"], ["pn26", "other"], ["pn31", "other"], ["pn03", "other"], ["pn01", "other"]]);OTHERS_.set("pn30","coach");OTHERS_.set("pf01","team");OTHERS_.set("pf02","team");OTHERS_.set("pf03","team");OTHERS_.set("pf04","team");OTHERS_.set("pf05","team");OTHERS_.set("pf06","team");OTHERS_.set("pf07","team");OTHERS_.set("pf08","team");OTHERS_.set("pf09","team");OTHERS_.set("pf10","team");const GAL=[];for(const [c,l] of Object.entries(PHOTOS))for(const n of l)GAL.push({f:"p"+n,c});
 GAL.sort((a,b)=>a.f<b.f?-1:1);
 const VID=[{f:"potm-nordic-2026",t:"Player of the Match, Nordic Women's T20 Cup 2026, Germany v Denmark",d:"0:23",ev:"nordic26"},{f:"potm-div2-2025",t:"Player of the Match, Division 2, Rome 2025, Germany v Isle of Man",d:"1:13",ev:"rome25"}];
 
