@@ -579,10 +579,6 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .stphotos img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;cursor:zoom-in}
 .stphotos figcaption{padding:8px 12px;font-size:13px;color:#cfe3d6}
 
-.trchips{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.6rem 0 .2rem}
-.trlab{font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#d4202a;margin-right:.3rem}
-.trnote{margin:.4rem 0;color:#555;font-size:.95rem}
-
 </style>
 </head>
 <body>
@@ -929,7 +925,7 @@ $("hl").replaceChildren(...HL.map(([n,t,id])=>el("button",{onclick:()=>openEvent
 
 
 /* ---------- gallery ---------- */
-const GT0=[["team","⭐ Golden Eagles, German national team","Squad, team and group photos."],["trophy","🏆 Trophies","Medals, trophies and awards."],["coach","🧑‍🏫 With my coaches","Photos with the coaches I have worked with."],["video","🎬 Videos","The work behind the match days. Tap a clip to play it."],["other","✨ Others","Match days, training, Pink Lady and life on the road."]];
+const GT0=[["team","⭐ Golden Eagles, German national team","Squad, team and group photos."],["trophy","🏆 Trophies","Medals, trophies and awards."],["coach","🧑‍🏫 With my coaches","Photos with the coaches I have worked with."],["video","🎬 Videos","The work behind the match days. Tap a clip to play it."],["training","🏋️ Training","Training sessions at home in Chemnitz and Saxony, and away sessions in other places. Photos and videos."],["other","✨ Others","Match days, training, Pink Lady and life on the road."]];
 const BASE={"Teams and friends":"team","Medals and trophies":"trophy","Rome Queen's Trophy 2026":"trophy","Added teams":"team","Added trophies":"trophy","With coaches":"coach","Player of the Match":"trophy"};
 const DEFCAP={pn37:{y:"",t:"Pink Lady Hope XI, handshake"},pn31:{y:"",t:"Team with the trophy"},pn27:{y:"",t:"With my medal and plaque"},pn28:{y:"",t:"With my medal and plaque"},pn29:{y:"",t:"With my medal and plaque"},pn24:{y:"",t:"Trophies and awards"},pn05:{y:"2022",t:"Kigali, Rwanda"},pn10:{y:"2022",t:"Kigali, Rwanda"},pn09:{y:"2022",t:"Kigali, Rwanda"},pn13:{y:"2024",t:"European Cricket Championship Challenger"},pn14:{y:"2024",t:"European Cricket Championship Challenger, medals"},pn11:{y:"2024",t:"European Cricket Championship Challenger"},pn12:{y:"2024",t:"European Cricket Championship Challenger"},pn15:{y:"2025",t:"Rome, with the medals"},pn04:{y:"",t:"Bowling v Türkiye"},pn16:{y:"",t:"Germany v Switzerland"},pn17:{y:"",t:"Team photo, Federazione Cricket Italiana"},pn07:{y:"",t:"With the flag"},pn08:{y:"",t:"On the way in my Deutscher Cricket Bund jacket"},pn06:{y:"",t:"On the sidelines"},prq1:{y:"2026",t:"Rome Queen's Trophy, Season 1"},prq2:{y:"2026",t:"Rome Queen's Trophy, Season 1"}};
 const DEFEV={};
@@ -939,11 +935,11 @@ VID.forEach(v=>{DEFEV[v.f]=v.ev||"training"});
 ["n05","n09","n10","064"].forEach(n=>{DEFEV["p"+n]="kwibuka22"});
 DEFEV.pn15="rome25";
 const evOf=f=>gevt[f]?(gevt[f].e||""):(DEFEV[f]||"");
-const TRS=[["train-chemnitz","Home ground: Chemnitz and Saxony","chemnitz","Backyard, nets and sessions at home in Chemnitz and across Saxony."],["train-hall","Indoor halls and nets","hall","Winter hall sessions, nets and bowling-machine work indoors."],["train-ground","Outdoor grounds and pitches","ground","Turf and grass sessions on grounds around Germany."],["train-camp","Squad camps and national sessions","camp","DCB camps, squad sessions and coach-led training days."],["train-visit","Away: training visits in Germany","visit","Training facilities I visit in other cities and regions of Germany."]];const evM=(f,g)=>g==="training"?/^train/.test(evOf(f)):evOf(f)===g;const evName=id=>{if(id==="training")return"Training";{const q=TRS.find(t=>t[0]===id);if(q)return"Training · "+q[1]}let e;try{e=allItems().find(x=>x.id===id)}catch{}return e?e.title+(e.year?" "+e.year:""):""};
-function evGroups(){let it;try{it=allItems()}catch{return[]}const g=[["International","International"],["DCB","DCB domestic"],["Private","Private and friendly"]];
-  return [["Training sections",TRS.map(t=>[t[0],t[1]])],...g.map(([c,l])=>[l,it.filter(x=>x.cat===c).sort((a,b)=>(b.year||0)-(a.year||0)).map(x=>[x.id,x.title+(x.year?" "+x.year:"")])]).filter(x=>x[1].length)]}
+const evName=id=>{if(id==="training")return"Training";if(id==="train-home")return"Home sessions";if(id==="train-away")return"Away sessions";let e;try{e=allItems().find(x=>x.id===id)}catch{}return e?e.title+(e.year?" "+e.year:""):""};
+function evGroups(){let it;try{it=allItems()}catch{return[]}const g=[["International","International"],["DCB","DCB domestic"],["Private","Private tournaments"]];
+  return g.map(([c,l])=>[l,it.filter(x=>x.cat===c).sort((a,b)=>(b.year||0)-(a.year||0)).map(x=>[x.id,x.title+(x.year?" "+x.year:"")])]).filter(x=>x[1].length)}
 function evSelect(cur,onpick,first){
-  const sel=el("select",{class:"gsel","aria-label":"Tournament or training"},el("option",{value:"",text:first||"Not sorted yet"}),el("option",{value:"training",text:"Training"}),...evGroups().map(([l,o])=>el("optgroup",{label:l},...o.map(([v,t])=>el("option",{value:v,text:t})))));
+  const sel=el("select",{class:"gsel","aria-label":"Tournament or training"},el("option",{value:"",text:first||"Not sorted yet"}),el("option",{value:"training",text:"Training"}),el("option",{value:"train-home",text:"Training · Home sessions"}),el("option",{value:"train-away",text:"Training · Away sessions"}),...evGroups().map(([l,o])=>el("optgroup",{label:l},...o.map(([v,t])=>el("option",{value:v,text:t})))));
   sel.value=cur||"";sel.onchange=()=>onpick(sel.value);return sel}
 const setEv=(f,v)=>{if(db)db.collection("gevt").doc(f).set({e:v}).catch(()=>toast("Could not save. Try again."))};
 let gtab="team",gsub="All",tags={};
@@ -952,7 +948,7 @@ const tabOf=x=>{const t=tags[x.f]||OTHERS_.get(x.f)||x.tab||(x.up?x.tab:BASE[x.c
 const PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z" fill="#fff"/></svg>';
 const vVis=()=>VID.filter(v=>!ghid[v.f]);
 function renderV(){
-  const L=vVis().filter(v=>!gev||(gev==="__none"?!evOf(v.f):evM(v.f,gev)));
+  const L=vVis().filter(v=>!gev||(gev==="__none"?!evOf(v.f):evOf(v.f)===gev));
   $("gempty").hidden=L.length>0;if(!L.length)$("gempty").textContent="No videos under this choice yet.";
   $("vgrid").replaceChildren(...L.map((v,i)=>{const b=el("button",{class:"vcard",type:"button","aria-label":"Play "+v.t,onclick:()=>openLB(L.map(y=>({t:"vid",src:y.src||"v/"+y.f+".mp4",cap:y.t})),i)},el("img",{src:v.poster||"v/"+v.f+".jpg",alt:"",loading:"lazy"}));const o=el("span",{class:"pl"});o.innerHTML="<i>"+PLAY+"</i>";b.append(o,el("span",{class:"t"},v.t,el("small",{text:v.d})));
     const w=el("div",{class:"vwrap"},b);
@@ -998,7 +994,7 @@ function mline(e){
   if(ms.length)art.append(el("div",{class:"mchips2"},ms.map(m=>{const uu=safe(m.u)||fb;const fl=flagOf(m.o);return el(uu?"a":"span",{class:"mchip2"+(m.star?" star":""),href:uu||null,target:uu?"_blank":null,rel:uu?"noopener noreferrer":null,title:m.u?"Open the scorecard":"Open the series page with all scorecards"},fl?el("span",{class:"fl",text:fl}):null,el("span",{class:"on",text:m.o}),m.d?el("small",{text:m.d}):null,m.r?el("b",{text:m.r}):null)})));
   return art;
 }
-const trainCount=()=>{try{return gItems().filter(x=>evM(x.f,"training")).length+VID.filter(v=>!ghid[v.f]&&evM(v.f,"training")).length}catch{return 0}};
+const trainCount=()=>{try{return gItems().filter(x=>evOf(x.f)==="training").length+VID.filter(v=>!ghid[v.f]&&evOf(v.f)==="training").length}catch{return 0}};
 function renderOrg(){
   const b=$("orgbox");if(!b)return;const it=allItems();
   const org=it.filter(x=>/organised by me/i.test(x.title));
@@ -1480,7 +1476,7 @@ function gline(f){const c=gcap(f);return[c.y,c.t].filter(Boolean).join(" · ")}
 function ordered(list,tab){const ids=(gord[tab]&&gord[tab].ids)||[];return list.map((x,i)=>[x,ids.indexOf(x.f)<0?1e6+i:ids.indexOf(x.f)]).sort((a,b)=>a[1]-b[1]).map(p=>p[0])}
 Object.assign(TYPES,{
  story:{label:"Story with photos or videos",col:"stories",ext:1,multi:1,max:1800,rows:9,media:"Photos and videos (choose one or many)",hint:"One story can hold many photos and videos. They appear as a slider: people see one at a time and tap the small pictures to choose.",fields:[["sec","Section","select",()=>SECS],["title","Title","text","e.g. Prague 2026, with my team",1],["year","Year","text","e.g. 2026"],["text","In my words (five to ten lines)","textarea",""]]},
- gphoto:{label:"Gallery photos or videos",col:"gphotos",ext:1,multi:1,media:"Photos and videos (choose one or many)",hint:"No link needed. Each photo gets the same year and caption. You can change a single caption later by opening the photo.",fields:[["tab","Put them under","select",()=>gtabs().filter(t=>t[0]!=="video").map(([id,l])=>[id,l])],["ev","Tournament or training","select",()=>[["","Not sorted yet"],["training","Training"],...evGroups().flatMap(([l,o])=>o.map(([v,t])=>[v,l.split(" ")[0]+" · "+t]))]],["y","Year","text","e.g. 2025"],["t","Caption","text","A few words"]]},
+ gphoto:{label:"Gallery photos or videos",col:"gphotos",ext:1,multi:1,media:"Photos and videos (choose one or many)",hint:"No link needed. Each photo gets the same year and caption. You can change a single caption later by opening the photo.",fields:[["tab","Put them under","select",()=>gtabs().filter(t=>t[0]!=="video").map(([id,l])=>[id,l])],["ev","Tournament or training","select",()=>[["","Not sorted yet"],["training","Training"],["train-home","Training · Home sessions (Chemnitz, Saxony)"],["train-away","Training · Away sessions"],...evGroups().flatMap(([l,o])=>o.map(([v,t])=>[v,l.split(" ")[0]+" · "+t]))]],["y","Year","text","e.g. 2025"],["t","Caption","text","A few words"]]},
  collection:{label:"Gallery collection (name)",col:"gcols",ext:1,fields:[["name","Collection name","text","e.g. Trophies and medals",1],["desc","One line about it","text","Shown under the title"]]},
  slink:{label:"Link for my stats page",col:"slinks",ext:1,fields:[["label","Name","text","e.g. CricClubs profile",1],["url","Link","url","https://...",1]]},
  tlink:{label:"Golden Eagles or team link",col:"tlinks",ext:1,fields:[["label","Name","text","e.g. Golden Eagles on Instagram",1],["url","Link","url","https://...",1]]}
@@ -1524,28 +1520,24 @@ function rmG(x){if(!db)return;(x.up?db.collection("gphotos").doc(x.docId).delete
 function renderG(){
   const T=gtabs(),all=gItems(),counts={video:VID.filter(v=>!ghid[v.f]).length};
   all.forEach(x=>{const k=tabOf(x);counts[k]=(counts[k]||0)+1});
-  const vis=T.filter(([id])=>canWrite||counts[id]);
+  const vis=T.filter(([id])=>canWrite||counts[id]||id==="training");
   if(!vis.length)return;
   if(!vis.some(([id])=>id===gtab))gtab=vis[0][0];
   $("gtabs").replaceChildren(...vis.map(([id,l])=>el("button",{class:"chip big","aria-pressed":String(id===gtab),text:l+" ("+(counts[id]||0)+")",onclick:()=>{gtab=id;gsub="All";renderG()}})));
   const cur=T.find(t=>t[0]===gtab);const isVid=gtab==="video";
   $("glede").textContent=(gev&&!isVid)?"Showing photos and videos from every collection for: "+(gev==="__none"?"not sorted yet":evName(gev)||"Training")+".":cur[2];
   let list=ordered(all.filter(x=>(gev&&!isVid)||tabOf(x)===gtab),gtab);
-  const subs=(gtab==="other"&&!gev)?[...new Set(list.map(x=>x.c))]:[];
-  $("gfilter").hidden=subs.length<2;
+  const subs=gtab==="training"?["Home sessions","Away sessions"]:(gtab==="other"&&!gev)?[...new Set(list.map(x=>x.c))]:[];
+  $("gfilter").hidden=subs.length<2;if(gtab==="training"&&gsub!=="All"&&!subs.includes(gsub))gsub="All";
   if(!subs.includes(gsub))gsub="All";
   $("gfilter").replaceChildren(...["All",...subs].map(k=>el("button",{class:"chip","aria-pressed":String(k===gsub),text:k,onclick:()=>{gsub=k;renderG()}})));
-  if(gsub!=="All")list=list.filter(x=>x.c===gsub);
+  if(gsub!=="All")list=gtab==="training"?list.filter(x=>evOf(x.f)===(gsub==="Home sessions"?"train-home":"train-away")):list.filter(x=>x.c===gsub);
   {const fs=el("select",{class:"gsel big","aria-label":"Show photos from"},el("option",{value:"",text:"All tournaments and training"}),el("option",{value:"training",text:"Training"}),...evGroups().map(([l,o])=>el("optgroup",{label:l},...o.map(([v,t])=>el("option",{value:v,text:t})))),el("option",{value:"__none",text:"Not sorted yet"}));fs.value=gev;fs.onchange=()=>{gev=fs.value;renderG()};
-   const trN=id=>all.filter(x=>evM(x.f,id)).length+VID.filter(v=>!ghid[v.f]&&evM(v.f,id)).length;
-   const row=el("div",{class:"chips trchips","aria-label":"Training places"},el("span",{class:"trlab",text:"Training"}),...[["training","All training"],...TRS.map(t=>[t[0],t[1]])].map(([id,l])=>el("button",{class:"chip","aria-pressed":String(gev===id),type:"button",text:l+" ("+trN(id)+")",onclick:()=>{gev=id;renderG()}})));
-   const q=TRS.find(t=>t[0]===gev);const kids=[el("label",{},"Show photos from ",fs),row];
-   if(q){const u=location.origin+location.pathname+"?train="+q[2]+"#gallery";kids.push(el("p",{class:"trnote"},q[3]+" ",el("button",{class:"mbtn",type:"button",text:"Copy link to this section",onclick:()=>{try{navigator.clipboard.writeText(u);toast("Link copied")}catch{prompt("Copy this link",u)}}})))}
-   $("gevf").replaceChildren(...kids);}
-  if(gev)list=list.filter(x=>gev==="__none"?!evOf(x.f):evM(x.f,gev));
+   $("gevf").replaceChildren(el("label",{},"Show photos from ",fs));}
+  if(gev)list=list.filter(x=>gev==="__none"?!evOf(x.f):evOf(x.f)===gev);
   $("vgrid").hidden=!isVid;if(isVid)renderV();$("mgrid").hidden=!list.length;
   const em=$("gempty");em.hidden=isVid||list.length>0;if(!isVid&&gev&&!list.length){em.hidden=false}
-  em.textContent=gev?"Nothing under this choice yet. Use the small dropdown under any photo to sort it here.":canWrite?"Nothing here yet. Use “Add photos or videos” above, or open any photo in another collection and move it here.":"Photos coming soon.";
+  em.textContent=gev?"Nothing under this choice yet. Use the small dropdown under any photo to sort it here.":canWrite?"Nothing here yet. Use “Add photos or videos” above, or open any photo in another collection and move it here.":(gtab==="training"?"Training photos and videos are coming soon.":"Photos coming soon.");
   const gt=$("gtools");gt.hidden=!canWrite;
   if(canWrite){
     const remd=isVid?VID.filter(x=>ghid[x.f]):GAL.filter(x=>ghid[x.f]);const btns=[
@@ -1854,7 +1846,7 @@ renderS();renderM();renderW();renderExt();renderProf();renderC();
 })();
 
 /* ---------- start ---------- */
-const start=(location.hash||"#home").slice(1);try{const tq=new URLSearchParams(location.search).get("train");if(tq){const q=TRS.find(t=>t[2]===tq);gev=q?q[0]:"training"}}catch{}
+const start=(location.hash||"#home").slice(1);
 go(TABS.some(t=>t[0]===start)&&start!=="people"&&start!=="coaches"?start:"home",false);
 window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(h&&h!==current&&document.getElementById(h))go(h,false)});
 })();
