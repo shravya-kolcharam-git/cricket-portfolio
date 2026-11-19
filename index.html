@@ -508,6 +508,14 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 
 .cmore{display:flex;gap:6px;margin:-2px 0 10px;align-items:center;flex-wrap:wrap}.cmore button{padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;width:56px;height:56px;background:none}.cmore img{width:100%;height:100%;object-fit:cover;display:block}.cmore em{font-style:normal;font-size:12px;color:var(--mute)}
 .debut3 .dfig:nth-child(2) img{object-position:28% 50%}
+/* v3 */
+.coachtl{align-items:stretch}.coachtl .tli{display:flex;flex-direction:column}.coachtl .tli .ty{font-size:32px;white-space:nowrap;height:36px;margin-bottom:10px}
+.coachtl .tlc{flex:1;display:flex;flex-direction:column;min-height:0}.coachtl .cpic{flex:0 0 auto}.cmore{min-height:62px;flex-wrap:nowrap}
+.thanks{max-width:820px;font:500 18px/1.55 var(--body);color:#e8f3ec;border-left:4px solid var(--gold);padding:6px 0 6px 16px;margin:8px 0 14px}
+.stbig{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 6px}.stbig div{background:linear-gradient(160deg,#1f5a3d,#16382A);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:14px;padding:14px 16px}.stbig b{display:block;font:900 44px/1 var(--disp);color:var(--gold)}.stbig span{color:var(--mute);font-size:14px}.sth2{margin-top:22px!important}
+.debut3{max-width:880px;margin-left:auto;margin-right:auto;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}.debut3 .dfig img,.dph{aspect-ratio:1/1}.debut3 .dfig b{font-size:24px}.debut3 .dfig figcaption{padding:10px 14px}.debut3 .dfig span{font-size:13px}
+.dcbb{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;margin:0 0 14px;padding:14px 18px;border-radius:16px;background:linear-gradient(120deg,rgba(85,168,255,.22),rgba(31,90,61,.5));border:1px solid rgba(85,168,255,.5)}
+.dcbb b{display:block;font:800 18px var(--body)}.dcbb span{color:var(--mute);font-size:14px}.dcbl{display:flex;gap:8px;flex-wrap:wrap}.dcbl a{font:700 14px var(--body);text-decoration:none;color:#0b1a12;background:#8CC6FF;padding:8px 14px;border-radius:999px}.dcbl a:hover{background:#fff}
 
 </style>
 </head>
@@ -863,7 +871,7 @@ VID.forEach(v=>{DEFEV[v.f]="training"});
 DEFEV.pn15="rome25";
 const evOf=f=>gevt[f]?(gevt[f].e||""):(DEFEV[f]||"");
 const evName=id=>{if(id==="training")return"Training";let e;try{e=allItems().find(x=>x.id===id)}catch{}return e?e.title+(e.year?" "+e.year:""):""};
-function evGroups(){let it;try{it=allItems()}catch{return[]}const g=[["International","International"],["DCB","DCB domestic"],["Private","Private and friendly"]];
+function evGroups(){let it;try{it=allItems()}catch{return[]}const g=[["International","International"],["DCB","DCB domestic"],["Private","Private tournaments"]];
   return g.map(([c,l])=>[l,it.filter(x=>x.cat===c).sort((a,b)=>(b.year||0)-(a.year||0)).map(x=>[x.id,x.title+(x.year?" "+x.year:"")])]).filter(x=>x[1].length)}
 function evSelect(cur,onpick,first){
   const sel=el("select",{class:"gsel","aria-label":"Tournament or training"},el("option",{value:"",text:first||"Not sorted yet"}),el("option",{value:"training",text:"Training"}),...evGroups().map(([l,o])=>el("optgroup",{label:l},...o.map(([v,t])=>el("option",{value:v,text:t})))));
@@ -928,7 +936,7 @@ function renderOrg(){
   const row=(e)=>el("button",{class:"mbtn orgb",type:"button",text:e.title+(e.year?" · "+e.year:""),onclick:()=>openEvent(e.id)});
   const cnt=c=>it.filter(x=>x.cat===c&&!/organised by me/i.test(x.title)).length;
   b.replaceChildren(el("h3",{text:"Tournaments and training"}),
-    el("div",{class:"orgrow"},el("div",{class:"orgn"},el("b",{text:String(cnt("International"))}),el("small",{text:"International"})),el("div",{class:"orgn"},el("b",{text:String(cnt("DCB"))}),el("small",{text:"DCB domestic"})),el("div",{class:"orgn"},el("b",{text:String(cnt("Private"))}),el("small",{text:"Private and friendly"})),el("div",{class:"orgn"},el("b",{text:String(org.length)}),el("small",{text:"Organised by me"})),el("div",{class:"orgn"},el("b",{text:String(trainCount())}),el("small",{text:"Training photos and videos"}))),
+    el("div",{class:"orgrow"},el("div",{class:"orgn"},el("b",{text:String(cnt("International"))}),el("small",{text:"International"})),el("div",{class:"orgn"},el("b",{text:String(cnt("DCB"))}),el("small",{text:"DCB domestic"})),el("div",{class:"orgn"},el("b",{text:String(cnt("Private"))}),el("small",{text:"Private tournaments"})),el("div",{class:"orgn"},el("b",{text:String(org.length)}),el("small",{text:"Organised by me"})),el("div",{class:"orgn"},el("b",{text:String(trainCount())}),el("small",{text:"Training photos and videos"}))),
     org.length?el("p",{class:"note",text:"Organised with USG Chemnitz, scores on CricClubs:"}):null,
     org.length?el("div",{class:"chips"},...org.map(row)):null,
     el("div",{class:"chips"},el("button",{class:"mbtn",type:"button",text:"See all matches",onclick:()=>go("matches")}),el("button",{class:"mbtn",type:"button",text:"Training photos and videos",onclick:()=>{gev="training";gtab="team";go("gallery");renderG()}})));
@@ -973,7 +981,7 @@ function domRows(cat){
 }
 function renderStx(){
   const box=$("stx");if(!box)return;
-  const tabs=[["International","International"],["DCB","DCB domestic"],["Private","Private and friendly"]];
+  const tabs=[["International","International"],["DCB","DCB domestic"],["Private","Private tournaments"]];
   const bar=el("div",{class:"mtabs"},...tabs.map(([k,l])=>el("button",{class:"mtab",type:"button","aria-pressed":String(k===sx),onclick:()=>{sx=k;renderStx()}},el("b",{text:l}))));
   let body;
   if(sx==="International"){const r=intlRows();body=[tbl(r,["Date","Against","Batting","Bowling","Fielding"]),el("p",{class:"note",text:r.length+" of 44 matches listed so far. A dash means nothing to record."})]}
@@ -995,11 +1003,11 @@ function renderM(){
   $("mnum").textContent=listed+" of 44";
   $("mbar").style.width=Math.min(100,Math.round(listed/44*100))+"%";
   renderDebut();
-  const cats=[["International","International"],["DCB","DCB domestic cricket"],["Private","Private and friendly"]];
+  const cats=[["International","International"],["DCB","DCB domestic cricket"],["Private","Private tournaments"]];
   if(!cats.some(c=>c[0]===mf))mf="International";
   $("mfilter").replaceChildren(...cats.map(([k,l])=>el("button",{class:"mtab",type:"button","aria-pressed":String(k===mf),onclick:()=>{mf=k;renderM()}},el("b",{text:l}),el("small",{text:items.filter(x=>x.cat===k).length+" tournaments"}))),el("button",{class:"chip sortb",type:"button",text:mdir>0?"Oldest first":"Newest first",onclick:()=>{mdir=-mdir;renderM()}}));
   const list=items.filter(x=>x.cat===mf);
-  $("mwrap").className="mwrap "+mf;
+  $("mwrap").className="mwrap "+mf;dcbBanner();
   renderStx();
   if(mf==="Training"){
     const ph=gItems().filter(x=>evOf(x.f)==="training").length,vd=VID.filter(v=>!ghid[v.f]&&evOf(v.f)==="training").length;
@@ -1122,7 +1130,7 @@ const SOC_CATS=[
  ["highlights","Highlights","#F4B63F","The moments and the write-ups worth a look."],
  ["international","International T20Is","#F0545B","Germany Women, tournament by tournament."],
  ["dcb","DCB domestic","#55A8FF","Deutscher Cricket Bund leagues: Bundesliga and Regionalliga."],
- ["private","Private and friendlies","#35D6A3","Invitational events, club tournaments and friendlies."],
+ ["private","Private tournaments","#35D6A3","Invitational events, club tournaments and friendlies."],
  ["training","Training","#FF9D5C","Nets, fitness and the work between matches."],
  ["coaching","Coaching","#B890FF","Coaches, camps and learning."]
 ];
@@ -1585,7 +1593,7 @@ function extras(id){
     const pool=[...ordered(all.filter(x=>tabOf(x)==="team"),"team").slice(0,4),...ordered(all.filter(x=>tabOf(x)==="trophy"),"trophy").slice(0,4)];
     return[el("div",{class:"facts"},...["All-rounder","Right-hand bat","Right-arm medium","DCB Bundesliga since 2022","CricClubs and CricHQ","Prague Challenger Cup 2025 and 2026"].map(t=>el("span",{text:t}))),strip("From my gallery",pool,el("button",{class:"btn",type:"button",text:"Open the gallery",onclick:()=>go("gallery")}))];
   }
-  if(id==="social"){
+  if(id==="social"){return[];
     const pills=[...TEAMLINKS.map(([l,u])=>({l,u})),...tlinks];
     return[el("section",{class:"nb"},el("h3",{text:"Golden Eagles and DCB pages"}),el("div",{class:"pills"},...pills.map(p=>el("span",{class:"pill2"},el("a",{href:p.u,target:"_blank",rel:"noopener noreferrer",text:p.l}),canWrite&&p.id?el("button",{class:"del",type:"button","aria-label":"Remove "+p.l,text:"Remove",onclick:()=>db.collection("tlinks").doc(p.id).delete().catch(()=>{})}):null))),
       canWrite?el("p",{class:"note",text:"The DCB Instagram and Facebook links come from the DCB's own strategy document. Please check them, and add the Golden Eagles' own pages with the button."}):null,
@@ -1665,17 +1673,19 @@ function renderStx(){
   const box=$("stx");if(!box)return;
   const tb=t=>el("table",{class:"stt"},...t.map(([a,b])=>el("tr",{},el("td",{class:"vs",text:a}),el("td",{class:"n",text:b}))));
   const rec=el("div",{class:"strec"},el("div",{},el("h4",{text:"Batting and fielding"}),tb(CT)),el("div",{},el("h4",{text:"Bowling"}),tb(CB)));
-  box.replaceChildren(el("h3",{class:"sth",text:"Career record, WT20I for Germany"}),rec,el("p",{class:"note",text:"As listed by ESPNcricinfo when the total stood at 40 matches. The Nordic Cup in August 2026 brings it to 44."}));
+  const top=el("div",{class:"stbig"},...[["44","WT20Is for Germany"],["450","WT20I runs"],["50*","Highest score"],["8","WT20I wickets"]].map(([n,l])=>el("div",{},el("b",{text:n}),el("span",{text:l}))));
+  box.replaceChildren(el("h3",{class:"sth",text:"Career record, WT20I for Germany"}),top,el("h3",{class:"sth sth2",text:"Detailed record"}),rec,el("p",{class:"note",text:"The detailed tables are as listed by ESPNcricinfo when I had played 40 matches. My totals now are 44 WT20Is and 450 runs, and I will update the tables as the official pages catch up. Domestic and private matches are on the Matches page."}));
 }
 const COACHES=[
- {n:"Michael Thewlis",r:"Head coach of the German women's team (Golden Eagles), ECB Level 3",y:"2018 to Aug 2023",imgs:["p/p905.jpg","p/p066.jpg","p/p035.jpg"],col:"#F4B63F"},
- {n:"Alistair Waldron",r:"Germany Women's national coach, ECB Level 4",y:"2023 to now",imgs:["p/p901.jpg","p/p902.jpg","p/p903.jpg","p/p904.jpg"],col:"#6FD3A0"},
- {n:"Jason Wood",r:"Assistant coach, Germany Women, ECB Level 3",y:"2023 to now",img:"",col:"#5CC8FF"},
+ {n:"Michael Thewlis",r:"Head coach of the German women's team (Golden Eagles), ECB Level 3",y:"2018–2023",imgs:["p/p905.jpg","p/p066.jpg","p/p035.jpg"],col:"#F4B63F"},
+ {n:"Alistair Waldron",r:"Germany Women's national coach, ECB Level 4",y:"2023–now",imgs:["p/p901.jpg","p/p902.jpg","p/p903.jpg","p/p904.jpg"],col:"#6FD3A0"},
+ {n:"Jason Wood",r:"Assistant coach, Germany Women, ECB Level 3",y:"2023–now",img:"",col:"#5CC8FF"},
  {n:"Siva",r:"Regional coach, Saxony",y:"Saxony",img:"",col:"#FF5CAA"}
 ];
 function renderC(){
   coachesVisible=true;$("coaches").hidden=false;buildTabs();
   const box=$("ccards");box.className="tl tlh coachtl";hscroller(box);
+  const lede=document.querySelector("#coaches .lede");if(lede){lede.hidden=true;let t=$("thx");if(!t){t=el("p",{class:"thanks",id:"thx"});lede.after(t)}t.textContent="Thank you, coaches. You shaped me as a player, and you shaped me as a person. Every lesson on the field made me a better cricketer, and every word off it made me a better human being. I am always thankful to my coaches."}
   const mine=coaches.filter(c=>!/thewlis/i.test(c.name||"")).slice().sort((a,b)=>yr(a)-yr(b)).map(c=>({n:c.name,r:c.team||"Coach",y:c.from?c.from+" to "+(c.to||"now"):"",img:c.mediaId?"/_blob/"+c.mediaId:"",col:"#B890FF",note:c.note,id:c.id}));
   const all=[...COACHES.filter(c=>!mine.some(m=>m.n.toLowerCase()===c.n.toLowerCase()||/thewlis/i.test(m.n)&&/thewlis/i.test(c.n))),...mine];
   box.replaceChildren(...all.map(c=>{
@@ -1684,13 +1694,22 @@ function renderC(){
     const imgs=c.imgs||(c.img?[c.img]:[]);
     const open=i=>openLB(imgs.map(u=>({t:"img",src:u,cap:c.n})),i);
     const pic=imgs.length?(()=>{const i=el("img",{src:imgs[0],alt:c.n,loading:"lazy"});i.onerror=()=>i.replaceWith(ph);i.onclick=()=>open(0);i.style.cursor="zoom-in";return i})():ph;
-    const more=imgs.length>1?el("div",{class:"cmore"},...imgs.slice(1).map((u,k)=>{const b=el("button",{type:"button","aria-label":"Open photo "+(k+2)+" of "+c.n,onclick:()=>open(k+1)},el("img",{src:u,alt:"",loading:"lazy"}));return b}),el("em",{text:"Tap to see all "+imgs.length}) ):null;
+    const more=el("div",{class:"cmore"},...(imgs.length>1?[]:[]));const more0=imgs.length>1?el("div",{class:"cmore"},...imgs.slice(1).map((u,k)=>{const b=el("button",{type:"button","aria-label":"Open photo "+(k+2)+" of "+c.n,onclick:()=>open(k+1)},el("img",{src:u,alt:"",loading:"lazy"}));return b}),):null;if(more0)more.replaceWith&&0;if(more0){more.append(...more0.childNodes)}
     const li=el("div",{class:"tli cli"},el("div",{class:"ty",text:c.y||" "}),el("div",{class:"tlc"},el("div",{class:"cpic"},pic),more,el("h3",{text:c.n}),el("p",{text:c.r}),c.note?el("p",{class:"cn",text:c.note}):null));
     if(canWrite&&c.id)li.querySelector(".tlc").append(el("button",{class:"del",type:"button",text:"Remove",onclick:async()=>{try{await db.collection("coaches").doc(c.id).delete()}catch{}}}));
     li.style.setProperty("--c",c.col);return li}));
   let s=$("cstrip");if(!s){s=el("div",{id:"cstrip"});box.parentNode.insertBefore(s,box.nextSibling)}
   let list=[];try{list=ordered(gItems().filter(x=>tabOf(x)==="coach"),"coach")}catch{}
   s.replaceChildren(...[strip("🧑‍🏫 Photos with my coaches",list,el("button",{class:"btn",type:"button",text:"Open in Gallery",onclick:()=>{gtab="coach";go("gallery");renderG()}})),el("p",{class:"note",text:"More coach photos will be added here as I get them."})].filter(Boolean));
+}
+function dcbBanner(){
+  let b=$("dcbb");const w=$("mwrap");
+  if(mf!=="DCB"){if(b)b.remove();return}
+  if(!b){b=el("div",{class:"dcbb",id:"dcbb"});w.parentNode.insertBefore(b,w)}
+  b.replaceChildren(el("div",{},el("b",{text:"Every league I have played, on CricClubs"}),el("span",{text:"Open a link to see the leagues, scorecards and stats."})),el("div",{class:"dcbl"},
+    el("a",{href:"https://www.cricclubs.com/Germany/viewPlayer.do?playerId=3327499&clubId=38349",target:"_blank",rel:"noopener noreferrer",text:"My CricClubs profile →"}),
+    el("a",{href:"https://cricclubs.com/BayerischerCricketVerbandeV",target:"_blank",rel:"noopener noreferrer",text:"Bavarian league on CricClubs →"}),
+    el("a",{href:"https://www.cricket.de/meisterschaften/dcb-bundesliga-frauen/",target:"_blank",rel:"noopener noreferrer",text:"DCB Women's Bundesliga →"})));
 }
 
 renderS();renderM();renderW();renderExt();renderProf();renderC();
