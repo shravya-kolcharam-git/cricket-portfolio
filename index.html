@@ -561,6 +561,18 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .hero .r img{-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.18) 10%,rgba(0,0,0,.55) 24%,rgba(0,0,0,.88) 40%,#000 55%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.18) 10%,rgba(0,0,0,.55) 24%,rgba(0,0,0,.88) 40%,#000 55%)}
 .hero .r::before{background:linear-gradient(0deg,rgba(11,16,14,.7),rgba(11,16,14,0) 38%)}
 
+#matches>.h2,#matches .h2:first-child{text-align:center}
+.debut3{grid-template-columns:minmax(0,1fr) 46px minmax(0,1fr) 46px minmax(0,1fr)!important;gap:0!important;align-items:start;max-width:1000px}
+.dcon{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:min(33vw,320px);color:var(--gold,#F4B63F)}
+.dcon i{flex:1;width:2px;background:repeating-linear-gradient(180deg,currentColor 0 5px,transparent 5px 10px);opacity:.7}
+.dcon span{writing-mode:vertical-rl;font:700 11px var(--body);letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.dcon::before,.dcon::after{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.dcon{flex-direction:column}
+@media(max-width:760px){.debut3{grid-template-columns:1fr!important}.dcon{height:40px;flex-direction:row;width:100%}.dcon i{height:2px;width:auto;flex:1;background:repeating-linear-gradient(90deg,currentColor 0 5px,transparent 5px 10px)}.dcon span{writing-mode:horizontal-tb}}
+.rolegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;max-width:1100px;margin:6px auto 20px}
+.rolec{border:1px solid color-mix(in srgb,var(--c) 55%,transparent);border-radius:18px;padding:22px;background:linear-gradient(170deg,color-mix(in srgb,var(--c) 22%,#16382A),#16382A 65%)}
+.rolec .ri{font-size:34px}.rolec h3{font:800 24px/1.1 var(--disp);margin:10px 0 8px;color:var(--c)}.rolec p{color:#cfe3d6;line-height:1.5;font-size:15px}
+
 </style>
 </head>
 <body>
@@ -576,7 +588,7 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
       <div class="l">
         <div class="role">Germany Women · No. 45 · All-rounder</div>
         <h1 class="name"><span>Shravya</span><span>Kolcharam</span></h1>
-        <p class="sub">Right-hand batter and right-arm medium bowler for Germany and Sachsen Royals, and a captain at club and tournament level. Tap a number to see what is behind it.</p>
+        <p class="sub">Right-hand top-order batter and right-arm bowler for Germany and Sachsen Royals. Grateful for every match, and working to get a little better every season. Tap a number to see what is behind it.</p>
         <div class="tiles" id="tiles"></div>
         <div><button class="btn" id="toWatch" type="button">&#9654; Watch clips</button></div>
       </div>
@@ -604,7 +616,7 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
   </section>
 
   <section class="panel" id="matches" role="tabpanel">
-    <h2 class="h2">Matches 2022 to 2026</h2>
+    <h2 class="h2" style="margin-bottom:18px">Matches 2022 to 2026</h2>
     <div class="debut2" id="debut"></div>
     <div class="prog"><b id="mnum"></b><div class="bar"><i id="mbar"></i></div><span>international matches listed with scorecards so far</span></div>
     <button class="btn solid addbtn" data-add="match" hidden>+ Add a match or tournament</button>
@@ -614,7 +626,7 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
   </section>
 
 <section class="panel" id="stats" role="tabpanel">
-    <h2 class="h2">The numbers</h2>
+    <h2 class="h2">About my game</h2>
     <div hidden id="sgrid"></div><div hidden id="hl"></div><div hidden id="orgbox"></div>
     <div id="stx"></div>
     <div class="offbox"><h3>Official stat pages</h3><div class="plinks" id="prof"></div></div>
@@ -1410,7 +1422,7 @@ function renderC(){
 async function prep(f){if(!f.type.startsWith("image/"))return f;try{const bm=await createImageBitmap(f);const k=Math.min(1,1400/Math.max(bm.width,bm.height));const c=document.createElement("canvas");c.width=Math.round(bm.width*k);c.height=Math.round(bm.height*k);c.getContext("2d").drawImage(bm,0,0,c.width,c.height);return await new Promise(r=>c.toBlob(x=>r(x||f),"image/jpeg",.86))}catch{return f}}
 /* ---------- extensions: notes, stories, sliders, gallery tools ---------- */
 const SECS=[["home","Home"],["journey","Journey"],["matches","Matches"],["stats","Stats"],["gallery","Gallery"],["coaches","Coaches"],["social","Social"],["people","My people"]];
-const DEFNOTE={home:"I was born in India in 1995. As a child I was a gully cricketer, and I spent almost all of my summers playing with my brother and cousins.\n\nIn 2018 I moved to Germany for my studies and took up cricket seriously here, starting almost everything from scratch. I made my debut for Germany in 2022, and I have played for the national team and for Sachsen Royals ever since.\n\nI have captained the Sachsen Royals women's team, my Chemnitz club, and my team at the Prague Challenger Cup in 2025 and 2026 and at the European Series in Prague in 2024. I am also a Level 2 coach and the women's officer at USG Chemnitz and at the Sächsischer Cricket Verband.\n\nI work as an automation engineer and I am learning machine learning and AI at the moment, but cricket is where my heart is.\n\nI love my team, the Golden Eagles, and I want to keep improving and to contribute more for them. I thank every coach, teammate and friend who has been part of this journey."};
+const DEFNOTE={home:"I was born in India in 1995. As a child I was a gully cricketer, and I spent almost all of my summers playing with my brother and cousins.\n\nIn 2018 I moved to Germany for my studies and took up cricket seriously here, starting almost everything from scratch. I made my debut for Germany in 2022, and I have played for the national team and for Sachsen Royals ever since.\n\nI am honoured to have captained the Sachsen Royals women's team in Chemnitz and to have led teams at domestic tournaments, and every one of those matches taught me something. I also coach as a Level 2 coach and help as the women's officer at USG Chemnitz and at the Sächsischer Cricket Verband, because I want to give back to the game.\n\nI work as an automation engineer and I am learning machine learning and AI at the moment, but cricket is where my heart is.\n\nI love my team, the Golden Eagles, and I want to keep improving and to contribute more for them. I thank every coach, teammate and friend who has been part of this journey."};
 const TEAMLINKS=[["DCB website (cricket.de)","https://cricket.de"],["DCB on Instagram","https://www.instagram.com/cricket_germany"],["DCB on Facebook","https://www.facebook.com/GermanyCricket"],["Germany Women on ESPNcricinfo","https://www.espncricinfo.com/team/germany-women-1496"],["Germany Women on Wikipedia","https://en.wikipedia.org/wiki/Germany_women%27s_national_cricket_team"]];
 let editSec=null,openSec={};
 const isV=m=>/^video\//.test((m&&(m.type||m.mediaType))||"");
@@ -1674,20 +1686,21 @@ const TLH=[
  ["2012–16","Engineering degree","Electronics and Communication, Guru Nanak."],
  ["2018","Moved to Germany","Master's at TU Chemnitz, and cricket for real."],
  ["2021","First tournaments","Recorded on CricClubs."],
- ["2022","Debut for Germany","10 June, v Nigeria, Kigali.","kwibuka22"],
- ["2024","Captain, European Series","Captained my team at the European Series in Prague.","prague24"],
- ["2025","Rome and Prague","50* v Isle of Man, Player of the Match. Captain at the Prague Challenger Cup.","rome25"],
- ["2026","Nordic Cup and Regionalliga","Player of the Match v Denmark, 101* for the Royals. Captain again at the Prague Challenger Cup.","nordic26"],
- ["Today","Cricket at heart","Automation engineer, learning ML and AI."]
+ ["2022","Debut for Germany","Kwibuka Women's T20 Tournament, Kigali, on 10 June. Also the Namibia Women series in Germany.","kwibuka22"],
+ ["2023","Learning on the big stage","Women's T20 World Cup Europe Division 2 Qualifier, Jersey.","jersey23"],
+ ["2024","Growing with the team","Germany Women's T20I Tri-Series, Krefeld.","krefeld24"],
+ ["2025","Every match a lesson","Germany Women in Greece, the Women's T20 World Cup Europe Qualifier, the Division 1 Qualifier and the Nordic Women's T20 Cup.","nordic25"],
+ ["2026","Still learning","Switzerland Women tour of Germany and the Nordic Women's T20 Cup.","nordic26"],
+ ["Now","Preparing for the best kind of cricket","Cricket at heart. Learning, improving and improvising, with humility and the hunger to get better every season."]
 ];
-const TLCOL=["#F4B63F","#6FD3A0","#5CC8FF","#FF7A59","#FF5CAA","#F4B63F","#6FD3A0","#5CC8FF","#FF7A59","#FF5CAA"];
+const TLCOL=["#F4B63F","#6FD3A0","#5CC8FF","#FF7A59","#FF5CAA","#F4B63F","#6FD3A0","#5CC8FF","#FF7A59","#FF5CAA","#F4B63F"];
 function hscroller(t){
   if(t.dataset.nav)return;t.dataset.nav="1";
   const nav=el("div",{class:"tlnav"},el("button",{type:"button","aria-label":"Scroll left",onclick:()=>t.scrollBy({left:-520,behavior:"smooth"})},"‹"),el("span",{text:"Scroll sideways"}),el("button",{type:"button","aria-label":"Scroll right",onclick:()=>t.scrollBy({left:520,behavior:"smooth"})},"›"));
   t.parentNode.insertBefore(nav,t);
 }
 const BEYOND=[
- ["🧢","Captain, Sachsen Royals women","I have captained the Sachsen Royals women's team, my club side in Chemnitz, and the team at the Prague Challenger Cup in 2025 and 2026 and at the European Series in Prague in 2024.",[]],
+ ["🧢","Captain, Sachsen Royals women","I am honoured to captain the Sachsen Royals women's team, my club side in Chemnitz, and to have led teams at domestic tournaments. Every match teaches me something about leading.",[]],
  ["🏏","Level 2 cricket coach","I coach as well as play: qualified at Level 2.",[]],
  ["👩","Women's officer, USG Chemnitz Cricket Club","Growing women's cricket at my club in Chemnitz.",[["USG Chemnitz cricket page","https://usg-chemnitz.org/de/cricket.html"],["Contact the club","https://usg-chemnitz.org/de/kontakt-cricket.html"]]],
  ["🛡️","Women's officer, Sächsischer Cricket Verband","Women's cricket across Saxony, with the DCB regional associations.",[["Regional associations (DCB)","https://www.cricket.de/der-dcb/landesverbaende/"],["DCB women's cricket","https://www.cricket.de/der-dcb/frauencricket/"]]]
@@ -1714,9 +1727,12 @@ function renderDebut(){
     im.onerror=()=>{const ph=el("div",{class:"dph"},el("span",{text:"🏆"}),el("small",{text:"Photo coming soon"}));im.replaceWith(ph)};
     f.style.setProperty("--c",col);return f};
   d.className="debut3";
+  const con=t=>el("div",{class:"dcon","aria-hidden":"true"},el("i"),el("span",{text:t}),el("i"));
   d.replaceChildren(
     fig("p/p064.jpg","Receiving my first Germany cap","DEBUT FOR GERMANY","10 June 2022",["Germany v Nigeria, Kigali, Rwanda","Receiving my first Germany cap."],"#F4B63F","🧢 Debut"),
+    con("2022 to 2025"),
     fig("p/potm-rome25.jpg","Player of the Match, Isle of Man, Rome 2025","PLAYER OF THE MATCH","2025, Division 2",["Germany v Isle of Man, Rome, 29 May 2025","50 not out off 31 balls."],"#6FD3A0","🏆 Player of the Match"),
+    con("2025 to 2026"),
     fig("p/potm-nordic26.jpg","Receiving my medal at the Nordic Women's T20 Cup, 2026","PLAYER OF THE MATCH","Nordic Women's T20 Cup 2026",["Germany v Denmark, 30 August 2026","41 off 36 balls, with four fours. Germany won by 37 runs."],"#FF7A59","🏆 Player of the Match"));
 }
 const BADGE={kwibuka22:["🧢 Debut for Germany, 10 June 2022"],rome25:["🏆 Player of the Match, Division 2: 50* off 31 v Isle of Man"],nordic26:["🏆 Player of the Match v Denmark: 41 off 36"]};
@@ -1789,6 +1805,15 @@ function dcbBanner(){
     try{renderG()}catch(e){}
   });
 })();
+
+function renderStx(){
+  const box=$("stx");if(!box)return;
+  const R=[["🏏","Top-order batter","Batting at the top of the order and working hard to score well for the team, one innings at a time.","#F4B63F"],
+   ["🧢","Captained domestic teams","Honoured to have led club and tournament teams, and still learning about leadership from every match.","#6FD3A0"],
+   ["⚡","Medium pacer","Right-arm medium pace, and always working on control and consistency.","#5CC8FF"],
+   ["🌀","Off-spinner","Right-arm off-spin as a second string, and I keep practising it.","#FF7A59"]];
+  box.replaceChildren(el("div",{class:"rolegrid"},...R.map(([ic,h,p,c])=>{const d=el("div",{class:"rolec"},el("span",{class:"ri",text:ic}),el("h3",{text:h}),el("p",{text:p}));d.style.setProperty("--c",c);return d})));
+}
 
 renderS();renderM();renderW();renderExt();renderProf();renderC();
 (async()=>{
