@@ -576,7 +576,7 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
         <div><button class="btn" id="toWatch" type="button">&#9654; Watch clips</button></div>
       </div>
       <div class="r">
-        <img src="p/pn12.jpg" alt="Shravya bowling for Germany" fetchpriority="high">
+        <img src="p/p107.jpg" alt="Shravya batting in Germany kit">
         <button class="badge" id="badge"><b>50*</b><span>Not out v Isle of Man, Rome 2025</span></button>
       </div>
     </div>
@@ -1636,7 +1636,7 @@ const INDIA_SVG='<svg viewBox="0 0 250 270" class="indiamap" role="img" aria-lab
 function extras(id){
   const all=gItems();
   if(id==="home"){
-    const pool=["pn14","pn15","p065","pn13","pn39","p089","pn38","pn22","pn19","pn27","p114","p908"].map(f=>all.find(x=>x.f===f)).filter(Boolean);
+    const pool=["pn14","pn15","p065","pn13","pn39","p089","pn38","pn22","pn19","pn27","pn12","p908"].map(f=>all.find(x=>x.f===f)).filter(Boolean);
     return[el("div",{class:"facts"},...["All-rounder","Right-hand bat","Right-arm medium","DCB Bundesliga since 2022","Captain, Sachsen Royals women","Captain, Prague Challenger Cup 2025 and 2026","Captain, European Series 2024","Level 2 coach","Women's officer"].map(t=>el("span",{text:t}))),strip("From my gallery",pool,el("button",{class:"btn",type:"button",text:"Open the gallery",onclick:()=>go("gallery")}))];
   }
   if(id==="social"){return[];
