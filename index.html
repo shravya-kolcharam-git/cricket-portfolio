@@ -573,6 +573,12 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .rolec{border:1px solid color-mix(in srgb,var(--c) 55%,transparent);border-radius:18px;padding:22px;background:linear-gradient(170deg,color-mix(in srgb,var(--c) 22%,#16382A),#16382A 65%)}
 .rolec .ri{font-size:34px}.rolec h3{font:800 24px/1.1 var(--disp);margin:10px 0 8px;color:var(--c)}.rolec p{color:#cfe3d6;line-height:1.5;font-size:15px}
 
+.rolestrip{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 14px}.rolestrip span{border:1px solid rgba(244,182,63,.5);border-radius:999px;padding:6px 14px;font:700 14px var(--body);color:#f1e6c8;background:rgba(244,182,63,.08)}.rolestrip em{font-style:normal;margin-right:6px}
+.stphotos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:6px 0 18px;max-width:900px}
+.stphotos figure{margin:0;border-radius:16px;overflow:hidden;background:#16382A;border:1px solid rgba(255,255,255,.1)}
+.stphotos img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;cursor:zoom-in}
+.stphotos figcaption{padding:8px 12px;font-size:13px;color:#cfe3d6}
+
 </style>
 </head>
 <body>
@@ -626,7 +632,7 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
   </section>
 
 <section class="panel" id="stats" role="tabpanel">
-    <h2 class="h2">About my game</h2>
+    <h2 class="h2">My stats</h2>
     <div hidden id="sgrid"></div><div hidden id="hl"></div><div hidden id="orgbox"></div>
     <div id="stx"></div>
     <div class="offbox"><h3>Official stat pages</h3><div class="plinks" id="prof"></div></div>
@@ -1741,13 +1747,15 @@ function renderStx(){
   const tb=t=>el("table",{class:"stt"},...t.map(([a,b])=>el("tr",{},el("td",{class:"vs",text:a}),el("td",{class:"n",text:b}))));
   const big=a=>el("div",{class:"stbig"},...a.map(([n,l])=>el("div",{},el("b",{text:n}),el("span",{text:l}))));
   const lk=(t,u)=>el("a",{class:"stl",href:u,target:"_blank",rel:"noopener noreferrer",text:t+" →"});
+  const ph=(L)=>el("div",{class:"stphotos"},...L.map(([u,c],i)=>{const f=el("figure",{},el("img",{src:u,alt:c,loading:"lazy",onclick:()=>openLB(L.map(([s,cc])=>({t:"img",src:s,cap:cc})),i)}),el("figcaption",{text:c}));return f}));
+  const roles=el("div",{class:"rolestrip"},...[["🏏","Top-order batter"],["🧢","Captained domestic teams"],["⚡","Medium pacer"],["🌀","Off-spinner"]].map(([i,t])=>el("span",{},el("em",{text:i}),t)));
   const SEC={
-   intl:["🇩🇪 International","Germany women, WT20Is",()=>[el("h3",{class:"sth",text:"Career record, WT20I for Germany"}),big([["44","WT20Is for Germany"],["450","WT20I runs"],["50*","Highest score"],["8","WT20I wickets"]]),el("h3",{class:"sth sth2",text:"Detailed record"}),el("div",{class:"strec"},el("div",{},el("h4",{text:"Batting and fielding"}),tb(CT)),el("div",{},el("h4",{text:"Bowling"}),tb(CB))),el("p",{class:"note",text:"The detailed tables are as listed by ESPNcricinfo when I had played 40 matches. My totals now are 44 WT20Is and 450 runs, and I will update the tables as they refresh."})]],
-   dcb:["🏏 DCB domestic","Bundesliga and Regionalliga, Sachsen Royals",()=>[el("h3",{class:"sth",text:"2026 DCB T20 Regionalliga, Sachsen Royals"}),el("p",{class:"topbat",text:"🏅 Top scorer of the Regionalliga 2026 (batting)"}),big([["271","Runs in 8 matches"],["101*","Highest score"],["38.71","Batting average"],["120.98","Strike rate"]]),el("div",{class:"stlinks"},lk("2026 Regionalliga on CricClubs","https://www.cricclubs.com/Germany"),lk("My CricClubs profile","https://www.cricclubs.com/Germany/viewPlayer.do?playerId=3327499&clubId=38349")),el("h3",{class:"sth sth2",text:"2025 DCB women's league, Sachsen Royals"}),big([["8","Wickets"],["3/19","Best figures"],["7.09","Economy rate"]]),el("div",{class:"stlinks"},lk("2025 DCB women's league on CricClubs","https://www.cricclubs.com/Germany/listMatches.do?league=111&teamId=null&internalClubId=36&year=2025&clubId=38349"),lk("My CricClubs profile","https://www.cricclubs.com/Germany/viewPlayer.do?playerId=3327499&clubId=38349")),el("p",{class:"note",text:"All my DCB domestic cricket is on CricClubs: every league, scorecard and season table. I have played in the DCB Bundesliga since 2022."})]],
-   prv:["🏆 Private tournaments","Prague, Pink Lady, Rome",()=>[el("h3",{class:"sth",text:"Tournaments and awards"}),el("div",{class:"stcards"},...[["Prague Challenger Cup 2026","Captain. Best Batter and Player of the Series."],["Prague Challenger Cup 2025","Captain."],["European Series, Prague 2024","Captain."],["Pink Lady","Two titles."],["Rome Queen's Trophy 2026","Season 1."]].map(([a,b])=>el("div",{},el("b",{text:a}),el("span",{text:b})))),el("div",{class:"stlinks"},lk("Rome Queen's Trophy on CrikIQ","https://crikiq.com/seasons/921000120001")),el("p",{class:"note",text:"Private tournaments do not have an official stats page. I will add the numbers for each one as I collect them."})]]
+   intl:["🇩🇪 International","Germany women, WT20Is",()=>[ph([["p/phero.jpg","Batting for Germany"],["p/potm-rome25.jpg","Player of the Match, Division 2, 50* v Isle of Man"],["p/potm-nordic26.jpg","Player of the Match, Nordic Women's T20 Cup 2026"]]),el("h3",{class:"sth",text:"Career record, WT20I for Germany"}),big([["44","WT20Is for Germany"],["450","WT20I runs"],["50*","Highest score"],["8","WT20I wickets"]]),el("h3",{class:"sth sth2",text:"Detailed record"}),el("div",{class:"strec"},el("div",{},el("h4",{text:"Batting and fielding"}),tb(CT)),el("div",{},el("h4",{text:"Bowling"}),tb(CB))),el("div",{class:"stlinks"},lk("My ESPNcricinfo profile","https://www.espncricinfo.com/cricketers/shravya-kolcharam-1318951")),el("div",{class:"stcards"},el("div",{},el("b",{text:"Player of the Match"}),el("span",{text:"50* off 31 v Isle of Man, Division 2, 2025."})),el("div",{},el("b",{text:"Player of the Match"}),el("span",{text:"41 off 36 v Denmark, Nordic Women's T20 Cup, 2026."}))),el("p",{class:"note",text:"The detailed tables are as listed by ESPNcricinfo when I had played 40 matches. My totals now are 44 WT20Is and 450 runs, and I will update the tables as they refresh."})]],
+   dcb:["🏏 DCB domestic","Bundesliga and Regionalliga, Sachsen Royals",()=>[ph([["p/pn01.jpg","Sachsen Royals"],["p/pn03.jpg","Sachsen Royals"],["p/pn31.jpg","Sachsen Royals"]]),el("h3",{class:"sth",text:"2026 DCB T20 Regionalliga, Sachsen Royals"}),el("p",{class:"topbat",text:"🏅 Top scorer of the Regionalliga 2026 (batting)"}),big([["271","Runs in 8 matches"],["101*","Highest score"],["38.71","Batting average"],["120.98","Strike rate"]]),el("div",{class:"stlinks"},lk("2026 Regionalliga on CricClubs","https://www.cricclubs.com/Germany"),lk("My CricClubs profile","https://www.cricclubs.com/Germany/viewPlayer.do?playerId=3327499&clubId=38349")),el("h3",{class:"sth sth2",text:"2025 DCB women's league, Sachsen Royals"}),big([["8","Wickets"],["3/19","Best figures"],["7.09","Economy rate"]]),el("div",{class:"stlinks"},lk("2025 DCB women's league on CricClubs","https://www.cricclubs.com/Germany/listMatches.do?league=111&teamId=null&internalClubId=36&year=2025&clubId=38349"),lk("My CricClubs profile","https://www.cricclubs.com/Germany/viewPlayer.do?playerId=3327499&clubId=38349")),el("p",{class:"note",text:"All my DCB domestic cricket is on CricClubs: every league, scorecard and season table. I have played in the DCB Bundesliga since 2022."})]],
+   prv:["🏆 Private tournaments","Prague, Pink Lady, Rome",()=>[ph([["p/pn22.jpg","Pink Lady tournament"],["p/pn19.jpg","Private tournament trophy"],["p/pu03.jpg","Trophies and awards"]]),el("h3",{class:"sth",text:"Tournaments and awards"}),el("p",{class:"topbat",text:"🏅 Second highest run scorer at the Prague Challenger Cup"}),el("div",{class:"stcards"},...[["Prague Challenger Cup 2026","Captain. Best Batter and Player of the Series."],["Prague Challenger Cup 2025","Captain."],["European Series, Prague 2024","Captain."],["Pink Lady","Two titles."],["Rome Queen's Trophy 2026","Season 1."]].map(([a,b])=>el("div",{},el("b",{text:a}),el("span",{text:b})))),el("div",{class:"stlinks"},lk("Rome Queen's Trophy on CrikIQ","https://crikiq.com/seasons/921000120001")),el("p",{class:"note",text:"Private tournaments do not have an official stats page. I will add the numbers for each one as I collect them."})]]
   };
   let cur=window.__stsec||"intl";
-  const draw=()=>{window.__stsec=cur;box.replaceChildren(el("div",{class:"stseg",role:"tablist"},...Object.entries(SEC).map(([k,[l,sub]])=>el("button",{type:"button",role:"tab","aria-selected":String(k===cur),class:k===cur?"on":"",onclick:()=>{cur=k;draw()}},el("b",{text:l}),el("small",{text:sub})))),...SEC[cur][2]())};
+  const draw=()=>{window.__stsec=cur;box.replaceChildren(roles,el("div",{class:"stseg",role:"tablist"},...Object.entries(SEC).map(([k,[l,sub]])=>el("button",{type:"button",role:"tab","aria-selected":String(k===cur),class:k===cur?"on":"",onclick:()=>{cur=k;draw()}},el("b",{text:l}),el("small",{text:sub})))),...SEC[cur][2]())};
   draw();
 }
 const COACHES=[
@@ -1806,14 +1814,6 @@ function dcbBanner(){
   });
 })();
 
-function renderStx(){
-  const box=$("stx");if(!box)return;
-  const R=[["🏏","Top-order batter","Batting at the top of the order and working hard to score well for the team, one innings at a time.","#F4B63F"],
-   ["🧢","Captained domestic teams","Honoured to have led club and tournament teams, and still learning about leadership from every match.","#6FD3A0"],
-   ["⚡","Medium pacer","Right-arm medium pace, and always working on control and consistency.","#5CC8FF"],
-   ["🌀","Off-spinner","Right-arm off-spin as a second string, and I keep practising it.","#FF7A59"]];
-  box.replaceChildren(el("div",{class:"rolegrid"},...R.map(([ic,h,p,c])=>{const d=el("div",{class:"rolec"},el("span",{class:"ri",text:ic}),el("h3",{text:h}),el("p",{text:p}));d.style.setProperty("--c",c);return d})));
-}
 
 renderS();renderM();renderW();renderExt();renderProf();renderC();
 (async()=>{
