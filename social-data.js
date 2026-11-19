@@ -26,5 +26,4 @@ window.SOCIAL_SEED=[
  {"id":"a902","cat":"private","sub":"","url":"https://www.instagram.com/p/Cw0cXoEorms/"},
  {"id":"a903","cat":"coaching","sub":"","title":"Coaching my club's women players","desc":"Training session with the women players at USG Chemnitz, where I coach.","src":"USG Chemnitz","url":"https://www.instagram.com/p/CuPjWF3IPHl/"},
  {"id":"a904","cat":"coaching","sub":"","title":"Coaching my club's women players","desc":"Training session with the women players at USG Chemnitz, where I coach.","src":"USG Chemnitz","url":"https://www.instagram.com/p/CrWBso9oihZ/"},
- {"id":"a905","cat":"highlights","sub":"","url":"https://www.instagram.com/reel/DOk9GYwjWME/"}
 ];
