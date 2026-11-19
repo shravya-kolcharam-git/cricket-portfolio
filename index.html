@@ -9,21 +9,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#0B100E; --pitch:#10261C; --pitch2:#173A2A; --line:rgba(244,247,241,.14);
+  --ink:#0E2619; --pitch:#16382A; --pitch2:#1C4633; --line:rgba(244,247,241,.14);
   --ruby:#E0314B; --gold:#F4B63F; --pink:#FF5CAA; --chalk:#F4F7F1; --mute:#A3B8AC;
   --disp:"Big Shoulders Display","Arial Narrow",Impact,sans-serif; --body:"Hanken Grotesk",system-ui,sans-serif;
   --nav:64px;
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{background:var(--ink);color:var(--chalk);font:400 16px/1.5 var(--body);overflow:hidden}
+body{background:radial-gradient(120% 80% at 80% -10%,#1D5A3C,transparent 55%),var(--ink);color:var(--chalk);font:400 16px/1.5 var(--body);overflow:hidden}
 a{color:inherit}
 button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 /* nav */
-.nav{position:fixed;inset:0 0 auto 0;height:var(--nav);display:flex;align-items:center;gap:20px;padding:0 22px;background:rgba(11,16,14,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:30}
+.nav{position:fixed;inset:0 0 auto 0;height:var(--nav);display:flex;align-items:center;gap:20px;padding:0 22px;background:rgba(14,38,25,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:30}
 .logo{font:900 30px/1 var(--disp);letter-spacing:.02em;white-space:nowrap;background:none;border:0;padding:0}
 .logo b{color:var(--ruby);font-weight:900}
 .tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1}
@@ -33,7 +33,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .tab[aria-selected="true"]{color:var(--ink);background:var(--gold)}
 .navlink{font:600 14px var(--body);text-decoration:none;border:1px solid var(--line);padding:7px 14px;border-radius:999px;white-space:nowrap}
 .navlink:hover{border-color:var(--chalk)}
-.igicons{display:flex;gap:8px}.igi{display:inline-flex;align-items:center;gap:6px;font:700 12px var(--body);text-decoration:none;color:var(--chalk);border:1px solid var(--line);border-radius:999px;padding:6px 11px;background:linear-gradient(135deg,rgba(244,182,63,.18),rgba(240,84,91,.18))}.igi em{font-style:normal}.igi2{background:#14181a}.igi:hover{border-color:var(--chalk)}
+.igicons{display:flex;gap:8px}.igi{display:inline-flex;align-items:center;gap:6px;font:700 12px var(--body);text-decoration:none;color:var(--chalk);border:1px solid var(--line);border-radius:999px;padding:6px 11px;background:linear-gradient(135deg,rgba(244,182,63,.18),rgba(240,84,91,.18))}.igi em{font-style:normal}.igi2{background:#16382A}.igi:hover{border-color:var(--chalk)}
 @media(max-width:760px){.igicons{display:flex}.igi em{display:none}.igi{padding:7px}}
 @media(max-width:760px){.nav{padding:0 10px;gap:8px}.navlink{display:none}.logo{font-size:24px}}
 
@@ -335,9 +335,9 @@ a.mchip:hover small,a.mchip:hover b{color:var(--ink)}
 .mtab[aria-pressed=true]{border-color:var(--gold);background:rgba(244,182,63,.12)}
 .mtabs .sortb{align-self:center}
 .mwrap{border-radius:20px;padding:4px 18px 18px}
-.mwrap.International{background:linear-gradient(180deg,rgba(0,0,0,.65) 0 33.3%,rgba(221,0,0,.38) 33.3% 66.6%,rgba(255,206,0,.30) 66.6%)}
+.mwrap.International{background:linear-gradient(180deg,rgba(10,40,25,.7) 0 33.3%,rgba(221,0,0,.38) 33.3% 66.6%,rgba(255,206,0,.30) 66.6%)}
 .mwrap .yr b{color:var(--chalk)}.mwrap .yr span{background:var(--gold);height:3px;opacity:.7}
-.mrow{border:1px solid var(--line);border-radius:16px;margin:0 0 10px;background:rgba(11,16,14,.9);overflow:hidden}
+.mrow{border:1px solid var(--line);border-radius:16px;margin:0 0 10px;background:rgba(20,56,40,.92);overflow:hidden}
 .mrow:hover{border-color:var(--gold)}
 .mtop{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;padding:14px 18px}
 .mmain2{min-width:0}.mwhen{color:var(--mute);font:600 13px var(--body)}
@@ -370,19 +370,19 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .tli{position:relative;margin:0 0 20px}
 .tli:before{content:"";position:absolute;left:-32px;top:14px;width:16px;height:16px;border-radius:50%;background:var(--ink);border:3px solid var(--gold)}
 .tli .ty{font:900 clamp(34px,5vw,52px)/1 var(--disp);color:var(--gold);margin:0 0 6px}
-.tlc{background:#14181a;border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:block}
+.tlc{background:#16382A;border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:block}
 .tlc h3{margin:0 0 4px;font:700 21px/1.25 var(--body)}.tlc p{margin:0;color:var(--mute)}.tlc .mbtn{margin-top:10px}
 .tlmap{margin-top:12px}.indiamap{width:150px;height:auto;display:block}
 .debut2{max-width:1000px;margin-left:auto;margin-right:auto;display:grid;grid-template-columns:minmax(0,1fr) 160px minmax(0,1fr);align-items:stretch;gap:0;margin:0 auto 24px}.debut2 .dmid{justify-content:center}
-.dfig{margin:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#14181a}
+.dfig{margin:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#16382A}
 .dfig img{display:block;width:100%;aspect-ratio:5/6;height:auto;object-fit:cover;object-position:50% 50%}.dfig.r img{object-position:58% 50%}.dfig{display:flex;flex-direction:column}.dfig figcaption{flex:1}
 .dfig figcaption{padding:12px 16px;display:flex;flex-direction:column;gap:2px}
 .dfig small{color:var(--gold);font:800 12px var(--body);letter-spacing:.14em}.dfig b{font:900 32px/1.05 var(--disp)}.dfig span{color:var(--mute);font-size:14px}
 .dmid{display:flex;flex-direction:column;align-items:center;gap:2px}.dmid{width:100%}.dmid span{color:var(--gold);font:700 13px var(--body)}
 @media(max-width:800px){.debut2{grid-template-columns:1fr}.dmid{transform:rotate(90deg);height:90px;margin:12px 0}.dfig img{height:auto}}
-.mwrap .mrow{background:rgba(12,14,15,.92)}
+.mwrap .mrow{background:rgba(20,56,40,.92)}
 #stats .mtab[aria-pressed=true]{border-color:var(--gold);background:rgba(244,182,63,.1)}
-.stwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#111415;margin:0 0 6px}
+.stwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#133827;margin:0 0 6px}
 .stt{width:100%;border-collapse:collapse;font-size:15px}
 .stt th{text-align:left;color:var(--mute);font:700 12px var(--body);letter-spacing:.08em;text-transform:uppercase;padding:10px 14px;border-bottom:1px solid var(--line)}
 .stt td{padding:8px 14px;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
@@ -393,7 +393,7 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .stt tr.ty td{font:900 28px/1 var(--disp);color:var(--gold);padding:14px 14px 6px;background:rgba(255,255,255,.03)}
 .sth{font:800 28px/1 var(--disp);margin:26px 0 10px}
 .strec{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.strec h4{margin:0 0 6px;color:var(--mute);font:700 13px var(--body);letter-spacing:.08em;text-transform:uppercase}
-.strec .stt{border:1px solid var(--line);border-radius:12px;background:#111415}
+.strec .stt{border:1px solid var(--line);border-radius:12px;background:#133827}
 .offbox{margin-top:26px}.offbox h3{font:800 28px/1 var(--disp);margin:0 0 10px}
 .plinks{display:flex;flex-wrap:wrap;gap:8px}
 .plinks a{--h:#F4B63F;text-decoration:none;color:#0B100E;background:var(--h);font:700 14px var(--body);padding:6px 14px;border-radius:999px}
@@ -401,10 +401,10 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .plinks .btn,.plinks .del{align-self:center}
 
 .feat{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin:6px 0 28px}
-.fcard{display:flex;flex-direction:column;background:#14181a;border:1px solid var(--line);border-radius:16px;overflow:hidden;border-top:3px solid var(--ac)}
-.fimg{display:block;aspect-ratio:16/9;background:#0c0f10;overflow:hidden}
+.fcard{display:flex;flex-direction:column;background:#16382A;border:1px solid var(--line);border-radius:16px;overflow:hidden;border-top:3px solid var(--ac)}
+.fimg{display:block;aspect-ratio:16/9;background:#0F2D20;overflow:hidden}
 .fimg img{width:100%;height:100%;object-fit:cover;display:block}
-.fimg.ph0{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,color-mix(in srgb,var(--ac) 28%,#0c0f10),#0c0f10 70%);text-decoration:none}
+.fimg.ph0{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,color-mix(in srgb,var(--ac) 28%,#0F2D20),#0F2D20 70%);text-decoration:none}
 .fimg.ph0 span{font:900 54px/1 var(--disp);color:var(--ac);letter-spacing:.02em}
 .fb{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
 .fb small{color:var(--ac);font:800 12px var(--body);letter-spacing:.1em;text-transform:uppercase}
@@ -414,14 +414,14 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .fb small.fdt{color:var(--mute);letter-spacing:0;text-transform:none;font:500 13px var(--body)}.fadd{align-self:flex-start;margin-top:6px}
 /* social */
 #social .h2{margin-bottom:0}
-.shero{position:relative;margin:6px 0 18px;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:radial-gradient(120% 140% at 85% 0%,rgba(240,84,91,.22),transparent 55%),radial-gradient(100% 120% at 0% 100%,rgba(244,182,63,.16),transparent 55%),#0f1213;padding:26px 28px 24px}
+.shero{position:relative;margin:6px 0 18px;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:radial-gradient(120% 140% at 85% 0%,rgba(240,84,91,.22),transparent 55%),radial-gradient(100% 120% at 0% 100%,rgba(244,182,63,.16),transparent 55%),#123424;padding:26px 28px 24px}
 .shero svg{position:absolute;inset:0;width:100%;height:100%;opacity:.9;pointer-events:none}
 .shero h2{position:relative;font:900 clamp(40px,6vw,72px)/1 var(--disp);margin:0 0 6px}
 .shero p{position:relative;margin:0;color:var(--mute);max-width:560px}
 .shero .acts{position:relative;display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
 .snav{position:sticky;top:64px;z-index:5;display:flex;gap:8px;flex-wrap:wrap;padding:10px 0 14px;background:linear-gradient(var(--ink) 75%,transparent)}
-.sn{--ac:#F4B63F;display:inline-flex;align-items:center;gap:8px;font:700 14px var(--body);color:var(--chalk);background:#14181a;border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
-.sn i{font-style:normal;font-size:12px;color:var(--mute);background:#0b0f0e;border-radius:999px;padding:1px 8px}
+.sn{--ac:#F4B63F;display:inline-flex;align-items:center;gap:8px;font:700 14px var(--body);color:var(--chalk);background:#16382A;border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
+.sn i{font-style:normal;font-size:12px;color:var(--mute);background:#0E2A1E;border-radius:999px;padding:1px 8px}
 .sn[aria-pressed=true]{background:var(--ac);color:#0b100e;border-color:var(--ac)}.sn[aria-pressed=true] i{background:rgba(0,0,0,.18);color:#0b100e}
 .sn:hover{border-color:var(--ac)}
 .ss{margin:10px 0 44px}
@@ -434,12 +434,12 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .sgl{font:600 13px var(--body);color:var(--chalk);text-decoration:none;border:1px solid color-mix(in srgb,var(--ac) 55%,transparent);border-radius:999px;padding:3px 11px;background:color-mix(in srgb,var(--ac) 10%,transparent)}
 .sgl:hover{background:var(--ac);color:#0b100e}
 .sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;align-items:start}
-.sc{background:#14181a;border:1px solid var(--line);border-top:3px solid var(--ac);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.sc{background:#16382A;border:1px solid var(--line);border-top:3px solid var(--ac);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
 .emb{background:#fff}.emb iframe{display:block;width:100%;border:0}
 .emb-instagram iframe{height:640px}.emb-facebook iframe{height:560px}.emb-youtube{aspect-ratio:16/9;background:#000}.emb-youtube iframe{height:100%}
 .scf{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;font:700 13px var(--body);color:var(--mute)}
 .scf a,.scgo{color:var(--ac);text-decoration:none;font:700 14px var(--body)}
-.scimg{display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;background:linear-gradient(135deg,color-mix(in srgb,var(--ac) 30%,#0c0f10),#0c0f10 75%);overflow:hidden;text-decoration:none}
+.scimg{display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;background:linear-gradient(135deg,color-mix(in srgb,var(--ac) 30%,#0F2D20),#0F2D20 75%);overflow:hidden;text-decoration:none}
 .scimg img{width:100%;height:100%;object-fit:cover;display:block}.scimg span{font:900 54px var(--disp);color:var(--ac)}
 .scb{padding:12px 16px 16px;display:flex;flex-direction:column;gap:6px}
 .scb small{color:var(--ac);font:800 12px var(--body);letter-spacing:.06em;text-transform:uppercase}
@@ -447,13 +447,13 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .scb p{margin:0;color:var(--mute);font-size:14.5px}
 .scm{width:100%;display:block;max-height:480px;object-fit:cover}
 .sown{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--mute)}
-.sown select{background:#0b0f0e;color:var(--chalk);border:1px solid var(--line);border-radius:8px;padding:4px 6px;max-width:200px}
+.sown select{background:#0E2A1E;color:var(--chalk);border:1px solid var(--line);border-radius:8px;padding:4px 6px;max-width:200px}
 .sempty{color:var(--mute)}
 .smod{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:60;display:flex;align-items:center;justify-content:center;padding:16px}
 .smod[hidden]{display:none}
-.smod form{background:#14181a;border:1px solid var(--line);border-radius:18px;padding:22px;width:min(560px,100%);max-height:92vh;overflow:auto;display:flex;flex-direction:column;gap:12px;position:relative}
+.smod form{background:#16382A;border:1px solid var(--line);border-radius:18px;padding:22px;width:min(560px,100%);max-height:92vh;overflow:auto;display:flex;flex-direction:column;gap:12px;position:relative}
 .smod h3{margin:0;font:900 28px var(--disp)}.smod label{display:flex;flex-direction:column;gap:4px;font:700 13px var(--body);color:var(--mute)}
-.smod input,.smod select,.smod textarea{background:#0b0f0e;color:var(--chalk);border:1px solid var(--line);border-radius:10px;padding:10px;font:15px var(--body)}
+.smod input,.smod select,.smod textarea{background:#0E2A1E;color:var(--chalk);border:1px solid var(--line);border-radius:10px;padding:10px;font:15px var(--body)}
 .smod .hint{margin:0;color:var(--gold);font-size:13px}.smod .x{position:absolute;top:10px;right:14px;background:none;border:0;color:var(--chalk);font-size:28px;cursor:pointer}
 .sfoot{margin:40px 0 10px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:var(--mute);font-size:13px}
 .sfoot button{background:none;border:1px solid var(--line);color:var(--mute);border-radius:999px;padding:4px 12px;cursor:pointer}
@@ -477,6 +477,34 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .sc-stat span{margin-top:auto;color:var(--ac);font:700 13px var(--body)}
 .sc-stat:hover{background:#1a1f21}
 @media(max-width:560px){.sgrid-ig,.sgrid-yt,.sgrid-blog{grid-template-columns:1fr}}
+/* v2 palette and layouts */
+.tl.tlh{display:flex;gap:0;overflow-x:auto;padding:6px 4px 18px;margin-top:6px;scroll-snap-type:x proximity;scrollbar-color:#F4B63F #123424}
+.tl.tlh:before{display:none}
+.tlh .tli{flex:0 0 250px;margin:0;padding:34px 18px 0 0;position:relative;scroll-snap-align:start}
+.tlh .tli:before{left:0;top:6px;width:18px;height:18px;background:var(--c,#F4B63F);border:3px solid #0E2619;box-shadow:0 0 0 2px var(--c,#F4B63F)}
+.tlh .tli:after{content:"";position:absolute;left:22px;right:4px;top:13px;border-top:3px dotted var(--c,#F4B63F);opacity:.8}
+.tlh .tli .ty{font:900 38px/1 var(--disp);color:var(--c,#F4B63F);margin:0 0 8px}
+.tlh .tlc{border-top:3px solid var(--c,#F4B63F);padding:12px 14px;min-height:150px}
+.tlh .tlc h3{font:700 18px/1.25 var(--body)}.tlh .tlc p{font-size:14.5px}
+.tlh .indiamap{width:84px}
+.tlnav{display:flex;align-items:center;gap:10px;color:var(--mute);font-size:13px;margin:8px 0 0}
+.tlnav button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#16382A;color:var(--chalk);font-size:22px;line-height:1}
+.tlnav button:hover{border-color:var(--gold)}
+.beyond{margin:28px 0 10px}.beyond h3{font:900 clamp(30px,4vw,44px)/1 var(--disp);margin:0 0 14px}
+.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.bc{background:linear-gradient(160deg,color-mix(in srgb,var(--c) 22%,#16382A),#16382A 70%);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:16px;padding:18px}
+.bi{font-size:34px}.bc h4{margin:6px 0;font:700 19px/1.3 var(--body)}.bc p{margin:0 0 10px;color:#d7e3db;font-size:15px}
+.bl{display:flex;flex-direction:column;gap:6px}.bl a{color:var(--c);font:700 14px var(--body);text-decoration:none}.bl a:hover{text-decoration:underline}
+.debut3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin:0 0 24px}
+.debut3 .dfig{position:relative;background:linear-gradient(170deg,color-mix(in srgb,var(--c) 28%,#16382A),#16382A 60%);border:1px solid color-mix(in srgb,var(--c) 55%,transparent);border-radius:18px}
+.debut3 .dfig img{aspect-ratio:4/5}
+.dbadge{position:absolute;top:12px;left:12px;z-index:2;font:800 13px var(--body);font-style:normal;background:var(--c);color:#0b1a12;padding:5px 12px;border-radius:999px}
+.dph{aspect-ratio:4/5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 12px,transparent 12px 24px)}.dph span{font-size:64px}.dph small{color:var(--mute);letter-spacing:.06em}
+.debut3 .dfig b{font:900 30px/1.05 var(--disp)}.debut3 .dfig small{color:var(--c)}
+.bdg{display:inline-block;margin:6px 6px 0 0;background:color-mix(in srgb,#6FD3A0 22%,transparent);border:1px solid #6FD3A0;color:#d9fbe9;font:700 12.5px var(--body);padding:3px 10px;border-radius:999px}
+.coachtl .tli{flex-basis:270px}.cpic{aspect-ratio:4/5;border-radius:12px;overflow:hidden;margin-bottom:10px;background:#0E2A1E}.cpic img{width:100%;height:100%;object-fit:cover;display:block}
+.cph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,color-mix(in srgb,var(--c) 45%,#16382A),#16382A)}.cph span{font:900 72px var(--disp);color:var(--c)}
+.cn{margin-top:6px;color:var(--mute)}
 
 </style>
 </head>
@@ -676,6 +704,7 @@ const PHOTOS={
  "Added trophies":"n14 n15 n19 n20 n21 n22 n23 n24 n27 n28 n29 n39".split(" "),
  "Added match days":["n04","n06","n08","n11","n12","n32","n33","n34","n35","n37"],
  "Teams and friends":"035 036 037 038 039 054 059 060 065 066 072 074 075 076 077 078 079 083 084 085 088 089 090 093 094 096 099 101".split(" "),
+ "With coaches":["901","902","903","904"],
  "Training":"042 043 047 048 067 068 069 070 071 080".split(" "),
  "On the road":"044 053 055 056 061 064 073 100".split(" ")
 };
@@ -820,8 +849,8 @@ $("hl").replaceChildren(...HL.map(([n,t,id])=>el("button",{onclick:()=>openEvent
 
 
 /* ---------- gallery ---------- */
-const GT0=[["team","Team and group photos","Squad, team and group photos."],["trophy","Trophies","Medals, trophies and awards."],["coach","With coaches","Photos with the coaches I have worked with."],["video","Practice videos","The work behind the match days. Tap a clip to play it."],["other","Other","Match days, training, Pink Lady and life on the road."]];
-const BASE={"Teams and friends":"team","Medals and trophies":"trophy","Rome Queen's Trophy 2026":"trophy","Added teams":"team","Added trophies":"trophy"};
+const GT0=[["team","❤️ Golden Eagles team photos","Squad, team and group photos."],["trophy","🏆 Trophies","Medals, trophies and awards."],["coach","🧑‍🏫 With my coaches","Photos with the coaches I have worked with."],["video","🎬 Practice videos","The work behind the match days. Tap a clip to play it."],["other","✨ Others","Match days, training, Pink Lady and life on the road."]];
+const BASE={"Teams and friends":"team","Medals and trophies":"trophy","Rome Queen's Trophy 2026":"trophy","Added teams":"team","Added trophies":"trophy","With coaches":"coach"};
 const DEFCAP={pn37:{y:"",t:"Pink Lady Hope XI, handshake"},pn31:{y:"",t:"Team with the trophy"},pn27:{y:"",t:"With my medal and plaque"},pn28:{y:"",t:"With my medal and plaque"},pn29:{y:"",t:"With my medal and plaque"},pn24:{y:"",t:"Trophies and awards"},pn05:{y:"2022",t:"Kigali, Rwanda"},pn10:{y:"2022",t:"Kigali, Rwanda"},pn09:{y:"2022",t:"Kigali, Rwanda"},pn13:{y:"2024",t:"European Cricket Championship Challenger"},pn14:{y:"2024",t:"European Cricket Championship Challenger, medals"},pn11:{y:"2024",t:"European Cricket Championship Challenger"},pn12:{y:"2024",t:"European Cricket Championship Challenger"},pn15:{y:"2025",t:"Rome, with the medals"},pn04:{y:"",t:"Bowling v Türkiye"},pn16:{y:"",t:"Germany v Switzerland"},pn17:{y:"",t:"Team photo, Federazione Cricket Italiana"},pn07:{y:"",t:"With the flag"},pn08:{y:"",t:"On the way in my Deutscher Cricket Bund jacket"},pn06:{y:"",t:"On the sidelines"},prq1:{y:"2026",t:"Rome Queen's Trophy, Season 1"},prq2:{y:"2026",t:"Rome Queen's Trophy, Season 1"}};
 const DEFEV={};
 (PHOTOS["Training"]||[]).forEach(n=>{DEFEV["p"+n]="training"});
@@ -885,7 +914,7 @@ function mline(e){
   const n=evPhotos(e.id);
   art.append(el("div",{class:"mtop"},
     el("div",{class:"mmain2"},el("small",{class:"mwhen",text:e.when||(e.year?String(e.year):"Date to add")}),el("h3",{},title),el("p",{},(flagOf(e.country)?flagOf(e.country)+" ":"")+(place||" "))),
-    el("div",{class:"mside2"},e.hi?el("span",{class:"hi",text:e.hi}):null,el("button",{class:"mbtn",type:"button",text:"Story",onclick:()=>openEvent(e.id)}),n?el("button",{class:"mbtn",type:"button",text:"Photos ("+n+")",onclick:()=>{gev=e.id;gsub="All";go("gallery");renderG()}}):null)));
+    el("div",{class:"mside2"},e.hi?el("span",{class:"hi",text:e.hi}):null,...(BADGE[e.id]||[]).map(b=>el("span",{class:"bdg",text:b})),el("button",{class:"mbtn",type:"button",text:"Story",onclick:()=>openEvent(e.id)}),n?el("button",{class:"mbtn",type:"button",text:"Photos ("+n+")",onclick:()=>{gev=e.id;gsub="All";go("gallery");renderG()}}):null)));
   if(ms.length)art.append(el("div",{class:"mchips2"},ms.map(m=>{const uu=safe(m.u)||fb;const fl=flagOf(m.o);return el(uu?"a":"span",{class:"mchip2"+(m.star?" star":""),href:uu||null,target:uu?"_blank":null,rel:uu?"noopener noreferrer":null,title:m.u?"Open the scorecard":"Open the series page with all scorecards"},fl?el("span",{class:"fl",text:fl}):null,el("span",{class:"on",text:m.o}),m.d?el("small",{text:m.d}):null,m.r?el("b",{text:m.r}):null)})));
   return art;
 }
@@ -1576,7 +1605,89 @@ function renderProf(){
     ...(canWrite?[el("button",{class:"btn solid",type:"button",text:"+ Add a link",onclick:()=>openAdd("slink")}),...slinks.map(s=>el("button",{class:"del",type:"button",text:"Remove "+s.label,onclick:()=>db.collection("slinks").doc(s.id).delete().catch(()=>{})}))]:[]));
 }
 
-renderS();renderM();renderW();renderExt();renderProf();
+/* ---------- journey, matches, stats, coaches (v2) ---------- */
+const TLH=[
+ ["1995","Born in India","Where it all started.",1],
+ ["Summers","Gully cricket","With my brother and cousins."],
+ ["2012–16","Engineering degree","Electronics and Communication, Guru Nanak."],
+ ["2018","Moved to Germany","Master's at TU Chemnitz, and cricket for real."],
+ ["2021","First tournaments","Recorded on CricClubs."],
+ ["2022","Debut for Germany","10 June, v Nigeria, Kigali.","kwibuka22"],
+ ["2024","Captain and trophy","Led the side in the European series."],
+ ["2025","Rome and Prague","50* v Isle of Man, Player of the Match.","rome25"],
+ ["2026","Nordic Cup and Regionalliga","Player of the Match v Denmark, 101* for the Royals.","nordic26"],
+ ["Today","Cricket at heart","Automation engineer, learning ML and AI."]
+];
+const TLCOL=["#F4B63F","#6FD3A0","#5CC8FF","#FF7A59","#FF5CAA","#F4B63F","#6FD3A0","#5CC8FF","#FF7A59","#FF5CAA"];
+function hscroller(t){
+  if(t.dataset.nav)return;t.dataset.nav="1";
+  const nav=el("div",{class:"tlnav"},el("button",{type:"button","aria-label":"Scroll left",onclick:()=>t.scrollBy({left:-520,behavior:"smooth"})},"‹"),el("span",{text:"Scroll sideways"}),el("button",{type:"button","aria-label":"Scroll right",onclick:()=>t.scrollBy({left:520,behavior:"smooth"})},"›"));
+  t.parentNode.insertBefore(nav,t);
+}
+const BEYOND=[
+ ["🏏","Level 2 cricket coach","I coach as well as play: qualified at Level 2.",[]],
+ ["👩","Women's officer, USG Chemnitz Cricket Club","Growing women's cricket at my club in Chemnitz.",[["USG Chemnitz cricket page","https://usg-chemnitz.org/de/cricket.html"],["Contact the club","https://usg-chemnitz.org/de/kontakt-cricket.html"]]],
+ ["🛡️","Women's officer, Sächsischer Cricket Verband","Women's cricket across Saxony, with the DCB regional associations.",[["Regional associations (DCB)","https://www.cricket.de/der-dcb/landesverbaende/"],["DCB women's cricket","https://www.cricket.de/der-dcb/frauencricket/"]]]
+];
+function renderJourney(){
+  const t=$("tl");if(!t)return;
+  t.className="tl tlh";hscroller(t);
+  t.replaceChildren(...TLH.map(([y,h,p,x],i)=>{
+    const card=el("div",{class:"tlc"},el("h3",{text:h}),el("p",{text:p}));
+    if(x===1){const m=el("div",{class:"tlmap"});m.innerHTML=INDIA_SVG;card.append(m)}
+    else if(x)card.append(el("button",{class:"mbtn",type:"button",text:"Read more",onclick:()=>openEvent(x)}));
+    const li=el("div",{class:"tli"},el("div",{class:"ty",text:y}),card);li.style.setProperty("--c",TLCOL[i%TLCOL.length]);return li}));
+  let b=$("beyond");
+  if(!b){b=el("section",{class:"beyond",id:"beyond"});t.parentNode.insertBefore(b,t.nextSibling)}
+  b.replaceChildren(el("h3",{text:"Beyond the pitch"}),el("div",{class:"bgrid"},...BEYOND.map(([ic,h,p,ls],i)=>{
+    const c=el("div",{class:"bc"},el("span",{class:"bi",text:ic}),el("h4",{text:h}),el("p",{text:p}),ls.length?el("div",{class:"bl"},...ls.map(([l,u])=>el("a",{href:u,target:"_blank",rel:"noopener noreferrer",text:l+" →"}))):null);
+    c.style.setProperty("--c",["#F4B63F","#FF5CAA","#5CC8FF"][i]);return c})));
+}
+function renderDebut(){
+  const d=$("debut");if(!d)return;
+  const fig=(src,alt,kick,head,lines,col,badge)=>{
+    const im=el("img",{src,alt,loading:"lazy"});
+    const f=el("figure",{class:"dfig"},im,el("figcaption",{},el("small",{text:kick}),el("b",{text:head}),...lines.map(t=>el("span",{text:t}))));
+    if(badge)f.insertBefore(el("em",{class:"dbadge",text:badge}),im);
+    im.onerror=()=>{const ph=el("div",{class:"dph"},el("span",{text:"🏆"}),el("small",{text:"Photo coming soon"}));im.replaceWith(ph)};
+    f.style.setProperty("--c",col);return f};
+  d.className="debut3";
+  d.replaceChildren(
+    fig("p/p064.jpg","Receiving my first Germany cap","DEBUT FOR GERMANY","10 June 2022",["Germany v Nigeria, Kigali, Rwanda","Receiving my first cap from my captain."],"#F4B63F","🧢 Debut"),
+    fig("p/potm-rome25.jpg","Player of the Match, Isle of Man, Rome 2025","PLAYER OF THE MATCH","2025, Division 2",["Germany v Isle of Man, Rome, 29 May 2025","50 not out off 31 balls."],"#6FD3A0","🏆 Player of the Match"),
+    fig("p/nordic26.jpg","Receiving my medal at the Nordic Women's T20 Cup, 2026","PLAYER OF THE MATCH","Nordic Women's T20 Cup 2026",["Germany v Denmark, 30 August 2026","41 off 36 balls, with four fours. Germany won by 37 runs."],"#FF7A59","🏆 Player of the Match"));
+}
+const BADGE={kwibuka22:["🧢 Debut for Germany, 10 June 2022"],rome25:["🏆 Player of the Match, Division 2: 50* off 31 v Isle of Man"],nordic26:["🏆 Player of the Match v Denmark: 41 off 36"]};
+function renderStx(){
+  const box=$("stx");if(!box)return;
+  const tb=t=>el("table",{class:"stt"},...t.map(([a,b])=>el("tr",{},el("td",{class:"vs",text:a}),el("td",{class:"n",text:b}))));
+  const rec=el("div",{class:"strec"},el("div",{},el("h4",{text:"Batting and fielding"}),tb(CT)),el("div",{},el("h4",{text:"Bowling"}),tb(CB)));
+  box.replaceChildren(el("h3",{class:"sth",text:"Career record, WT20I for Germany"}),rec,el("p",{class:"note",text:"As listed by ESPNcricinfo when the total stood at 40 matches. The Nordic Cup in August 2026 brings it to 44."}));
+}
+const COACHES=[
+ {n:"Michael Thewlis",r:"Germany Women's head coach",y:"2020 to 2023",img:"p/p066.jpg",col:"#F4B63F"},
+ {n:"Alistair Waldron",r:"Germany Women's national coach, ECB Level 4",y:"2023 to now",img:"",col:"#6FD3A0"},
+ {n:"Jason Wood",r:"Assistant coach, Germany Women, ECB Level 3",y:"2023 to now",img:"",col:"#5CC8FF"},
+ {n:"Siva",r:"Regional coach, Saxony",y:"Saxony",img:"",col:"#FF5CAA"}
+];
+function renderC(){
+  coachesVisible=true;$("coaches").hidden=false;buildTabs();
+  const box=$("ccards");box.className="tl tlh coachtl";hscroller(box);
+  const mine=coaches.filter(c=>!/thewlis/i.test(c.name||"")).slice().sort((a,b)=>yr(a)-yr(b)).map(c=>({n:c.name,r:c.team||"Coach",y:c.from?c.from+" to "+(c.to||"now"):"",img:c.mediaId?"/_blob/"+c.mediaId:"",col:"#B890FF",note:c.note,id:c.id}));
+  const all=[...COACHES.filter(c=>!mine.some(m=>m.n.toLowerCase()===c.n.toLowerCase()||/thewlis/i.test(m.n)&&/thewlis/i.test(c.n))),...mine];
+  box.replaceChildren(...all.map(c=>{
+    const ini=c.n.split(" ").map(w=>w[0]).join("").slice(0,2);
+    const ph=el("div",{class:"cph"},el("span",{text:ini}));
+    const pic=c.img?(()=>{const i=el("img",{src:c.img,alt:c.n,loading:"lazy"});i.onerror=()=>i.replaceWith(ph);return i})():ph;
+    const li=el("div",{class:"tli cli"},el("div",{class:"ty",text:c.y||" "}),el("div",{class:"tlc"},el("div",{class:"cpic"},pic),el("h3",{text:c.n}),el("p",{text:c.r}),c.note?el("p",{class:"cn",text:c.note}):null));
+    if(canWrite&&c.id)li.querySelector(".tlc").append(el("button",{class:"del",type:"button",text:"Remove",onclick:async()=>{try{await db.collection("coaches").doc(c.id).delete()}catch{}}}));
+    li.style.setProperty("--c",c.col);return li}));
+  let s=$("cstrip");if(!s){s=el("div",{id:"cstrip"});box.parentNode.insertBefore(s,box.nextSibling)}
+  let list=[];try{list=ordered(gItems().filter(x=>tabOf(x)==="coach"),"coach")}catch{}
+  s.replaceChildren(...[strip("🧑‍🏫 Photos with my coaches",list,el("button",{class:"btn",type:"button",text:"Open in Gallery",onclick:()=>{gtab="coach";go("gallery");renderG()}})),el("p",{class:"note",text:"More coach photos will be added here as I get them."})].filter(Boolean));
+}
+
+renderS();renderM();renderW();renderExt();renderProf();renderC();
 (async()=>{
   const cl=window.claude;if(!cl)return;
   try{
