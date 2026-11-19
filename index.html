@@ -517,6 +517,8 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .dcbb{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;margin:0 0 14px;padding:14px 18px;border-radius:16px;background:linear-gradient(120deg,rgba(85,168,255,.22),rgba(31,90,61,.5));border:1px solid rgba(85,168,255,.5)}
 .dcbb b{display:block;font:800 18px var(--body)}.dcbb span{color:var(--mute);font-size:14px}.dcbl{display:flex;gap:8px;flex-wrap:wrap}.dcbl a{font:700 14px var(--body);text-decoration:none;color:#0b1a12;background:#8CC6FF;padding:8px 14px;border-radius:999px}.dcbl a:hover{background:#fff}
 
+.cig{display:inline-block;margin-top:6px;font-weight:700;font-size:14px;color:var(--c,#6FD3A0);text-decoration:none}.cig:hover{text-decoration:underline}
+
 </style>
 </head>
 <body>
@@ -715,7 +717,7 @@ const PHOTOS={
  "Added trophies":"n14 n15 n19 n20 n21 n22 n23 n24 n27 n28 n29 n39".split(" "),
  "Added match days":["n04","n06","n08","n11","n12","n32","n33","n34","n35","n37"],
  "Teams and friends":"035 036 037 038 039 054 059 060 065 066 072 074 075 076 077 078 079 083 084 085 088 089 090 093 094 096 099 101".split(" "),
- "With coaches":["901","902","903","904","905","906"],
+ "With coaches":["901","902","903","904","905","906","907"],
  "Player of the Match":["otm-rome25","otm-nordic26"],
  "Training":"042 043 047 048 067 068 069 070 071 080".split(" "),
  "On the road":"044 053 055 056 061 064 073 100".split(" ")
@@ -1683,9 +1685,9 @@ function renderStx(){
 }
 const COACHES=[
  {n:"Michael Thewlis",r:"Head coach of the German women's team (Golden Eagles), ECB Level 3",y:"2018–2023",imgs:["p/p905.jpg","p/p066.jpg","p/p035.jpg"],col:"#F4B63F"},
- {n:"Alistair Waldron",r:"Germany Women's national coach, ECB Level 4",y:"2023–now",imgs:["p/p901.jpg","p/p902.jpg","p/p903.jpg","p/p904.jpg"],col:"#6FD3A0"},
- {n:"Jason Wood",r:"Assistant coach, Germany Women, ECB Level 3",y:"2023–now",img:"p/p906.jpg",col:"#5CC8FF"},
- {n:"Siva",r:"Regional coach, Saxony",y:"Saxony",img:"",col:"#FF5CAA"}
+ {n:"Alistair Waldron",ig:"https://www.instagram.com/awcoachinguk/",r:"Germany Women's national coach, ECB Level 4",y:"2023–now",imgs:["p/p901.jpg","p/p902.jpg","p/p903.jpg","p/p904.jpg"],col:"#6FD3A0"},
+ {n:"Jason Wood",ig:"https://www.instagram.com/jasonwoodmoo/",r:"Assistant coach, Germany Women, ECB Level 3",y:"2023–now",img:"p/p906.jpg",col:"#5CC8FF"},
+ {ig:"https://www.instagram.com/sivaram_s_79/",n:"Sivaraman Subramaniam (Siva Raman)",r:"Regional coach, Saxony",y:"Saxony",img:"p/p907.jpg",col:"#FF5CAA"}
 ];
 function renderC(){
   coachesVisible=true;$("coaches").hidden=false;buildTabs();
@@ -1700,7 +1702,7 @@ function renderC(){
     const open=i=>openLB(imgs.map(u=>({t:"img",src:u,cap:c.n})),i);
     const pic=imgs.length?(()=>{const i=el("img",{src:imgs[0],alt:c.n,loading:"lazy"});i.onerror=()=>i.replaceWith(ph);i.onclick=()=>open(0);i.style.cursor="zoom-in";return i})():ph;
     const more=el("div",{class:"cmore"},...(imgs.length>1?[]:[]));const more0=imgs.length>1?el("div",{class:"cmore"},...imgs.slice(1).map((u,k)=>{const b=el("button",{type:"button","aria-label":"Open photo "+(k+2)+" of "+c.n,onclick:()=>open(k+1)},el("img",{src:u,alt:"",loading:"lazy"}));return b}),):null;if(more0)more.replaceWith&&0;if(more0){more.append(...more0.childNodes)}
-    const li=el("div",{class:"tli cli"},el("div",{class:"ty",text:c.y||" "}),el("div",{class:"tlc"},el("div",{class:"cpic"},pic),more,el("h3",{text:c.n}),el("p",{text:c.r}),c.note?el("p",{class:"cn",text:c.note}):null));
+    const li=el("div",{class:"tli cli"},el("div",{class:"ty",text:c.y||" "}),el("div",{class:"tlc"},el("div",{class:"cpic"},pic),more,el("h3",{text:c.n}),el("p",{text:c.r}),c.ig?el("a",{class:"cig",href:c.ig,target:"_blank",rel:"noopener noreferrer",text:"Instagram →"}):null,c.note?el("p",{class:"cn",text:c.note}):null));
     if(canWrite&&c.id)li.querySelector(".tlc").append(el("button",{class:"del",type:"button",text:"Remove",onclick:async()=>{try{await db.collection("coaches").doc(c.id).delete()}catch{}}}));
     li.style.setProperty("--c",c.col);return li}));
   let s=$("cstrip");if(!s){s=el("div",{id:"cstrip"});box.parentNode.insertBefore(s,box.nextSibling)}
