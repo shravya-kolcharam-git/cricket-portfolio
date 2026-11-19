@@ -524,6 +524,11 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 .lb img,.lb video{width:auto;height:auto;max-width:100%;max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px);object-fit:contain}
 @media(max-width:600px){.lb .st{padding:56px 6px 0}}
 
+/* Lightbox v2: the picture fills the stage box and is scaled to fit by the browser, whatever the zoom level */
+.lb .st{position:relative;padding:0!important;display:block}
+.lb .st img,.lb .st video{position:absolute;top:56px;left:56px;right:56px;bottom:0;width:calc(100% - 112px);height:calc(100% - 56px);max-width:none;max-height:none;object-fit:contain;margin:0}
+@media(max-width:600px){.lb .st img,.lb .st video{left:6px;right:6px;width:calc(100% - 12px)}}
+
 </style>
 </head>
 <body>
