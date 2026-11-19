@@ -715,13 +715,14 @@ const PHOTOS={
  "Added trophies":"n14 n15 n19 n20 n21 n22 n23 n24 n27 n28 n29 n39".split(" "),
  "Added match days":["n04","n06","n08","n11","n12","n32","n33","n34","n35","n37"],
  "Teams and friends":"035 036 037 038 039 054 059 060 065 066 072 074 075 076 077 078 079 083 084 085 088 089 090 093 094 096 099 101".split(" "),
- "With coaches":["901","902","903","904"],
+ "With coaches":["901","902","903","904","905","906"],
+ "Player of the Match":["otm-rome25","otm-nordic26"],
  "Training":"042 043 047 048 067 068 069 070 071 080".split(" "),
  "On the road":"044 053 055 056 061 064 073 100".split(" ")
 };
 const GAL=[];for(const [c,l] of Object.entries(PHOTOS))for(const n of l)GAL.push({f:"p"+n,c});
 GAL.sort((a,b)=>a.f<b.f?-1:1);
-const VID=[];
+const VID=[{f:"potm-nordic-2026",t:"Player of the Match, Nordic Women's T20 Cup 2026, Germany v Denmark",d:"0:23",ev:"nordic26"},{f:"potm-div2-2025",t:"Player of the Match, Division 2, Rome 2025, Germany v Isle of Man",d:"1:13",ev:"rome25"}];
 
 const MT={
  kwibuka22:[{o:"Nigeria",d:"10 Jun",r:"Debut"},{o:"Tanzania",u:"https://espncricinfo.com/ci/engine/match/1318388.html"},{o:"Botswana",u:"https://www.espncricinfo.com/ci/engine/match/1318391.html"},{o:"Uganda",u:"https://www.espncricinfo.com/ci/engine/match/1318394.html"},{o:"Botswana, 7th-place play-off",r:"Won",u:"https://espncricinfo.com/ci/engine/match/1318401.html"}],
@@ -860,12 +861,12 @@ $("hl").replaceChildren(...HL.map(([n,t,id])=>el("button",{onclick:()=>openEvent
 
 
 /* ---------- gallery ---------- */
-const GT0=[["team","❤️ Golden Eagles team photos","Squad, team and group photos."],["trophy","🏆 Trophies","Medals, trophies and awards."],["coach","🧑‍🏫 With my coaches","Photos with the coaches I have worked with."],["video","🎬 Practice videos","The work behind the match days. Tap a clip to play it."],["other","✨ Others","Match days, training, Pink Lady and life on the road."]];
-const BASE={"Teams and friends":"team","Medals and trophies":"trophy","Rome Queen's Trophy 2026":"trophy","Added teams":"team","Added trophies":"trophy","With coaches":"coach"};
+const GT0=[["team","❤️ Golden Eagles team photos","Squad, team and group photos."],["trophy","🏆 Trophies","Medals, trophies and awards."],["coach","🧑‍🏫 With my coaches","Photos with the coaches I have worked with."],["video","🎬 Videos","The work behind the match days. Tap a clip to play it."],["other","✨ Others","Match days, training, Pink Lady and life on the road."]];
+const BASE={"Teams and friends":"team","Medals and trophies":"trophy","Rome Queen's Trophy 2026":"trophy","Added teams":"team","Added trophies":"trophy","With coaches":"coach","Player of the Match":"trophy"};
 const DEFCAP={pn37:{y:"",t:"Pink Lady Hope XI, handshake"},pn31:{y:"",t:"Team with the trophy"},pn27:{y:"",t:"With my medal and plaque"},pn28:{y:"",t:"With my medal and plaque"},pn29:{y:"",t:"With my medal and plaque"},pn24:{y:"",t:"Trophies and awards"},pn05:{y:"2022",t:"Kigali, Rwanda"},pn10:{y:"2022",t:"Kigali, Rwanda"},pn09:{y:"2022",t:"Kigali, Rwanda"},pn13:{y:"2024",t:"European Cricket Championship Challenger"},pn14:{y:"2024",t:"European Cricket Championship Challenger, medals"},pn11:{y:"2024",t:"European Cricket Championship Challenger"},pn12:{y:"2024",t:"European Cricket Championship Challenger"},pn15:{y:"2025",t:"Rome, with the medals"},pn04:{y:"",t:"Bowling v Türkiye"},pn16:{y:"",t:"Germany v Switzerland"},pn17:{y:"",t:"Team photo, Federazione Cricket Italiana"},pn07:{y:"",t:"With the flag"},pn08:{y:"",t:"On the way in my Deutscher Cricket Bund jacket"},pn06:{y:"",t:"On the sidelines"},prq1:{y:"2026",t:"Rome Queen's Trophy, Season 1"},prq2:{y:"2026",t:"Rome Queen's Trophy, Season 1"}};
 const DEFEV={};
 (PHOTOS["Training"]||[]).forEach(n=>{DEFEV["p"+n]="training"});
-VID.forEach(v=>{DEFEV[v.f]="training"});
+VID.forEach(v=>{DEFEV[v.f]=v.ev||"training"});
 ["prq1","prq2"].forEach(f=>{DEFEV["p"+f]="romeW26"});
 ["n05","n09","n10","064"].forEach(n=>{DEFEV["p"+n]="kwibuka22"});
 DEFEV.pn15="rome25";
@@ -878,14 +879,14 @@ function evSelect(cur,onpick,first){
   sel.value=cur||"";sel.onchange=()=>onpick(sel.value);return sel}
 const setEv=(f,v)=>{if(db)db.collection("gevt").doc(f).set({e:v}).catch(()=>toast("Could not save. Try again."))};
 let gtab="team",gsub="All",tags={};
-const tabOf=x=>{const t=tags[x.f]||(x.up?x.tab:BASE[x.c])||"other";return gtabs().some(g=>g[0]===t)?t:"other"};
+const tabOf=x=>{const t=tags[x.f]||x.tab||(x.up?x.tab:BASE[x.c])||"other";return gtabs().some(g=>g[0]===t)?t:"other"};
 /* ---------- videos ---------- */
 const PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z" fill="#fff"/></svg>';
 const vVis=()=>VID.filter(v=>!ghid[v.f]);
 function renderV(){
   const L=vVis().filter(v=>!gev||(gev==="__none"?!evOf(v.f):evOf(v.f)===gev));
   $("gempty").hidden=L.length>0;if(!L.length)$("gempty").textContent="No videos under this choice yet.";
-  $("vgrid").replaceChildren(...L.map((v,i)=>{const b=el("button",{class:"vcard",type:"button","aria-label":"Play "+v.t,onclick:()=>openLB(L.map(y=>({t:"vid",src:"v/"+y.f+".mp4",cap:y.t})),i)},el("img",{src:"v/"+v.f+".jpg",alt:"",loading:"lazy"}));const o=el("span",{class:"pl"});o.innerHTML="<i>"+PLAY+"</i>";b.append(o,el("span",{class:"t"},v.t,el("small",{text:v.d})));
+  $("vgrid").replaceChildren(...L.map((v,i)=>{const b=el("button",{class:"vcard",type:"button","aria-label":"Play "+v.t,onclick:()=>openLB(L.map(y=>({t:"vid",src:y.src||"v/"+y.f+".mp4",cap:y.t})),i)},el("img",{src:v.poster||"v/"+v.f+".jpg",alt:"",loading:"lazy"}));const o=el("span",{class:"pl"});o.innerHTML="<i>"+PLAY+"</i>";b.append(o,el("span",{class:"t"},v.t,el("small",{text:v.d})));
     const w=el("div",{class:"vwrap"},b);
     if(canWrite){w.append(el("div",{class:"gbar"},el("button",{type:"button",text:"Remove",onclick:()=>{if(db)db.collection("ghid").doc(v.f).set({t:Date.now()}).catch(()=>toast("Could not save. Try again."))}})));w.append(el("div",{class:"gtag"},evSelect(evOf(v.f),x=>setEv(v.f,x))))}
     else if(evOf(v.f))w.append(el("div",{class:"gtagv",text:evName(evOf(v.f))}));
@@ -1174,7 +1175,7 @@ async function fetchOg(u,card){
 function fmtDate(d){if(!d)return"";const t=new Date(d);if(isNaN(t))return d;return t.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}
 function glyph(host){return({"cricclubs.com":"CC","ecn.cricket":"ECN","femalecricket.com":"FC","instagram.com":"IG","cricbuzz.com":"CB","cricheroes.com":"CH","ipl.com":"IPL"})[host]||(host||"").slice(0,2).toUpperCase()||"WWW"}
 const STAT_H=["cricbuzz.com","ipl.com","cricheroes.com","rkjat.in","crickrida.com","cricketdatabase.com","sportzwiki.com","hindustantimes.com","thesportstak.com","cricketworld.com","icc-cricket.com","cricclubs.com","acscricket.com","timesofindia.indiatimes.com","cricketeuropearchive.com","kriket.cz"];
-function kindOf(it){const P=parseLink(it.url||"");if(it.mediaId)return/^video\//.test(it.mediaType||"")?"yt":"ig";if(P.type==="instagram"||(P.host==="instagram.com"))return"ig";if(P.type==="youtube")return"yt";if(P.type==="facebook")return"ig";return"blog"}
+function kindOf(it){const P=parseLink(it.url||"");if(it.media)return/\.(mp4|mov|webm)$/i.test(it.media)?"yt":"ig";if(it.mediaId)return/^video\//.test(it.mediaType||"")?"yt":"ig";if(P.type==="instagram"||(P.host==="instagram.com"))return"ig";if(P.type==="youtube")return"yt";if(P.type==="facebook")return"ig";return"blog"}
 function socCard(it,cat,color){
   if(kindOf(it)==="stat"&&!it.mediaId){const P0=parseLink(it.url);const w=el("a",{class:"sc sc-stat",href:safe(it.url)||"#",target:"_blank",rel:"noopener noreferrer"});w.style.setProperty("--ac",color);w.append(el("small",{text:P0.host}),el("b",{text:it.title||P0.host}),el("span",{text:"Open →"}));if(canWrite)w.append(socOwner(it,cat));return w}
   return socCard0(it,cat,color)
@@ -1183,7 +1184,11 @@ function socCard0(it,cat,color){
   const P=parseLink(it.url||"");const og=ogOf(it.url)||{};
   const wrap=el("article",{class:"sc sc-"+P.type});wrap.style.setProperty("--ac",color);
   const open=(t,c)=>el("a",{class:c||"",href:safe(it.url)||"#",target:"_blank",rel:"noopener noreferrer"},t);
-  if(it.mediaId){
+  if(it.media){
+    const v=/\.(mp4|mov|webm)$/i.test(it.media);
+    wrap.append(v?el("video",{class:"scm",src:it.media,controls:true,playsinline:true,preload:"metadata"}):el("img",{class:"scm",src:it.media,alt:it.title||"",loading:"lazy"}));
+    if(it.title||it.desc)wrap.append(el("div",{class:"scb"},it.title?el("h4",{text:it.title}):null,it.desc?el("p",{text:it.desc}):null));
+  }else if(it.mediaId){
     const v=/^video\//.test(it.mediaType||"");
     wrap.append(v?el("video",{class:"scm",src:"/_blob/"+it.mediaId,controls:true,playsinline:true,preload:"metadata"}):el("img",{class:"scm",src:"/_blob/"+it.mediaId,alt:it.title||"",loading:"lazy"}));
     if(it.title||it.desc)wrap.append(el("div",{class:"scb"},it.title?el("h4",{text:it.title}):null,it.desc?el("p",{text:it.desc}):null));
@@ -1398,7 +1403,7 @@ function gtabs(){
   return[...base,...extra];
 }
 function gItems(){
-  const a=GAL.map(x=>({...x,src:"p/"+x.f+".jpg",th:"t/"+x.f+".jpg"}));
+  const a=GAL.map(x=>({...x,src:x.src||"p/"+x.f+".jpg",th:x.th||x.src||"t/"+x.f+".jpg"}));
   const u=gup.map(x=>({f:"u"+x.id,docId:x.id,up:true,tab:x.tab,c:"Added by me",src:"/_blob/"+x.mediaId,th:"/_blob/"+x.mediaId,vid:isV({type:x.mediaType}),created:x.created||0,mt:x.mediaType}));
   return[...a,...u.sort((p,q)=>p.created-q.created)].filter(x=>!ghid[x.f]);
 }
@@ -1666,7 +1671,7 @@ function renderDebut(){
   d.replaceChildren(
     fig("p/p064.jpg","Receiving my first Germany cap","DEBUT FOR GERMANY","10 June 2022",["Germany v Nigeria, Kigali, Rwanda","Receiving my first cap from my captain."],"#F4B63F","🧢 Debut"),
     fig("p/potm-rome25.jpg","Player of the Match, Isle of Man, Rome 2025","PLAYER OF THE MATCH","2025, Division 2",["Germany v Isle of Man, Rome, 29 May 2025","50 not out off 31 balls."],"#6FD3A0","🏆 Player of the Match"),
-    fig("p/nordic26.jpg","Receiving my medal at the Nordic Women's T20 Cup, 2026","PLAYER OF THE MATCH","Nordic Women's T20 Cup 2026",["Germany v Denmark, 30 August 2026","41 off 36 balls, with four fours. Germany won by 37 runs."],"#FF7A59","🏆 Player of the Match"));
+    fig("p/potm-nordic26.jpg","Receiving my medal at the Nordic Women's T20 Cup, 2026","PLAYER OF THE MATCH","Nordic Women's T20 Cup 2026",["Germany v Denmark, 30 August 2026","41 off 36 balls, with four fours. Germany won by 37 runs."],"#FF7A59","🏆 Player of the Match"));
 }
 const BADGE={kwibuka22:["🧢 Debut for Germany, 10 June 2022"],rome25:["🏆 Player of the Match, Division 2: 50* off 31 v Isle of Man"],nordic26:["🏆 Player of the Match v Denmark: 41 off 36"]};
 function renderStx(){
@@ -1679,7 +1684,7 @@ function renderStx(){
 const COACHES=[
  {n:"Michael Thewlis",r:"Head coach of the German women's team (Golden Eagles), ECB Level 3",y:"2018–2023",imgs:["p/p905.jpg","p/p066.jpg","p/p035.jpg"],col:"#F4B63F"},
  {n:"Alistair Waldron",r:"Germany Women's national coach, ECB Level 4",y:"2023–now",imgs:["p/p901.jpg","p/p902.jpg","p/p903.jpg","p/p904.jpg"],col:"#6FD3A0"},
- {n:"Jason Wood",r:"Assistant coach, Germany Women, ECB Level 3",y:"2023–now",img:"",col:"#5CC8FF"},
+ {n:"Jason Wood",r:"Assistant coach, Germany Women, ECB Level 3",y:"2023–now",img:"p/p906.jpg",col:"#5CC8FF"},
  {n:"Siva",r:"Regional coach, Saxony",y:"Saxony",img:"",col:"#FF5CAA"}
 ];
 function renderC(){
@@ -1699,8 +1704,7 @@ function renderC(){
     if(canWrite&&c.id)li.querySelector(".tlc").append(el("button",{class:"del",type:"button",text:"Remove",onclick:async()=>{try{await db.collection("coaches").doc(c.id).delete()}catch{}}}));
     li.style.setProperty("--c",c.col);return li}));
   let s=$("cstrip");if(!s){s=el("div",{id:"cstrip"});box.parentNode.insertBefore(s,box.nextSibling)}
-  let list=[];try{list=ordered(gItems().filter(x=>tabOf(x)==="coach"),"coach")}catch{}
-  s.replaceChildren(...[strip("🧑‍🏫 Photos with my coaches",list,el("button",{class:"btn",type:"button",text:"Open in Gallery",onclick:()=>{gtab="coach";go("gallery");renderG()}})),el("p",{class:"note",text:"More coach photos will be added here as I get them."})].filter(Boolean));
+  s.replaceChildren(el("button",{class:"btn",type:"button",text:"All coach photos are in the Gallery →",onclick:()=>{gtab="coach";go("gallery");renderG()}}));
 }
 function dcbBanner(){
   let b=$("dcbb");const w=$("mwrap");
@@ -1711,6 +1715,27 @@ function dcbBanner(){
     el("a",{href:"https://cricclubs.com/BayerischerCricketVerbandeV",target:"_blank",rel:"noopener noreferrer",text:"Bavarian league on CricClubs →"}),
     el("a",{href:"https://www.cricket.de/meisterschaften/dcb-bundesliga-frauen/",target:"_blank",rel:"noopener noreferrer",text:"DCB Women's Bundesliga →"})));
 }
+
+/* Pictures, videos and posts added with admin.html. They live in media.json and social-extra.json in the repo. */
+(function(){
+  const get=u=>fetch(u+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).catch(()=>null);
+  const okPath=p=>typeof p==="string"&&/^(m|v|p|t)\/[A-Za-z0-9._-]+$/.test(p);
+  get("social-extra.json").then(a=>{
+    if(!Array.isArray(a)||!a.length)return;
+    const have=new Set((window.SOCIAL_SEED||[]).map(x=>x.id));
+    a.forEach(x=>{if(x&&x.id&&!have.has(x.id)&&typeof x.cat==="string"&&(!x.media||okPath(x.media)))window.SOCIAL_SEED.push(x)});
+    try{renderSocial()}catch(e){}
+  });
+  get("media.json").then(a=>{
+    if(!Array.isArray(a)||!a.length)return;
+    a.forEach(m=>{
+      if(!m||!m.id||!okPath(m.src))return;
+      if(m.kind==="video"){if(!VID.some(v=>v.f===m.id))VID.push({f:m.id,t:m.title||"Video",d:"",src:m.src,poster:okPath(m.poster)?m.poster:"",ev:m.event||""});if(m.event)DEFEV[m.id]=m.event}
+      else{if(!GAL.some(x=>x.f===m.id)){GAL.push({f:m.id,c:"Added",src:m.src,th:m.src,tab:m.tab||"other"});if(m.title)DEFCAP[m.id]={y:m.year||"",t:m.title};if(m.event)DEFEV[m.id]=m.event}}
+    });
+    try{renderG()}catch(e){}
+  });
+})();
 
 renderS();renderM();renderW();renderExt();renderProf();renderC();
 (async()=>{
