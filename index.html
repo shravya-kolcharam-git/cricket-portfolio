@@ -33,6 +33,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .tab[aria-selected="true"]{color:var(--ink);background:var(--gold)}
 .navlink{font:600 14px var(--body);text-decoration:none;border:1px solid var(--line);padding:7px 14px;border-radius:999px;white-space:nowrap}
 .navlink:hover{border-color:var(--chalk)}
+.igicons{display:flex;gap:8px}.igi{display:inline-flex;align-items:center;gap:6px;font:700 12px var(--body);text-decoration:none;color:var(--chalk);border:1px solid var(--line);border-radius:999px;padding:6px 11px;background:linear-gradient(135deg,rgba(244,182,63,.18),rgba(240,84,91,.18))}.igi em{font-style:normal}.igi2{background:#14181a}.igi:hover{border-color:var(--chalk)}
+@media(max-width:760px){.igicons{display:flex}.igi em{display:none}.igi{padding:7px}}
 @media(max-width:760px){.nav{padding:0 10px;gap:8px}.navlink{display:none}.logo{font-size:24px}}
 
 /* panels */
@@ -482,7 +484,7 @@ a.mchip2:hover{border-color:var(--gold);background:rgba(244,182,63,.1)}
 <header class="nav">
   <button class="logo" data-go="home" aria-label="Home">SK<b>45</b></button>
   <nav class="tabs" role="tablist" aria-label="Sections" id="tabs"></nav>
-  <a class="navlink" href="https://www.instagram.com/shravyakolcharamcricket/" target="_blank" rel="noopener noreferrer">Instagram</a>
+  <span class="igicons"><a class="igi" title="Instagram: cricket (public)" aria-label="Instagram cricket account (public)" href="https://www.instagram.com/shravyakolcharamcricket/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg><em>Cricket</em></a><a class="igi igi2" title="Instagram: personal (private)" aria-label="Instagram personal account (private)" href="https://www.instagram.com/shravyakolcharam" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg><em>Private</em></a></span>
 </header>
 
 <main>
@@ -1132,7 +1134,7 @@ async function fetchOg(u,card){
 function fmtDate(d){if(!d)return"";const t=new Date(d);if(isNaN(t))return d;return t.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}
 function glyph(host){return({"cricclubs.com":"CC","ecn.cricket":"ECN","femalecricket.com":"FC","instagram.com":"IG","cricbuzz.com":"CB","cricheroes.com":"CH","ipl.com":"IPL"})[host]||(host||"").slice(0,2).toUpperCase()||"WWW"}
 const STAT_H=["cricbuzz.com","ipl.com","cricheroes.com","rkjat.in","crickrida.com","cricketdatabase.com","sportzwiki.com","hindustantimes.com","thesportstak.com","cricketworld.com","icc-cricket.com","cricclubs.com","acscricket.com","timesofindia.indiatimes.com","cricketeuropearchive.com","kriket.cz"];
-function kindOf(it){const P=parseLink(it.url||"");if(it.mediaId)return/^video\//.test(it.mediaType||"")?"yt":"ig";if(P.type==="instagram"||(P.host==="instagram.com"))return"ig";if(P.type==="youtube")return"yt";if(P.type==="facebook")return"ig";if(STAT_H.some(h=>P.host===h||P.host.endsWith("."+h)))return"stat";return"blog"}
+function kindOf(it){const P=parseLink(it.url||"");if(it.mediaId)return/^video\//.test(it.mediaType||"")?"yt":"ig";if(P.type==="instagram"||(P.host==="instagram.com"))return"ig";if(P.type==="youtube")return"yt";if(P.type==="facebook")return"ig";return"blog"}
 function socCard(it,cat,color){
   if(kindOf(it)==="stat"&&!it.mediaId){const P0=parseLink(it.url);const w=el("a",{class:"sc sc-stat",href:safe(it.url)||"#",target:"_blank",rel:"noopener noreferrer"});w.style.setProperty("--ac",color);w.append(el("small",{text:P0.host}),el("b",{text:it.title||P0.host}),el("span",{text:"Open →"}));if(canWrite)w.append(socOwner(it,cat));return w}
   return socCard0(it,cat,color)
@@ -1151,11 +1153,11 @@ function socCard0(it,cat,color){
     wrap.append(el("div",{class:"emb emb-"+P.type},f),el("div",{class:"scf"},el("span",{text:P.host}),open("Open on "+P.host+" →")));
     if(it.title||it.desc)wrap.append(el("div",{class:"scb"},it.title?el("h4",{text:it.title}):null,it.desc?el("p",{text:it.desc}):null));
   }else{
-    const img=it.img||og.img;const title=it.title||og.title||P.host||it.url;const desc=it.desc||og.desc||"";
+    const shot="https://api.microlink.io/?url="+encodeURIComponent(it.url)+"&screenshot=true&meta=false&embed=screenshot.url";const img=it.img||og.img||shot;const title=it.title||og.title||P.host||it.url;const desc=it.desc||og.desc||"";
     const th=open([],"scimg");
     if(img){const im=el("img",{src:img,alt:title,loading:"lazy",referrerpolicy:"no-referrer"});im.onerror=()=>{th.replaceChildren(el("span",{text:glyph(P.host)}))};th.append(im)}else th.append(el("span",{text:glyph(P.host)}));
     wrap.append(th,el("div",{class:"scb"},el("small",{text:[it.src||og.pub||P.host,fmtDate(it.date)].filter(Boolean).join(" · ")}),el("h4",{},open(title)),desc?el("p",{text:desc}):null,open("Read on "+(it.src||og.pub||P.host)+" →","scgo")));
-    if(!it.img&&!it.title&&!og.img)fetchOg(it.url);
+    if(!it.img&&!og.img)fetchOg(it.url);
   }
   if(canWrite)wrap.append(socOwner(it,cat));
   return wrap;
@@ -1204,7 +1206,7 @@ function renderByPlace(){
   root.replaceChildren(nav,...secs);
 }
 
-const KINDS=[["ig","Instagram","Posts, reels and stories.","#F0545B"],["yt","YouTube","Videos and replays.","#FF9D5C"],["blog","Blogs and articles","Match reports, previews and official pages.","#F4B63F"],["stat","Scorecards and profiles","The official records: Cricbuzz, ICC, CricHeroes and more.","#55A8FF"]];
+const KINDS=[["ig","Instagram","Posts, reels and stories.","#F0545B"],["yt","YouTube","Videos and replays.","#FF9D5C"],["blog","Blogs and articles","Match reports, previews and official pages.","#F4B63F"]];
 function renderByType(){
   const root=$("socroot");if(!root)return;
   const all=socItems();const items=all.filter(x=>scat==="all"||x.cat===scat);
