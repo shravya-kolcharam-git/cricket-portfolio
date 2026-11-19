@@ -47,5 +47,7 @@ window.SOCIAL_SEED=[
  {"id": "a189", "cat": "private", "sub": "pink", "url": "https://www.instagram.com/p/Ddio3vsDOox/"},
  {"id":"a900","cat":"highlights","sub":"","url":"https://www.instagram.com/shravyakolcharamcricket/","title":"Shravya Kolcharam on Instagram","desc":"My public cricket account: match days, training and tournaments."},
  {"id":"a901","cat":"highlights","sub":"","url":"https://www.instagram.com/p/DaiXJP9tUR3qFNV3ydyrpv6zgSvb9WdyqZpSrY0/"},
- {"id":"a902","cat":"private","sub":"","url":"https://www.instagram.com/p/Cw0cXoEorms/"}
+ {"id":"a902","cat":"private","sub":"","url":"https://www.instagram.com/p/Cw0cXoEorms/"},
+ {"id":"a903","cat":"coaching","sub":"","url":"https://www.instagram.com/p/CuPjWF3IPHl/"},
+ {"id":"a904","cat":"coaching","sub":"","url":"https://www.instagram.com/p/CrWBso9oihZ/"}
 ];
