@@ -706,6 +706,9 @@ body{font-family:var(--body);-webkit-font-smoothing:antialiased}
 .panel:not(#home) .shero{background:radial-gradient(120% 140% at 85% 0%,rgba(200,33,60,.10),transparent 55%),radial-gradient(100% 120% at 0% 100%,rgba(244,182,63,.18),transparent 60%),#fff;border-color:rgba(20,39,29,.12)}
 .panel:not(#home) .shero h2{color:#14271D}
 .panel:not(#home) .shero p{color:#46584D}
+
+/* ---- social filter bar: solid, sits under the menu ---- */
+.panel:not(#home) .snav{top:-26px;background:#FAF7F0;box-shadow:0 8px 14px -10px rgba(20,39,29,.25);margin:0 calc(-1*clamp(16px,3vw,44px));padding:12px clamp(16px,3vw,44px) 12px}
 /* ---- mobile: two-row header so every tab is reachable ---- */
 @media(max-width:760px){
   :root{--nav:104px}
@@ -718,6 +721,10 @@ body{font-family:var(--body);-webkit-font-smoothing:antialiased}
   #gtabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
   #gtabs::-webkit-scrollbar{display:none}
   #gtabs .chip{flex:none;white-space:nowrap}
+  .snav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  .snav::-webkit-scrollbar{display:none}
+  .snav>*{flex:none;white-space:nowrap}
+  .sn{padding:7px 12px;font-size:13px}
   .name{font-size:clamp(64px,19vw,96px)}
   .sub{font-size:16px}
 }
