@@ -749,7 +749,7 @@ body{font-family:var(--body);-webkit-font-smoothing:antialiased}
         <div><button class="btn" id="toWatch" type="button">&#9654; Watch clips</button></div>
       </div>
       <div class="r">
-        <img src="p/phero.jpg" alt="Shravya batting in Germany kit" fetchpriority="high">
+        <img src="p/phero.webp" alt="Shravya batting in Germany kit" fetchpriority="high">
         <button class="badge" id="badge"><b>50*</b><span>Not out v Isle of Man, Rome 2025</span></button>
       </div>
     </div>
@@ -995,7 +995,7 @@ const MT={
  nordic26:[{o:"Sweden",d:"28 Aug",r:"Played, Sweden won by 14 runs (DLS)",u:"https://www.cricinfo.com/series/nordic-women-t20-cup-2026-1549504/germany-women-vs-sweden-women-1st-match-1548658/full-scorecard"},{o:"Denmark",d:"29 Aug",r:"4",u:"https://web.cricap.com/cricket/matches/170407/germany-women-vs-denmark-women"},{o:"Sweden",d:"29 Aug",r:"No result",nc:1,u:"https://www.cricinfo.com/series/nordic-women-t20-cup-2026-1549504"},{o:"Denmark",d:"30 Aug",r:"41, Player of the Match",u:"https://www.cricinfo.com/series/nordic-women-t20-cup-2026-1549504/germany-women-vs-denmark-women-6th-match-1548663/full-scorecard"}]
 };
 const EXTRA=[
- {id:"romeW26",cat:"Private",year:2026,when:"2026",title:"Rome Queen's Trophy, Season 1",country:"Italy",place:"Rome",tag:"Season 1",text:"Rome Queen's Trophy 2026, Season 1. The full season is on CrikIQ, with the Instagram post and photos from the day below.",pics:["p/prq1.jpg","p/prq2.jpg"],links:[["Season 1 on CrikIQ","https://crikiq.com/seasons/921000120001"],["Instagram post","https://www.instagram.com/p/DfdCc2RjRxe/"]]},
+ {id:"romeW26",cat:"Private",year:2026,when:"2026",title:"Rome Queen's Trophy, Season 1",country:"Italy",place:"Rome",tag:"Season 1",text:"Rome Queen's Trophy 2026, Season 1. The full season is on CrikIQ, with the Instagram post and photos from the day below.",pics:["p/prq1.webp","p/prq2.webp"],links:[["Season 1 on CrikIQ","https://crikiq.com/seasons/921000120001"],["Instagram post","https://www.instagram.com/p/DfdCc2RjRxe/"]]},
  {id:"usg50",cat:"Private",year:0,when:"",title:"USG Chemnitz 50-over tournament, organised by me",country:"Germany",place:"Chemnitz",tag:"Organiser",text:"One of three tournaments I organised with USG Chemnitz, played over 50 overs. Scores and tables are on CricClubs. Use the + button to add the date and the CricClubs link.",links:[]},
  {id:"usg20",cat:"Private",year:0,when:"",title:"USG Chemnitz 20-over tournament, organised by me",country:"Germany",place:"Chemnitz",tag:"Organiser",text:"One of three tournaments I organised with USG Chemnitz, played over 20 overs. Scores and tables are on CricClubs. Use the + button to add the date and the CricClubs link.",links:[]},
  {id:"usg10",cat:"Private",year:0,when:"",title:"USG Chemnitz 10-over tournament, organised by me",country:"Germany",place:"Chemnitz",tag:"Organiser",text:"One of three tournaments I organised with USG Chemnitz, played over 10 overs. Scores and tables are on CricClubs. Use the + button to add the date and the CricClubs link.",links:[]},
@@ -1255,7 +1255,7 @@ function renderDebut(){
   const fig=(src,alt,kick,head,lines,cls)=>el("figure",{class:"dfig "+(cls||"")},el("img",{src,alt,loading:"lazy"}),el("figcaption",{},el("small",{text:kick}),el("b",{text:head}),...lines.map(t=>el("span",{text:t}))));
   const mid=el("div",{class:"dmid","aria-hidden":"true"});
   mid.innerHTML='<svg viewBox="0 0 200 60" style="width:100%;height:70px" preserveAspectRatio="xMidYMid meet"><path d="M6 40 C 60 40, 70 14, 100 14 S 150 14, 190 28" fill="none" stroke="#F4B63F" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/><circle cx="6" cy="40" r="6" fill="#F4B63F"/><circle cx="192" cy="28" r="6" fill="#F4B63F"/></svg><span>2022 to 2026</span>';
-  d.replaceChildren(fig("p/p064.jpg","Receiving my first Germany cap","DEBUT FOR GERMANY","10 June 2022",["Germany v Nigeria","Kigali, Rwanda","Receiving my first Germany cap."]),mid,fig("p/nordic26.jpg","Receiving my medal at the Nordic Women's T20 Cup, 2026","LATEST, 2026","Nordic Women's T20 Cup",["Receiving my medal."],"r"));
+  d.replaceChildren(fig("p/p064.webp","Receiving my first Germany cap","DEBUT FOR GERMANY","10 June 2022",["Germany v Nigeria","Kigali, Rwanda","Receiving my first Germany cap."]),mid,fig("p/nordic26.webp","Receiving my medal at the Nordic Women's T20 Cup, 2026","LATEST, 2026","Nordic Women's T20 Cup",["Receiving my medal."],"r"));
 }
 function renderM(){
   const items=allItems();
@@ -1663,7 +1663,7 @@ function gtabs(){
   return[...base,...extra];
 }
 function gItems(){
-  const a=GAL.map(x=>({...x,src:x.src||"p/"+x.f+".jpg",th:x.th||x.src||"t/"+x.f+".jpg"}));
+  const a=GAL.map(x=>({...x,src:x.src||"p/"+x.f+".webp",th:x.th||x.src||"t/"+x.f+".webp"}));
   const u=gup.map(x=>({f:"u"+x.id,docId:x.id,up:true,tab:x.tab,c:"Added by me",src:"/_blob/"+x.mediaId,th:"/_blob/"+x.mediaId,vid:isV({type:x.mediaType}),created:x.created||0,mt:x.mediaType}));
   return[...a,...u.sort((p,q)=>p.created-q.created)].filter(x=>!ghid[x.f]);
 }
@@ -1749,7 +1749,7 @@ function renderG(){
     if(!GT0.some(t=>t[0]===gtab))btns.push(el("button",{class:"chip",type:"button",text:"Delete this collection",onclick:()=>{db.collection("gcols").doc(gtab).delete().catch(()=>{});gtab="team"}}));
     if(remd.length)btns.push(el("button",{class:"chip","aria-pressed":String(showHid),type:"button",text:(isVid?"Removed videos (":"Removed photos (")+remd.length+")",onclick:()=>{showHid=!showHid;renderG()}}));
     const kids=[...btns];
-    if(showHid&&remd.length)kids.push(el("div",{class:"grem"},...remd.map(x=>el("div",{class:"gi"},el("img",{src:(isVid?"v/":"t/")+x.f+".jpg",alt:""}),el("div",{class:"gbar"},el("button",{type:"button",text:"Put back",onclick:()=>db.collection("ghid").doc(x.f).delete().catch(()=>{})}))))));
+    if(showHid&&remd.length)kids.push(el("div",{class:"grem"},...remd.map(x=>el("div",{class:"gi"},el("img",{src:(isVid?"v/"+x.f+".jpg":"t/"+x.f+".webp"),alt:""}),el("div",{class:"gbar"},el("button",{type:"button",text:"Put back",onclick:()=>db.collection("ghid").doc(x.f).delete().catch(()=>{})}))))));
     gt.replaceChildren(...kids);
   }
   $("mgrid").replaceChildren(...list.map((x,i)=>{
@@ -1936,11 +1936,11 @@ function renderDebut(){
   d.className="debut3";
   const con=t=>el("div",{class:"dcon","aria-hidden":"true"},el("i"),el("span",{text:t}),el("i"));
   d.replaceChildren(
-    fig("p/p064.jpg","Receiving my first Germany cap","DEBUT FOR GERMANY","10 June 2022",["Germany v Nigeria, Kigali, Rwanda","Receiving my first Germany cap."],"#F4B63F","🧢 Debut"),
+    fig("p/p064.webp","Receiving my first Germany cap","DEBUT FOR GERMANY","10 June 2022",["Germany v Nigeria, Kigali, Rwanda","Receiving my first Germany cap."],"#F4B63F","🧢 Debut"),
     con("2022 to 2025"),
-    fig("p/potm-rome25.jpg","Player of the Match, Isle of Man, Rome 2025","PLAYER OF THE MATCH","2025, Division 2",["Germany v Isle of Man, Rome, 29 May 2025","50 not out off 31 balls."],"#6FD3A0","🏆 Player of the Match"),
+    fig("p/potm-rome25.webp","Player of the Match, Isle of Man, Rome 2025","PLAYER OF THE MATCH","2025, Division 2",["Germany v Isle of Man, Rome, 29 May 2025","50 not out off 31 balls."],"#6FD3A0","🏆 Player of the Match"),
     con("2025 to 2026"),
-    fig("p/potm-nordic26.jpg","Receiving my medal at the Nordic Women's T20 Cup, 2026","PLAYER OF THE MATCH","Nordic Women's T20 Cup 2026",["Germany v Denmark, 30 August 2026","41 off 36 balls, with four fours. Germany won by 37 runs."],"#FF7A59","🏆 Player of the Match"));
+    fig("p/potm-nordic26.webp","Receiving my medal at the Nordic Women's T20 Cup, 2026","PLAYER OF THE MATCH","Nordic Women's T20 Cup 2026",["Germany v Denmark, 30 August 2026","41 off 36 balls, with four fours. Germany won by 37 runs."],"#FF7A59","🏆 Player of the Match"));
 }
 const BADGE={kwibuka22:["🧢 Debut for Germany, 10 June 2022"],rome25:["🏆 Player of the Match, Division 2: 50* off 31 v Isle of Man"],nordic26:["🏆 Player of the Match v Denmark: 41 off 36"]};
 function renderStx(){
@@ -1960,10 +1960,10 @@ function renderStx(){
   draw();
 }
 const COACHES=[
- {n:"Michael Thewlis",r:"Head coach of the German women's team (Golden Eagles), ECB Level 3. Coached me from 2020",y:"2020–2023",imgs:["p/p905.jpg","p/p066.jpg","p/p035.jpg"],col:"#F4B63F"},
- {n:"Alistair Waldron",ig:"https://www.instagram.com/awcoachinguk/",r:"Germany Women's national coach, ECB Level 4",y:"2023–now",imgs:["p/p901.jpg","p/p902.jpg","p/p903.jpg","p/p904.jpg"],col:"#6FD3A0"},
- {n:"Jason Wood",ig:"https://www.instagram.com/jasonwoodmoo/",r:"Assistant coach, Germany Women, ECB Level 3",y:"2023–now",imgs:["p/p908.jpg","p/p906.jpg"],col:"#5CC8FF"},
- {ig:"https://www.instagram.com/sivaram_s_79/",n:"Sivaraman Subramaniam (Siva Raman)",r:"Regional coach",y:"Regional coach",img:"p/p907.jpg",col:"#FF5CAA"}
+ {n:"Michael Thewlis",r:"Head coach of the German women's team (Golden Eagles), ECB Level 3. Coached me from 2020",y:"2020–2023",imgs:["p/p905.webp","p/p066.webp","p/p035.webp"],col:"#F4B63F"},
+ {n:"Alistair Waldron",ig:"https://www.instagram.com/awcoachinguk/",r:"Germany Women's national coach, ECB Level 4",y:"2023–now",imgs:["p/p901.webp","p/p902.webp","p/p903.webp","p/p904.webp"],col:"#6FD3A0"},
+ {n:"Jason Wood",ig:"https://www.instagram.com/jasonwoodmoo/",r:"Assistant coach, Germany Women, ECB Level 3",y:"2023–now",imgs:["p/p908.webp","p/p906.webp"],col:"#5CC8FF"},
+ {ig:"https://www.instagram.com/sivaram_s_79/",n:"Sivaraman Subramaniam (Siva Raman)",r:"Regional coach",y:"Regional coach",img:"p/p907.webp",col:"#FF5CAA"}
 ];
 function renderC(){
   coachesVisible=true;$("coaches").hidden=false;buildTabs();
