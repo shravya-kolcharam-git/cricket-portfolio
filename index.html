@@ -660,9 +660,10 @@ body{font-family:var(--body);-webkit-font-smoothing:antialiased}
 .tvbox{position:relative;aspect-ratio:16/9;background:#0E2619}
 .tvbox iframe,.tvbox video{position:absolute;inset:0;width:100%;height:100%;border:0}
 .tvplay{position:absolute;inset:0;border:0;padding:0;background:#0E2619}
-.tvplay img{width:100%;height:100%;object-fit:cover;display:block}
+.tvplay img{width:100%;height:100%;object-fit:contain;display:block;background:#0E2619}
 .tvplay .pl{position:absolute;inset:0;display:grid;place-items:center}
 .tvt{padding:10px 14px}.tvt b{display:block;font-size:15px}.tvt small{color:#A3B8AC}
+.trph{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.trph a{display:block;height:190px;border-radius:12px;overflow:hidden;background:#0E2619}.trph img{height:100%;width:auto;display:block}
 .trsoon{display:flex;flex-wrap:wrap;align-items:center;gap:14px;border:1.5px dashed rgba(20,39,29,.18);border-radius:16px;padding:16px 18px;background:#FBF9F4}
 .trsoon>span{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#14271D;color:#F4B63F;font-size:14px}
 .trsoon p{margin:0;flex:1;min-width:200px;color:#55675C}
@@ -1003,7 +1004,29 @@ const VID=[{f:"potm-nordic-2026",t:"Player of the Match, Nordic Women's T20 Cup 
    {k:"indoor", t:"Title", yt:"YOUTUBE_VIDEO_ID"}
    {k:"outdoor", t:"Title", src:"v/file.mp4", poster:"v/file.jpg"}
    Drive files must be shared as "Anyone with the link can view". */
-const TRAIN=[];
+const TRAIN=[
+{k:"home",t:"Home wicketkeeping drill",src:"v/trn10.mp4",poster:"v/trn10.jpg"},
+{k:"home",t:"Home footwork and agility drill",src:"v/trn04.mp4",poster:"v/trn04.jpg"},
+{k:"home",t:"Home balance and shadow batting",src:"v/trn20.mp4",poster:"v/trn20.jpg"},
+{k:"home",t:"Backyard practice session",src:"v/trn21.mp4",poster:"v/trn21.jpg"},
+{k:"indoor",t:"Indoor net session",src:"v/trn03.mp4",poster:"v/trn03.jpg"},
+{k:"indoor",t:"Indoor net session, batting",src:"v/trn06.mp4",poster:"v/trn06.jpg"},
+{k:"indoor",t:"Walking out to bat, indoor nets",src:"v/trn08.mp4",poster:"v/trn08.jpg"},
+{k:"indoor",t:"Indoor hall batting drill",src:"v/trn13.mp4",poster:"v/trn13.jpg"},
+{k:"indoor",t:"Indoor wall-and-cone drill",src:"v/trn14.mp4",poster:"v/trn14.jpg"},
+{k:"indoor",t:"Indoor hall footwork",src:"v/trn15.mp4",poster:"v/trn15.jpg"},
+{k:"indoor",t:"Indoor nets, big hall",src:"v/trn16.mp4",poster:"v/trn16.jpg"},
+{k:"indoor",t:"Indoor batting with a partner",src:"v/trn18.mp4",poster:"v/trn18.jpg"},
+{k:"indoor",t:"Indoor hall session",src:"v/trn19.mp4",poster:"v/trn19.jpg"},
+{k:"outdoor",t:"Outdoor net session",src:"v/trn01.mp4",poster:"v/trn01.jpg"},
+{k:"outdoor",t:"Outdoor cone drill",src:"v/trn02.mp4",poster:"v/trn02.jpg"},
+{k:"outdoor",t:"Outdoor field session",src:"v/trn05.mp4",poster:"v/trn05.jpg"},
+{k:"outdoor",t:"Outdoor nets with ball bucket",src:"v/trn07.mp4",poster:"v/trn07.jpg"},
+{k:"outdoor",t:"Outdoor batting session",src:"v/trn09.mp4",poster:"v/trn09.jpg"},
+{k:"outdoor",t:"Outdoor fielding drill",src:"v/trn11.mp4",poster:"v/trn11.jpg"},
+{k:"outdoor",t:"Outdoor net batting",src:"v/trn12.mp4",poster:"v/trn12.jpg"},
+{k:"outdoor",t:"Outdoor practice",src:"v/trn17.mp4",poster:"v/trn17.jpg"}];
+const TRPH=[{k:"indoor",s:"trph1",t:"Indoor session"},{k:"indoor",s:"trph2",t:"Indoor session"},{k:"home",s:"trph3",t:"Backyard practice"}];
 const TRK=[["home","🏠","Home training","Fitness, shadow batting, footwork and drills at home."],["indoor","🏟️","Indoor training","Indoor nets and bowling-machine work through the winter."],["outdoor","🌳","Outdoor training","Outdoor nets, fielding sessions and match practice."]];
 const driveId=v=>typeof v==="string"&&/^[A-Za-z0-9_-]{20,}$/.test(v)?v:"";
 const ytId=v=>typeof v==="string"&&/^[A-Za-z0-9_-]{11}$/.test(v)?v:"";
@@ -1026,7 +1049,8 @@ function renderTrain(){
     const L=TRAIN.filter(v=>v.k===k);
     return el("section",{class:"trsec tr-"+k},
       el("header",{class:"trh"},el("span",{class:"tri",text:ic}),el("div",{},el("h3",{text:h}),el("p",{text:p})),el("em",{class:"trn",text:L.length?L.length+(L.length>1?" videos":" video"):"New videos soon"})),
-      L.length?el("div",{class:"trgrid"},...L.map(trainCard)):el("div",{class:"trsoon"},el("span",{text:"▶"}),el("p",{text:"Sessions from this part of my training are being added. Follow along on Instagram in the meantime."}),el("a",{class:"btn",href:"https://www.instagram.com/shravyakolcharamcricket/",target:"_blank",rel:"noopener noreferrer",text:"@shravyakolcharamcricket"})));
+      L.length?el("div",{class:"trgrid"},...L.map(trainCard)):el("div",{class:"trsoon"},el("span",{text:"▶"}),el("p",{text:"Sessions from this part of my training are being added. Follow along on Instagram in the meantime."}),el("a",{class:"btn",href:"https://www.instagram.com/shravyakolcharamcricket/",target:"_blank",rel:"noopener noreferrer",text:"@shravyakolcharamcricket"})),
+      TRPH.some(x=>x.k===k)?el("div",{class:"trph"},...TRPH.filter(x=>x.k===k).map(x=>el("a",{href:"p/"+x.s+".webp",target:"_blank",rel:"noopener"},el("img",{src:"t/"+x.s+".webp",alt:x.t,loading:"lazy"})))):null);
   }));
 }
 
@@ -1765,7 +1789,7 @@ function rmG(x){if(!db)return;(x.up?db.collection("gphotos").doc(x.docId).delete
 function renderG(){
   const T=gtabs(),all=gItems(),counts={video:VID.filter(v=>!ghid[v.f]).length};
   all.forEach(x=>{const k=tabOf(x);counts[k]=(counts[k]||0)+1});
-  counts.training=(counts.training||0)+TRAIN.length;
+  counts.training=(counts.training||0)+TRAIN.length+TRPH.length;
   const vis=T.filter(([id])=>canWrite||counts[id]||id==="training");
   if(!vis.length)return;
   if(!vis.some(([id])=>id===gtab))gtab=vis[0][0];
