@@ -655,12 +655,12 @@ body{font-family:var(--body);-webkit-font-smoothing:antialiased}
 .trh h3{font:800 20px/1.2 var(--disp);color:#14271D}
 .trh p{margin:2px 0 0;color:#55675C;font-size:14px}
 .trn{margin-left:auto;font:700 12px var(--body);font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:#6B7C71;background:#F3EEE2;padding:6px 10px;border-radius:999px;white-space:nowrap}
-.trgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.trgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr));gap:14px}
 .tvcard{border-radius:16px;overflow:hidden;background:#14271D;color:#fff}
-.tvbox{position:relative;aspect-ratio:16/9;background:#0E2619}
+.tvbox{position:relative;aspect-ratio:4/3;background:#0E2619}
 .tvbox iframe,.tvbox video{position:absolute;inset:0;width:100%;height:100%;border:0}
 .tvplay{position:absolute;inset:0;border:0;padding:0;background:#0E2619}
-.tvplay img{width:100%;height:100%;object-fit:contain;display:block;background:#0E2619}
+.tvplay img{width:100%;height:100%;object-fit:contain!important;display:block;background:#0E2619!important}
 .tvplay .pl{position:absolute;inset:0;display:grid;place-items:center}
 .tvt{padding:10px 14px}.tvt b{display:block;font-size:15px}.tvt small{color:#A3B8AC}
 .trph{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.trph a{display:block;height:190px;border-radius:12px;overflow:hidden;background:#0E2619}.trph img{height:100%;width:auto;display:block}
@@ -1036,10 +1036,12 @@ function trainCard(v){
   const poster=d?"https://drive.google.com/thumbnail?id="+d+"&sz=w800":y?"https://i.ytimg.com/vi/"+y+"/hqdefault.jpg":(v.poster||"");
   const box=el("div",{class:"tvbox"});
   const play=()=>{let m;
+    document.querySelectorAll(".tvbox").forEach(x=>{if(x!==box&&x._reset)x._reset()});
     if(d)m=el("iframe",{src:"https://drive.google.com/file/d/"+d+"/preview",allow:"autoplay; fullscreen",allowfullscreen:"true",title:v.t||"Training video",loading:"lazy"});
     else if(y)m=el("iframe",{src:"https://www.youtube-nocookie.com/embed/"+y+"?autoplay=1&rel=0",allow:"autoplay; fullscreen; picture-in-picture",allowfullscreen:"true",title:v.t||"Training video"});
     else m=el("video",{src:v.src,controls:true,autoplay:true,playsinline:true,poster:v.poster||""});
     box.replaceChildren(m)};
+  box._reset=()=>{const m=box.firstElementChild;if(m&&m.tagName==="VIDEO")m.pause();if(m!==b)box.replaceChildren(b)};
   const b=el("button",{class:"tvplay",type:"button","aria-label":"Play "+(v.t||"training video"),onclick:play},poster?el("img",{src:poster,alt:v.t||"Training video",loading:"lazy",referrerpolicy:"no-referrer"}):null);
   const o=el("span",{class:"pl"});o.innerHTML="<i>"+PLAY+"</i>";b.append(o);box.append(b);
   return el("article",{class:"tvcard"},box,el("div",{class:"tvt"},el("b",{text:v.t||"Training session"}),v.d?el("small",{text:v.d}):null));
